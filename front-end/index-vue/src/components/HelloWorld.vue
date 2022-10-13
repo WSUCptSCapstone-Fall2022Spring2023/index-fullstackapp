@@ -1,58 +1,191 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
-  </div>
+    <!-- Navbar Section -->
+    <nav id = "navbar" class="navbar">
+      <div class="navbar__container">
+        <img src="../assets/logo.png" style ="width: 60px;height: 60px;">
+        <div class="navbar__toggle" id="mobile-menu">
+          <span class="bar"></span> 
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul class="navbar__menu">
+          <li class="navbar__item">
+            <a class="navbar__links">Home</a>
+          </li>
+          <li class="navbar__item">
+            <a class="navbar__links">About us</a>
+          </li>
+          <li class="navbar__item">
+            <a class="navbar__links">Get Involved</a>
+          </li>
+          <li class="navbar__item">
+            <a class="navbar__links">Contact</a>
+          </li>
+          <li class="navbar__item">
+            <a class="navbar__links">Resources</a>
+          </li>
+          <li class="navbar__item">
+            <a class="navbar__links">Services</a>
+          </li>
+          <li class="navbar__item">
+            <a class="navbar__links">Events</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 </template>
 
 <script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
+  window.onload = function(){
+
+    // Display Mobile Menu
+    const menu = document.querySelector('#mobile-menu');
+    const menuLinks = document.querySelector('.navbar__menu');
+    const mobileMenu = () => {
+      menu.classList.toggle('is-active');
+      menuLinks.classList.toggle('active');
+    };
+    menu.addEventListener('click', mobileMenu);
+  };
+  
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
 ul {
   list-style-type: none;
   padding: 0;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+/* Nav Bar Section */
+
+.navbar {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  transition: 0.2s linear all;
+  padding: 10px;
 }
-a {
-  color: #42b983;
+
+.navbar__links {
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  height: 100%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.navbar__container {
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.navbar__menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.navbar__item {
+  padding: 10px;
+}
+
+.navbar__toggle{
+  cursor: pointer;
+}
+
+.navbar__toggle .bar {
+    display: block;
+}
+
+@media screen and (max-width: 715px) {
+  .navbar__container {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    z-index: 1;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .navbar__menu {
+    display: grid;
+    grid-template-columns: auto;
+    margin: 0;
+    width: 100%;
+    position: absolute;
+    top: -1000px;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: -1;
+    right: 0;
+  }
+
+  .navbar__menu.active {
+    top: 100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 99;
+    font-size: 1.6rem;
+  }
+
+  .navbar__toggle .bar {
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+    background: rgb(0, 0, 0);
+  }
+
+  .navbar__item {
+    position: relative;
+    width: 100%;
+    padding: 0;
+  }
+
+  .navbar__links {
+    text-align: center;
+    padding: 2rem;
+    left: 0;
+    right: 0;
+  }
+
+  #mobile-menu {
+    position: absolute;
+    top: 20%;
+    right: 5%;
+    transform: translate(5%, 20%);
+  }
+
+  .navbar__toggle .bar {
+    display: block;
+    cursor: pointer;
+  }
+
+  #mobile-menu.is-active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  #mobile-menu.is-active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  #mobile-menu.is-active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
 }
 </style>
+
+<!-- <button v-on:click="getEventData">Get events Data</button>
+<div>{{eventDataList}}</div> -->
