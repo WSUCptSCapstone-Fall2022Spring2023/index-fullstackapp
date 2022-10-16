@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "winfromstesting/1.0.0": {
+        "dependencies": {
+          "SpreadSheetEngine": "1.0.0"
+        },
+        "runtime": {
+          "winfromstesting.dll": {}
+        }
+      },
+      "SpreadSheetEngine/1.0.0": {
+        "runtime": {
+          "SpreadSheetEngine.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "winfromstesting/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SpreadSheetEngine/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
