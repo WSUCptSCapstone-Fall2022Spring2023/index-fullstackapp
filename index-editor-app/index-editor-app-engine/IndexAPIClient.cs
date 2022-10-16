@@ -26,26 +26,25 @@ namespace index_editor_app_engine
             httpClient.Timeout = TimeSpan.FromMinutes(3);
             httpClient.DefaultRequestHeaders.Add("x-api-key", root["API_KEY"]);
         }
-        public string TestGet()
+
+        public async Task PutDocument(string document)
         {
-            return root["INDEX_API_ENDPOINT"];
+            var stringContent = new StringContent(document, Encoding.UTF8, "application/json");
+            var httpResponse = await httpClient.PutAsync(root["INDEX_API_ENDPOINT"] + "events.json", stringContent);
+
+
         }
 
         public async Task<string?> GetEvents()
         {
             var builder = new UriBuilder(root["INDEX_API_ENDPOINT"] + "events.json");
-
-
             var httpResponse = await httpClient.GetAsync(builder.ToString());
-
             if (!httpResponse.IsSuccessStatusCode)
             {
 
             }
-
             return await httpResponse.Content.ReadAsStringAsync();
         }
-
 
         public async Task<bool> TestConnection()
         {
