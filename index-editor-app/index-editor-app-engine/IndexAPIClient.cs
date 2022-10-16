@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace index_editor_app_engine
 {
@@ -11,21 +13,45 @@ namespace index_editor_app_engine
     {
         
         private HttpClient httpClient;
-        private object _config;
-
+        IConfigurationRoot root;
         public IndexAPIClient()
         {
-            //create http client
+            //get configurations from appsettings
+            IConfigurationBuilder builder = new ConfigurationBuilder().AddJsonFile("appsettings.json", false, true);
+            root = builder.Build();
+
+
+            //create http client with auth
             httpClient = new HttpClient();
             httpClient.Timeout = TimeSpan.FromMinutes(3);
-
+            httpClient.DefaultRequestHeaders.Add("x-api-key", root["API_KEY"]);
         }
+        public string TestGet()
+        {
+            return root["INDEX_API_ENDPOINT"];
+        }
+
+        public async Task<string?> GetEvents()
+        {
+            var builder = new UriBuilder(root["INDEX_API_ENDPOINT"] + "events.json");
+
+
+            var httpResponse = await httpClient.GetAsync(builder.ToString());
+
+            if (!httpResponse.IsSuccessStatusCode)
+            {
+
+            }
+
+            return await httpResponse.Content.ReadAsStringAsync();
+        }
+
 
         public async Task<bool> TestConnection()
         {
             try
             {
-                var builder = new UriBuilder($"{_config.OPEN_SEARCH_ENDPOINT}");
+                var builder = new UriBuilder(root["INDEX_API_ENDPOINT"] + "events.json");
                 var httpResponse = await httpClient.GetAsync(builder.ToString());
 
                 return httpResponse.IsSuccessStatusCode;
@@ -35,7 +61,7 @@ namespace index_editor_app_engine
                 return false;
             }
         }
-        }
+    }
 
 
 }
