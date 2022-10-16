@@ -1,43 +1,4 @@
 <template>
-<<<<<<< HEAD
-
-<div>
-    <h1>display events</h1>
-
-    <div v-for="Event in eventDataList" :key="Event.id">
-      <div>
-        <div>
-          <span>{{Event.title}}  {{Event.description}} {{Event.link}} {{Event.time}} {{Event.image}}</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
-<script>
-//"@/assets/events.json"
-import axios from "axios";
-
-    export default {
-        name: "eventList",
-        data() {
-            return {
-                eventDataList: []
-            };
-        },
-        methods: {
-            getEventData() {
-                axios
-                    .get("events.json")
-                    .then(response => (this.eventDataList = response.data));
-            }
-        },
-        beforeMount()
-        {
-        this.getEventData();
-        }
-    };
-=======
     <!-- Navbar Section -->
     <nav id = "navbar" class="navbar">
       <div class="navbar__container">
@@ -86,8 +47,6 @@ import axios from "axios";
     };
     menu.addEventListener('click', mobileMenu);
   };
-  
->>>>>>> b7a33eaeaeddca399c65dd727e9b8a206c7997d1
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
