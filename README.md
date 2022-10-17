@@ -40,12 +40,19 @@ Provide steps to reproduce the problem and/or name a file or a function where th
 
 ## Contributing
 1.Initialize git: `git init`
+
 2.Run the command to ensure you are up to date: `git pull`
+
 3.Direct git to this project by the command: `git remote add origin https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp.git`
+
 4.Branch off the main branch: `git branch main`
+
 5.Switch to the new branch with: `git checkout {brance name}`
+
 6.Commit your changes: `git commit -m 'Added new feature'`
+
 7.Push to the branch: `git push -u origin {branch name}`
+
 8. Submit a pull request
 
 ## Additional Documentation
