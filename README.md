@@ -39,14 +39,14 @@ Provide steps to reproduce the problem and/or name a file or a function where th
 
 
 ## Contributing
-
-TODO: Leave the steps below if you want others to contribute to your project.
-
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+Initialize git: `git init`
+Run the command to ensure you are up to date: `git pull`
+Direct git to this project by the command: `git remote add origin https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp.git`
+Branch off the main branch: `git branch main`
+Switch to the new branch with: `git checkout {brance name}`
+Commit your changes: `git commit -m 'Added new feature'`
+Push to the branch: `git push -u origin {branch name}`
+Submit a pull request
 
 ## Additional Documentation
 
