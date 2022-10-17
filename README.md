@@ -53,8 +53,6 @@ Provide steps to reproduce the problem and/or name a file or a function where th
 
 7.Push to the branch: `git push -u origin {branch name}`
 
-8. Submit a pull request
-
 ## Additional Documentation
 
 TODO: Provide links to additional documentation that may exist in the repo, e.g.,
