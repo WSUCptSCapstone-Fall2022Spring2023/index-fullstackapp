@@ -24,22 +24,17 @@ Here are links to the issues that we completed in this sprint:
 
 ## Code Files for Review
 Please review the following code files, which were actively developed during this sprint, for quality:
- * [Name of code file 1](https://github.com/your_repo/file_extension)
- * [Name of code file 2](https://github.com/your_repo/file_extension)
- * [Name of code file 3](https://github.com/your_repo/file_extension)
+ * [HelloWorld.vue](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/blob/main/front-end/index-vue/src/components/HelloWorld.vue)
  
 ## Retrospective Summary
 Here's what went well:
-  * Item 1
-  * Item 2
-  * Item x
+  * We did a good job setting up AWS S3 server
+  * We did a good job on the quality of documentation
  
 Here's what we'd like to improve:
-   * Item 1
-   * Item 2
-   * Item x
-  
+   * We were very late with the assignments,we want to get all of the documents done in time
+   * We had a few problems with braching/merging on Github since fews of us are not familiar with it yet, we'd like to get to know it more and be comfortable with it as we go.
+   
 Here are changes we plan to implement in the next sprint:
-   * Item 1
-   * Item 2
-   * Item x
+   * Complete UI for the website's Homepage.
+   * Some skeleton codes for the Winform app. 
