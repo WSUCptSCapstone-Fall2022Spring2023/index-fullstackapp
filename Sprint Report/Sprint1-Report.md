@@ -12,11 +12,11 @@ N/A
 ## Completed Issues/User Stories
 Here are links to the issues that we completed in this sprint:
 
- * [#1 Team Inventory] (https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/issues/1)
- * [#2 Project Description section] (https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/issues/2)
- * [#3 Requirements and Specifications section] (https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/issues/3)
- * [#4 Solution Approach section] (https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/issues/4)
- * [#5 Sprint 1] (https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/issues/5)
+ * [#1 Team Inventory](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/issues/1)
+ * [#2 Project Description section](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/issues/2)
+ * [#3 Requirements and Specifications section](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/issues/3)
+ * [#4 Solution Approach section](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/issues/4)
+ * [#5 Sprint 1](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/issues/5)
  
  ## Incomplete Issues/User Stories
  Here are links to issues we worked on but did not complete in this sprint:
