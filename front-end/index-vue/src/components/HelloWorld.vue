@@ -33,6 +33,18 @@
         </ul>
       </div>
     </nav>
+
+    <div>
+    <h1>display events</h1>
+    <div v-for="Event in eventDataList" :key="Event.id">
+      <div>
+        <div>
+          <span>{{Event.title}}  {{Event.description}} {{Event.link}} {{Event.time}} {{Event.image}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </template>
 
 <script>
@@ -47,6 +59,26 @@
     };
     menu.addEventListener('click', mobileMenu);
   };
+  //reading events.json file
+  import axios from "axios";
+    export default {
+        name: "eventList",
+        data() {
+            return {
+                eventDataList: []
+            };
+        },
+        methods: {
+            getEventData()
+            {
+               axios.get("events.json").then(response => (this.eventDataList = response.data));
+            }
+        },
+        beforeMount()
+        {
+        this.getEventData();
+        }
+    };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
