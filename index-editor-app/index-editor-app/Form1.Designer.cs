@@ -29,27 +29,49 @@
         private void InitializeComponent()
         {
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.buttonSend = new System.Windows.Forms.Button();
+            this.buttonGET = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(25, 17);
+            this.textBox1.Location = new System.Drawing.Point(74, 45);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(728, 421);
-            this.textBox1.TabIndex = 0;
+            this.textBox1.Size = new System.Drawing.Size(658, 383);
+            this.textBox1.TabIndex = 2;
+            // 
+            // buttonSend
+            // 
+            this.buttonSend.Location = new System.Drawing.Point(713, 415);
+            this.buttonSend.Name = "buttonSend";
+            this.buttonSend.Size = new System.Drawing.Size(75, 23);
+            this.buttonSend.TabIndex = 4;
+            this.buttonSend.Text = "SEND";
+            this.buttonSend.UseVisualStyleBackColor = true;
+            this.buttonSend.Click += new System.EventHandler(this.buttonSend_Click);
+            // 
+            // buttonGET
+            // 
+            this.buttonGET.Location = new System.Drawing.Point(632, 415);
+            this.buttonGET.Name = "buttonGET";
+            this.buttonGET.Size = new System.Drawing.Size(75, 23);
+            this.buttonGET.TabIndex = 5;
+            this.buttonGET.Text = "GET";
+            this.buttonGET.UseVisualStyleBackColor = true;
+            this.buttonGET.Click += new System.EventHandler(this.buttonGET_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonGET);
+            this.Controls.Add(this.buttonSend);
             this.Controls.Add(this.textBox1);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.Form1_LoadAsync);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -58,5 +80,7 @@
         #endregion
 
         private TextBox textBox1;
+        private Button buttonSend;
+        private Button buttonGET;
     }
 }
