@@ -13,24 +13,31 @@ INDEx currently only has a small reference to their organization on their parent
 ## Installation
 
 ### Prerequisites
-
-
+None
 
 ### Add-ons
-
-TODO: List which add-ons are included in the project, and the purpose each add-on serves in your app.
-
+#### AWS resources
+* s3 bucket: index-webapp (configured for public static web hosting)
+* API Gateway: (Configured for https GET and PUT to s3 bucket)
+* policy: index-editor-role (Allowing API Gateway access to s3 bucket)
 ### Installation Steps
 
-TODO: Describe the installation process (making sure you mention `bundle install`).
-Instructions need to be such that a user can just copy/paste the commands to get things set up and running. 
+### Front end
+* Download node js from https://nodejs.org/en/download/ choose either Windows or macOS varify installation with terminal command: "node -v" (v16.17.0)
+* Next install npm (node package manager) with the following terminal command: "npm install -g npm", varify installation with command: "npm -v" (8.19.1)
+* Install the vue CLI (vue command line interface) with terminal command: "npm install -g @vue/cli", varify installation with command:<br/>"vue --version" (@vue/cli 5.0.8)
+* cd into INDEX-VUE where package.json and package-lock.json is located and install dependencies using terminal command: "npm install"
+* Recommended: Use Visual Studio Code with Vue Language Features (Volar) extension for syntax highlighting.
 
+### Back end
+* Download the latest net6.0-windows sdk from https://dotnet.microsoft.com/en-us/download/dotnet/6.0
+* Download visual studio 2019 or 2022 from https://visualstudio.microsoft.com/downloads/
+* Using Visual studio installer, install workload: ASP.NET and web development
+* Using Visual studio installer, install workload: .NET desktop development
+* Rename "appsettings.example.json" to appsettings.json and add your endpoint and API key.
 
 ## Functionality
-
-TODO: Write usage instructions. Structuring it as a walkthrough can help structure this section,
-and showcase your features.
-
+TODO:
 
 ## Known Problems
 
