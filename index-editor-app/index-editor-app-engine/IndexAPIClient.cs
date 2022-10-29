@@ -31,11 +31,9 @@ namespace index_editor_app_engine
         {
             var stringContent = new StringContent(document, Encoding.UTF8, "application/json");
             var httpResponse = await httpClient.PutAsync(root["INDEX_API_ENDPOINT"] + "events.json", stringContent);
-
-
         }
 
-        public async Task<string?> GetEvents()
+        public async Task<string?> GetDocument()
         {
             var builder = new UriBuilder(root["INDEX_API_ENDPOINT"] + "events.json");
             var httpResponse = await httpClient.GetAsync(builder.ToString());
