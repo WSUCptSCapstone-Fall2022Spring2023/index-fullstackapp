@@ -17,12 +17,8 @@ Here are links to the issues that we completed in this sprint:
  * [#3 Requirements and Specifications section](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/issues/3)
  * [#4 Solution Approach section](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/issues/4)
  * [#5 Sprint 1](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/issues/5)
- * [#6 Structure main repository](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/issues/6)
- * [#7 Add skeleton code projects](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/issues/7)
- * [#8 AWS s3 bucket](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/issues/8)
- * [#9 AWS API Gateway](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/issues/9)
- * [#11 Editor app API](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/issues/11)
- * [#12 Deploy front-end on push](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/issues/12)
+ * [#11 Editor app API](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/issues/11): video included in pull request comment
+ * [#10 Display events](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/issues/10): video included in pull request comment
  
  ## Incomplete Issues/User Stories
  Here are links to issues we worked on but did not complete in this sprint:
