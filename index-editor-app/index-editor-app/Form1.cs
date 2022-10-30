@@ -31,7 +31,6 @@ namespace index_editor_app
         private async void Form1_LoadAsync(object sender, EventArgs e)
         {
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.ImageLocation = "C:/Users/josh/Desktop/testimage.png";
 
             //create instance of client
             this.indexClient = new IndexAPIClient();
@@ -104,7 +103,9 @@ namespace index_editor_app
 
             if (e.ColumnIndex == 2)
             {
-                pictureBox1.ImageLocation = "/Images/testimage.png";
+                //temporary image until functionality is added
+                pictureBox1.ImageLocation = "C:/Users/josh/Desktop/testimage.png";
+
                 //events.json, need to add creationDate, start and end time
                 this.edtingEventIndex = e.RowIndex;
                 dateTimePicker1.Text = DateTime.Now.ToString();
