@@ -5,7 +5,12 @@ VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "index-editor-app", "index-editor-app\index-editor-app.csproj", "{64AC48F7-F8ED-43B8-BBDB-7EF5A63D3DD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "index-editor-app-engine", "index-editor-app-engine\index-editor-app-engine.csproj", "{ED58AE02-9E76-4F46-A6FF-2C392307FF7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "index-editor-app-engine", "index-editor-app-engine\index-editor-app-engine.csproj", "{ED58AE02-9E76-4F46-A6FF-2C392307FF7F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{AF3BADBA-D787-46D9-9272-7039562FEA67}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\testimage.png = ..\..\..\testimage.png
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
