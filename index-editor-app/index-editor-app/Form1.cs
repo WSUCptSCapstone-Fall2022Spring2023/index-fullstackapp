@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System.Reflection.Metadata;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace index_editor_app
 {
@@ -10,7 +11,7 @@ namespace index_editor_app
     {
         IndexAPIClient indexClient;
 
-        Events[] events;
+        List<Events> events;
         //News[] news;
         //Meetings[] meetings;
 
@@ -22,7 +23,7 @@ namespace index_editor_app
         int newsCount = 0;
         int meetingsCount = 0;
 
-        int edtingEventIndex;
+        int edtingEventIndex = -1;
         public Form1()
         {
             InitializeComponent();
@@ -39,8 +40,7 @@ namespace index_editor_app
             if (await TestConnection())
             {
                 this.eventsJson = await indexClient.GetDocument();
-                this.events = JsonConvert.DeserializeObject<Events[]>(eventsJson);
-                this.eventsCount = events.Count();
+                this.events = JsonConvert.DeserializeObject<Events[]>(eventsJson).ToList<Events>();
                 InitializeDataGrid();
             }
         }
@@ -54,7 +54,7 @@ namespace index_editor_app
             System.Windows.Forms.MessageBox.Show("Connection fialed!" + "\n" + "See \"some ducument.txt\" for help");
             return false;
         }
-
+        
         public void InitializeDataGrid()
         {
             //clear the datagrid
@@ -64,16 +64,22 @@ namespace index_editor_app
             this.dataGridView1.DataSource = null;
 
             //add event headers
+            this.dataGridView1.Columns.Add("creation date", "Creation Date");
             this.dataGridView1.Columns.Add("title", "Title");
-            this.dataGridView1.Columns.Add("time", "Creation Date");
-            DataGridViewColumn TitleColumn = dataGridView1.Columns[0];
-            DataGridViewColumn DateColumn = dataGridView1.Columns[1];
-            DateColumn.Width = 70;
-            TitleColumn.Width = 565;
-
+            this.dataGridView1.Columns.Add("start date", "Start date");
+            this.dataGridView1.Columns.Add("description", "Description");
+            DataGridViewColumn creationDatecolumn = dataGridView1.Columns[0];
+            DataGridViewColumn titleColumn = dataGridView1.Columns[1];
+            DataGridViewColumn startDateColumn = dataGridView1.Columns[2];
+            DataGridViewColumn descriptionColumn = dataGridView1.Columns[3];
+            creationDatecolumn.Width = 130;
+            titleColumn.Width = 500;
+            startDateColumn.Width = 80;
+            descriptionColumn.Width = 638;
 
             //add row index
-            this.dataGridView1.Rows.Add(events.Count());
+            this.eventsCount = events.Count();
+            this.dataGridView1.Rows.Add(eventsCount);
             foreach (DataGridViewRow row in this.dataGridView1.Rows)
             {
                 row.HeaderCell.Value = string.Format("{0}", row.Index + 1);
@@ -82,9 +88,10 @@ namespace index_editor_app
             //add event data
             for (int i = 0; i < eventsCount; i++)
             {
-                dataGridView1[0, i].Value = events[i].Title;
-                //dataGridView1[1, i].Value = events[i].Time; 
-                dataGridView1[1, i].Value = DateTime.Now.ToString("MM/dd/yyyy");
+                dataGridView1[0, i].Value = events[i].CreatedOn;
+                dataGridView1[1, i].Value = events[i].Title;
+                dataGridView1[2, i].Value = events[i].StartDate;
+                dataGridView1[3, i].Value = events[i].Description;
             }
 
             //add edit button
@@ -95,95 +102,116 @@ namespace index_editor_app
             btn.Text = "Edit";
             btn.Name = "Edit";
             btn.UseColumnTextForButtonValue = true;
+            editingEventNumberLabel.Text = "You are editing event #" + "(no event selected)";
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            descriptionBox1.Text = e.ColumnIndex.ToString();
 
-            if (e.ColumnIndex == 2)
+            if (e.ColumnIndex == 4)
             {
-                //temporary image until functionality is added
-                pictureBox1.ImageLocation = "C:/Users/josh/Desktop/testimage.png";
-
-                //events.json, need to add creationDate, start and end time
-                this.edtingEventIndex = e.RowIndex;
-                dateTimePicker1.Text = DateTime.Now.ToString();
-
-                descriptionBox1.Text = events[edtingEventIndex].Description;
-                LinktextBox.Text = events[edtingEventIndex].Link;
-
+                LoadEventIntoFields(e.RowIndex);
             }
         }
 
+        private void LoadEventIntoFields(int eventindex)
+        {
+            InitializeDataGrid();
+            clearInputFields();
+            if (eventindex == -1)
+            {
+                editingEventNumberLabel.Text = "You are editing event #" + "(no event selected)";
+                return;
+            }
+            //set global variable to index of event being edited
+            this.edtingEventIndex = eventindex;
+            Events editEvent = events[edtingEventIndex];
 
+            //temporary image until functionality is added
+            pictureBox1.ImageLocation = "C:/Users/josh/Desktop/testimage.png";
+
+            //load selected event data into editing boxes
+            creationDateLabel.Text = "You created this event on: " + editEvent.CreatedOn;
+            dateTimePicker1.Text = editEvent.StartDate;
+            timeRangeTextBox.Text = editEvent.TimeRange;
+            descriptionBox1.Text = editEvent.Description;
+            LinktextBox.Text = events[edtingEventIndex].Link;
+            titleTextBox.Text = editEvent.Title;
+            editingEventNumberLabel.Text = "You are editing event #" + (edtingEventIndex + 1);
+        }
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
+            if (edtingEventIndex == -1)
+            {
+                System.Windows.Forms.MessageBox.Show("No event selected.");
+                return;
+            }
             var confirmResult = MessageBox.Show("Are you sure to delete this item ??", "Confirm Delete!!", MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
-                descriptionBox1.Text = "Deleted" + events[edtingEventIndex].Title;
-            }
-            else
-            {
-                //textBox1.Text = "Deleted";
-            }
 
+                events.RemoveAt(edtingEventIndex);
+                edtingEventIndex = -1;
+                LoadEventIntoFields(edtingEventIndex);
+            }
 
         }
 
+        private void addImageButton_Click(object sender, EventArgs e)
+        {
+            this.openFileDialog1 = new OpenFileDialog
+            {
+                InitialDirectory = "c:\\",
+                Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*", //change to images
+                FilterIndex = 2,
+                RestoreDirectory = true,
+            };
 
+            if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                var fs = this.openFileDialog1.OpenFile();
+                StreamReader reader = new(fs);
+                this.LoadImage(reader);
+            }
 
-        //private async void buttonSend_Click(object sender, EventArgs e)
-        //{
-        //    //create index client
-        //    IndexAPIClient indexClient = new IndexAPIClient();
-        //    //test connection
-        //    bool test = await indexClient.TestConnection();
-        //    string message = "";
-        //    if (test)
-        //    {
-        //        message = "Successfuly connected to index";
-        //    }
-        //    else
-        //    {
-        //        textBox1.Text = "failed to connect to index";
-        //        return;
-        //    }
+        }
 
-        //    //read the updated string
-        //    string updatedjson = textBox1.Text;
-        //    string output = "[" + updatedjson.Split('[', ']')[1] + "]";
-        //    textBox1.Text = output;
-        //    indexClient.PutDocument(output);
+        private void LoadImage(StreamReader reader)
+        {
+            //adding images coming soon.
+        }
 
-        //}
+        private void CreateEvent_Click(object sender, EventArgs e)
+        {
+            clearInputFields();
+            Events newEvent = new Events();
+            newEvent.CreatedOn = DateTime.Now.ToString();
+            newEvent.Title = "New event created! Edit me!";
+            events.Insert(0, newEvent);
+            LoadEventIntoFields(0);
+        }
 
-        //private async void buttonGET_Click(object sender, EventArgs e)
-        //{
-        //    //create index client
-        //    IndexAPIClient indexClient = new IndexAPIClient();
-        //    //test connection
-        //    bool test = await indexClient.TestConnection();
-        //    string message = "";
-        //    if (test)
-        //    {
-        //        message = "Successfuly connected to index";
-        //    }
-        //    else
-        //    {
-        //        textBox1.Text = "failed to connect to index";
-        //        return;
-        //    }
+        private void confirmChangesButton_Click(object sender, EventArgs e)
+        {
+            //load entered data into the event being edited
+            events[edtingEventIndex].Description = descriptionBox1.Text;
+            events[edtingEventIndex].Title = titleTextBox.Text;
+            events[edtingEventIndex].TimeRange = timeRangeTextBox.Text;
+            events[edtingEventIndex].StartDate = dateTimePicker1.Value.ToString();
+            events[edtingEventIndex].Image = "functionality incomplete";
 
-        //    //GetEvents
-        //    string eventsJson = await indexClient.GetDocument();
+            LoadEventIntoFields(edtingEventIndex);
+        }
 
-        //    //store json events data as a class
-        //    Events[] events = JsonConvert.DeserializeObject<Events[]>(eventsJson);
+        private void clearInputFields()
+        {
+            descriptionBox1.Text = "";
+            titleTextBox.Text = "";
+            timeRangeTextBox.Text = "";
+            dateTimePicker1.Value = DateTime.Now;
+            LinktextBox.Text = "";
 
-        //    textBox1.Text = message + Environment.NewLine + "Current events" + Environment.NewLine + eventsJson;
-        //}
+        }
     }
 }

@@ -31,7 +31,7 @@ namespace index_editor_app_engine
             newevent.Description = description; 
             newevent.Link = link;
             newevent.Image = image;
-            newevent.Time = time;
+            newevent.TimeRange = time;
 
             return newevent;
         }
@@ -52,7 +52,7 @@ namespace index_editor_app_engine
                     e.Description = description;
                     e.Link = link;
                     e.Image = image;
-                    e.Time = time;
+                    e.TimeRange = time;
                 }
             }
         }
