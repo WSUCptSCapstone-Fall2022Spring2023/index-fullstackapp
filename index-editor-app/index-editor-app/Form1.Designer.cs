@@ -30,10 +30,14 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBoxConfirmUpdate = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.editingEventNumberLabel = new System.Windows.Forms.Label();
             this.addImageButton = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.titleTextBox = new System.Windows.Forms.TextBox();
-            this.confirmChangesButton = new System.Windows.Forms.Button();
+            this.validateChangesButton = new System.Windows.Forms.Button();
             this.creationDateLabel = new System.Windows.Forms.Label();
             this.CreateEvent = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -56,7 +60,6 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.editingEventNumberLabel = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -66,23 +69,31 @@
             // 
             // tabControl1
             // 
+            this.tabControl1.Alignment = System.Windows.Forms.TabAlignment.Left;
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(12, 27);
+            this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.tabControl1.ItemSize = new System.Drawing.Size(25, 100);
+            this.tabControl1.Location = new System.Drawing.Point(12, 46);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1472, 521);
+            this.tabControl1.Size = new System.Drawing.Size(1472, 548);
+            this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 6;
+            this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label7);
+            this.tabPage1.Controls.Add(this.textBoxConfirmUpdate);
+            this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.editingEventNumberLabel);
             this.tabPage1.Controls.Add(this.addImageButton);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.titleTextBox);
-            this.tabPage1.Controls.Add(this.confirmChangesButton);
+            this.tabPage1.Controls.Add(this.validateChangesButton);
             this.tabPage1.Controls.Add(this.creationDateLabel);
             this.tabPage1.Controls.Add(this.CreateEvent);
             this.tabPage1.Controls.Add(this.pictureBox1);
@@ -97,13 +108,52 @@
             this.tabPage1.Controls.Add(this.DeleteButton);
             this.tabPage1.Controls.Add(this.descriptionBox1);
             this.tabPage1.Controls.Add(this.dataGridView1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Location = new System.Drawing.Point(104, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1464, 493);
+            this.tabPage1.Size = new System.Drawing.Size(1364, 540);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Events";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(1357, 405);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(0, 15);
+            this.label7.TabIndex = 25;
+            // 
+            // textBoxConfirmUpdate
+            // 
+            this.textBoxConfirmUpdate.Location = new System.Drawing.Point(1297, 423);
+            this.textBoxConfirmUpdate.Name = "textBoxConfirmUpdate";
+            this.textBoxConfirmUpdate.Size = new System.Drawing.Size(161, 23);
+            this.textBoxConfirmUpdate.TabIndex = 24;
+            this.textBoxConfirmUpdate.Text = "Type \"confirm\"";
+            this.textBoxConfirmUpdate.TextChanged += new System.EventHandler(this.textBoxConfirmUpdate_TextChanged);
+            this.textBoxConfirmUpdate.Enter += new System.EventHandler(this.Confirm_TextBox_Enter);
+            this.textBoxConfirmUpdate.Leave += new System.EventHandler(this.Confirm_TextBox_Leave);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.LightGray;
+            this.button1.Location = new System.Drawing.Point(1297, 448);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(161, 38);
+            this.button1.TabIndex = 23;
+            this.button1.Text = "Update Website";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.update_Website_Button_Click);
+            // 
+            // editingEventNumberLabel
+            // 
+            this.editingEventNumberLabel.AutoSize = true;
+            this.editingEventNumberLabel.Location = new System.Drawing.Point(1003, 225);
+            this.editingEventNumberLabel.Name = "editingEventNumberLabel";
+            this.editingEventNumberLabel.Size = new System.Drawing.Size(128, 15);
+            this.editingEventNumberLabel.TabIndex = 22;
+            this.editingEventNumberLabel.Text = "You are editing event #";
             // 
             // addImageButton
             // 
@@ -131,17 +181,18 @@
             this.titleTextBox.Name = "titleTextBox";
             this.titleTextBox.Size = new System.Drawing.Size(584, 35);
             this.titleTextBox.TabIndex = 19;
+            this.titleTextBox.TextChanged += new System.EventHandler(this.titleTextBox_TextChanged);
             // 
-            // confirmChangesButton
+            // validateChangesButton
             // 
-            this.confirmChangesButton.BackColor = System.Drawing.Color.DarkOrange;
-            this.confirmChangesButton.Location = new System.Drawing.Point(1294, 307);
-            this.confirmChangesButton.Name = "confirmChangesButton";
-            this.confirmChangesButton.Size = new System.Drawing.Size(164, 38);
-            this.confirmChangesButton.TabIndex = 18;
-            this.confirmChangesButton.Text = "Confirm Changes";
-            this.confirmChangesButton.UseVisualStyleBackColor = false;
-            this.confirmChangesButton.Click += new System.EventHandler(this.confirmChangesButton_Click);
+            this.validateChangesButton.BackColor = System.Drawing.Color.DarkOrange;
+            this.validateChangesButton.Location = new System.Drawing.Point(1297, 230);
+            this.validateChangesButton.Name = "validateChangesButton";
+            this.validateChangesButton.Size = new System.Drawing.Size(161, 38);
+            this.validateChangesButton.TabIndex = 18;
+            this.validateChangesButton.Text = "Validate Changes";
+            this.validateChangesButton.UseVisualStyleBackColor = false;
+            this.validateChangesButton.Click += new System.EventHandler(this.validateChangesButton_Click);
             // 
             // creationDateLabel
             // 
@@ -186,6 +237,8 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(263, 23);
             this.dateTimePicker1.TabIndex = 11;
+            this.dateTimePicker1.Value = new System.DateTime(2022, 11, 5, 0, 0, 0, 0);
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // label4
             // 
@@ -212,6 +265,7 @@
             this.timeRangeTextBox.Name = "timeRangeTextBox";
             this.timeRangeTextBox.Size = new System.Drawing.Size(263, 23);
             this.timeRangeTextBox.TabIndex = 7;
+            this.timeRangeTextBox.TextChanged += new System.EventHandler(this.timeRangeTextBox_TextChanged);
             // 
             // label2
             // 
@@ -229,6 +283,7 @@
             this.LinktextBox.Name = "LinktextBox";
             this.LinktextBox.Size = new System.Drawing.Size(263, 24);
             this.LinktextBox.TabIndex = 5;
+            this.LinktextBox.TextChanged += new System.EventHandler(this.LinktextBox_TextChanged);
             // 
             // label1
             // 
@@ -242,9 +297,9 @@
             // DeleteButton
             // 
             this.DeleteButton.BackColor = System.Drawing.Color.OrangeRed;
-            this.DeleteButton.Location = new System.Drawing.Point(1294, 449);
+            this.DeleteButton.Location = new System.Drawing.Point(1297, 274);
             this.DeleteButton.Name = "DeleteButton";
-            this.DeleteButton.Size = new System.Drawing.Size(164, 38);
+            this.DeleteButton.Size = new System.Drawing.Size(161, 38);
             this.DeleteButton.TabIndex = 2;
             this.DeleteButton.Text = "Delete selected event";
             this.DeleteButton.UseVisualStyleBackColor = false;
@@ -258,6 +313,7 @@
             this.descriptionBox1.Name = "descriptionBox1";
             this.descriptionBox1.Size = new System.Drawing.Size(584, 216);
             this.descriptionBox1.TabIndex = 1;
+            this.descriptionBox1.TextChanged += new System.EventHandler(this.descriptionBox1_TextChanged);
             // 
             // dataGridView1
             // 
@@ -273,19 +329,19 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 24);
+            this.tabPage2.Location = new System.Drawing.Point(104, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1464, 493);
+            this.tabPage2.Size = new System.Drawing.Size(1196, 494);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Meetings";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 24);
+            this.tabPage3.Location = new System.Drawing.Point(104, 4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1464, 493);
+            this.tabPage3.Size = new System.Drawing.Size(1196, 494);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "News";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -296,7 +352,7 @@
             this.menuToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1496, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1536, 24);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -332,20 +388,11 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // editingEventNumberLabel
-            // 
-            this.editingEventNumberLabel.AutoSize = true;
-            this.editingEventNumberLabel.Location = new System.Drawing.Point(1003, 225);
-            this.editingEventNumberLabel.Name = "editingEventNumberLabel";
-            this.editingEventNumberLabel.Size = new System.Drawing.Size(128, 15);
-            this.editingEventNumberLabel.TabIndex = 22;
-            this.editingEventNumberLabel.Text = "You are editing event #";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1496, 560);
+            this.ClientSize = new System.Drawing.Size(1536, 606);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -388,11 +435,14 @@
         private TextBox LinktextBox;
         private Label label1;
         private Label creationDateLabel;
-        private Button confirmChangesButton;
+        private Button validateChangesButton;
         private OpenFileDialog openFileDialog1;
         private Label label5;
         private TextBox titleTextBox;
         private Button addImageButton;
         private Label editingEventNumberLabel;
+        private Button button1;
+        private Label label7;
+        private TextBox textBoxConfirmUpdate;
     }
 }

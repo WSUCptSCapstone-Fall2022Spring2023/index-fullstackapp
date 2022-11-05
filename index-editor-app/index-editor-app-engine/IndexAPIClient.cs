@@ -27,10 +27,11 @@ namespace index_editor_app_engine
             httpClient.DefaultRequestHeaders.Add("x-api-key", root["API_KEY"]);
         }
 
-        public async Task PutDocument(string document)
+        public async Task<HttpResponseMessage> PutDocument(string document)
         {
             var stringContent = new StringContent(document, Encoding.UTF8, "application/json");
             var httpResponse = await httpClient.PutAsync(root["INDEX_API_ENDPOINT"] + "events.json", stringContent);
+            return httpResponse;
         }
 
         public async Task<string?> GetDocument()
