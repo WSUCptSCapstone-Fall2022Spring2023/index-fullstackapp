@@ -106,7 +106,7 @@
       </div>
     </div>
     <div style = "height: 450px;position: relative;">
-      <iframe class = "vertical-center" width="560" height="315" src="https://www.youtube.com/embed/_kjdEofI8sQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe class = "vertical-center" width="50%" height="315" src="https://www.youtube.com/embed/_kjdEofI8sQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
     <div>
       <h2 class="section-title">
@@ -135,13 +135,13 @@
           <p>DAC is pushing for change in our community, but we can't do it all on our own. We need your help and support!</p>
         </h2>
         <div class = "section-box">
-          <span class="involved-action advocate-action">
+          <div class="involved-action advocate-action">
             <span class="icon-thumb"><i class="fa fa-bullhorn fa-3x"></i></span>
             <div style = "">
               <h3>Advocate</h3>
               <p>Help educate and motivate the community about disability.</p>
             </div>
-          </span>
+          </div>
           <a class="involved-action volunteer-action" href="https://dacnw.org/volunteers-supporters/volunteer">
 						<span class="icon-thumb"><i class="fa fa-users fa-3x"></i></span>
             <div>
@@ -576,6 +576,12 @@ input.search-input {
   .section-box{
     display: block;
     justify-items: center;
+  }
+
+  .involved-action {
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 20px;
   }
 }
 
