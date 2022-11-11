@@ -1,4 +1,9 @@
 <template>
+  <header>
+    <link
+      rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous"
+    />
+  </header>
   <div class = "row">
     <!-- Navbar Section -->
     <nav id = "navbar" class="navbar">
@@ -100,8 +105,58 @@
         <br>Our Mission: DAC NW is building community, achieving equality and creating independence in an accessible world.</p>
       </div>
     </div>
-    <div style = "height: 400px;position: relative;">
+    <div style = "height: 450px;position: relative;">
       <iframe class = "vertical-center" width="560" height="315" src="https://www.youtube.com/embed/_kjdEofI8sQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div>
+      <h2 class="section-title">
+        <span>Success Stories</span>
+        <p>With your help, we're breaking down barriers, making our communities accessible to everyone.	</p>									
+      </h2>
+      <div class = "section-box">
+        <article class = "case-study">
+          <a href="https://dacnw.org/case-study/students-help-design-first-ada-accessible-garden-in-the-area/">
+						<img width="200" height="200" src="https://dacnw.org/wp-content/uploads/2022/10/Screen-Shot-2022-10-06-at-12.56.11-PM-200x200.jpg" class="round-thumb wp-post-image" alt="" decoding="async" loading="lazy" srcset="https://dacnw.org/wp-content/uploads/2022/10/Screen-Shot-2022-10-06-at-12.56.11-PM-200x200.jpg 200w, https://dacnw.org/wp-content/uploads/2022/10/Screen-Shot-2022-10-06-at-12.56.11-PM-150x150.jpg 150w, https://dacnw.org/wp-content/uploads/2022/10/Screen-Shot-2022-10-06-at-12.56.11-PM-800x800.jpg 800w, https://dacnw.org/wp-content/uploads/2022/10/Screen-Shot-2022-10-06-at-12.56.11-PM-400x400.jpg 400w, https://dacnw.org/wp-content/uploads/2022/10/Screen-Shot-2022-10-06-at-12.56.11-PM-70x70.jpg 70w, https://dacnw.org/wp-content/uploads/2022/10/Screen-Shot-2022-10-06-at-12.56.11-PM-300x300.jpg 300w, https://dacnw.org/wp-content/uploads/2022/10/Screen-Shot-2022-10-06-at-12.56.11-PM-100x100.jpg 100w" sizes="(max-width: 200px) 100vw, 200px">
+            <h3 class="post-excerpt-title">Students help design first ADA accessible garden in the area</h3>
+					</a>
+          <p>WSU INSIDER – School of Design and Construction students helped to design and build one of the first fully accessible garden plots in the Inland ...</p>
+        </article>
+        <article class = "case-study">
+          <a href="https://dacnw.org/case-study/idaho-unveils-new-communication-card-to-help-deaf-and-hard-of-hearing-individuals-communicate-with-law-enforcement/">
+						<img width="200" height="200" src="https://dacnw.org/wp-content/uploads/2022/08/Deaf-driver-card-200x200.webp" class="round-thumb wp-post-image" alt="" decoding="async" loading="lazy" srcset="https://dacnw.org/wp-content/uploads/2022/08/Deaf-driver-card-200x200.webp 200w, https://dacnw.org/wp-content/uploads/2022/08/Deaf-driver-card-150x150.webp 150w, https://dacnw.org/wp-content/uploads/2022/08/Deaf-driver-card-400x400.webp 400w, https://dacnw.org/wp-content/uploads/2022/08/Deaf-driver-card-70x70.webp 70w, https://dacnw.org/wp-content/uploads/2022/08/Deaf-driver-card-300x300.webp 300w, https://dacnw.org/wp-content/uploads/2022/08/Deaf-driver-card-100x100.webp 100w" sizes="(max-width: 200px) 100vw, 200px">
+            <h3 class="post-excerpt-title">Idaho Unveils New Communication Card to Help Deaf and Hard-of-Hearing Individuals Communicate with Law Enforcement</h3>
+					</a>
+          <p>BOISE – The Idaho Council for the Deaf and Hard of Hearing (ICDHH), Northwest ADA Center of Idaho and law enforcement partners have developed a new ...</p>
+        </article>
+      </div>
+      <div>
+        <h2 class="section-title" data-v-469af010="">
+          <span>Get Involved</span>
+          <p>DAC is pushing for change in our community, but we can't do it all on our own. We need your help and support!</p>
+        </h2>
+        <div class = "section-box">
+          <span class="involved-action advocate-action">
+            <span class="icon-thumb"><i class="fa fa-bullhorn fa-3x"></i></span>
+            <div style = "">
+              <h3>Advocate</h3>
+              <p>Help educate and motivate the community about disability.</p>
+            </div>
+          </span>
+          <a class="involved-action volunteer-action" href="https://dacnw.org/volunteers-supporters/volunteer">
+						<span class="icon-thumb"><i class="fa fa-users fa-3x"></i></span>
+            <div>
+              <h3>Volunteer</h3>
+              <p>Assist in outreach, legislative issues and other opportunities.</p>
+            </div>
+          </a>
+          <a class="involved-action donate-action" href="https://dacnw.org/volunteers-supporters/donate">
+						<span class="icon-thumb"><i class="fa fa-money-bill-alt fa-3x"></i></span>
+            <div><h3>Donate</h3>
+              <p>Help us to continue to provide community support and services.</p>
+            </div>
+          </a>
+        </div>
+      </div>
     </div>
     <!-- Main Section -->
   </div>
@@ -402,6 +457,10 @@ input.search-input {
   text-align: left;
 }
 
+.p-box a{
+  color: #295170;
+}
+
 .vertical-center{
   position: relative;
   top: 50%;
@@ -409,10 +468,114 @@ input.search-input {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+.section-title p{
+  color: black;
+  font-weight:normal;
+  font-size: 1rem;
+}
+
+.section-title span {
+    display: inline-block;
+    padding: 0px 10px;
+    background: #fff;
+    color: #295170;
+    font-size: 2em;
+}
+
+.section-box{
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 20px;
+  justify-items: center;
+}
+
+.round-thumb {
+    border: 1px solid #e8e9eb;
+    border-radius: 50%;
+}
+
+.case-study {
+    display: inline;
+    width: 50%;
+    padding: 10px;
+}
+
+.post-excerpt-title {
+    margin: 0;
+    padding: 0;
+    font-size: 1.7em;
+    text-transform: capitalize;
+    color: #3e79a8;
+    text-align: center;
+}
+.involved-action {
+    position: relative;
+    display: flex;
+    width: 70%;
+    margin-top: 15px;
+    padding: 20px;
+    border-radius: 4px;
+    color: #fff;
+    text-align: left;
+}
+
+.involved-action h3 {
+    margin: 0;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+    font-weight: 900 !important;
+    font-size: 1.4em;
+    line-height: 1em;
+}
+
+.involved-action p {
+    margin: 0;
+    padding: 0;
+    font-size: .9325em;
+    line-height: 1.3em;
+    opacity: .7;
+}
+
+.advocate-action {
+    background: #72a5cc;
+    background: -webkit-linear-gradient(#72a5cc 0%, #5894c3 50%);
+    background: -moz-linear-gradient(#72a5cc 0%, #5894c3 50%);
+    background: linear-gradient(#72a5cc 0%, #5894c3 50%);
+    border-bottom: #39739f 2px solid;
+}
+
+.volunteer-action {
+    background: #E87928;
+    background: -webkit-linear-gradient(#E87928 0%, #d56717 50%);
+    background: -moz-linear-gradient(#E87928 0%, #d56717 50%);
+    background: linear-gradient(#E87928 0%, #d56717 50%);
+    border-bottom: #9a4a10 2px solid;
+}
+
+.donate-action {
+    background: #4e7a3c;
+    background: -webkit-linear-gradient(#4e7a3c 0%, #3f6230 50%);
+    background: -moz-linear-gradient(#4e7a3c 0%, #3f6230 50%);
+    background: linear-gradient(#4e7a3c 0%, #3f6230 50%);
+    border-bottom: #22361a 2px solid;
+}
+
+.icon-thumb {
+    display: inline;
+    float: left;
+    margin-bottom: 30px;
+    margin-right: 10px;
+    width: 80px;
+}
 
 @media screen and (max-width: 715px) {
   .p-box{
     display: block;
+  }
+
+  .section-box{
+    display: block;
+    justify-items: center;
   }
 }
 
