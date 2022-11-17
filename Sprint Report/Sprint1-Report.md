@@ -1,5 +1,9 @@
 # Sprint x Report (8/26/21 - 9/24/2021)
 
+## Videos
+ * https://youtu.be/eg7yX8NI2Ok
+ * https://youtu.be/eiVrFGYwZD0
+
 ## What's New (User Facing)
  * Navigation bar to redirect to Home, About us, Get Involved, Contact, Resources, Services and Events
 
