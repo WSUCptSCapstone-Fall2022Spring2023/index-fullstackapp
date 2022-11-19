@@ -26,6 +26,9 @@ namespace index_editor_app
 
         private async void Form1_LoadAsync(object sender, EventArgs e)
         {
+            //tabControl1.TabPages.Remove(tabPage1);///////////////////////////////////////////////////////////////////////////////////////////////
+
+
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
 
             //Create APIClient, eventsHandler and test connection
@@ -50,6 +53,8 @@ namespace index_editor_app
         
         public void InitializeDataGrid()
         {
+ 
+            
 
             //clear the datagrid
             this.dataGridView1.CancelEdit();
@@ -67,7 +72,7 @@ namespace index_editor_app
             DataGridViewColumn startDateColumn = dataGridView1.Columns[2];
             DataGridViewColumn descriptionColumn = dataGridView1.Columns[3];
             creationDatecolumn.Width = 130;
-            titleColumn.Width = 500;
+            titleColumn.Width = 411;
             startDateColumn.Width = 80;
             descriptionColumn.Width = 638;
 
@@ -356,8 +361,21 @@ namespace index_editor_app
             }
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
         private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
         {
+
             Graphics g = e.Graphics;
             Brush _textBrush;
 
@@ -389,5 +407,27 @@ namespace index_editor_app
             _stringFlags.LineAlignment = StringAlignment.Center;
             g.DrawString(_tabPage.Text, _tabFont, _textBrush, _tabBounds, new StringFormat(_stringFlags));
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            var response = indexClient.PutImage("test");
+            descriptionBox1.Text = response.ToString();
+        }
+
+        //private void button2_Click(object sender, EventArgs e)
+        //{
+        //    tabPage1.Hide();
+        //    tabControl1.TabPages.Add(tabPage1);
+        //    tabPage1.Hide();
+        //}
+
+
+
+
+
+
+
+
     }
 }

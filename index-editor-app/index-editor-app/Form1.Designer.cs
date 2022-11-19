@@ -60,6 +60,7 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.button2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -79,13 +80,15 @@
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1472, 548);
+            this.tabControl1.Size = new System.Drawing.Size(1500, 548);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 6;
             this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage1.Controls.Add(this.button2);
             this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.textBoxConfirmUpdate);
             this.tabPage1.Controls.Add(this.button1);
@@ -111,10 +114,9 @@
             this.tabPage1.Location = new System.Drawing.Point(104, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1364, 540);
+            this.tabPage1.Size = new System.Drawing.Size(1392, 540);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Events";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
@@ -126,7 +128,7 @@
             // 
             // textBoxConfirmUpdate
             // 
-            this.textBoxConfirmUpdate.Location = new System.Drawing.Point(1297, 423);
+            this.textBoxConfirmUpdate.Location = new System.Drawing.Point(1225, 419);
             this.textBoxConfirmUpdate.Name = "textBoxConfirmUpdate";
             this.textBoxConfirmUpdate.Size = new System.Drawing.Size(161, 23);
             this.textBoxConfirmUpdate.TabIndex = 24;
@@ -138,7 +140,7 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.LightGray;
-            this.button1.Location = new System.Drawing.Point(1297, 448);
+            this.button1.Location = new System.Drawing.Point(1225, 445);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(161, 38);
             this.button1.TabIndex = 23;
@@ -186,7 +188,7 @@
             // validateChangesButton
             // 
             this.validateChangesButton.BackColor = System.Drawing.Color.DarkOrange;
-            this.validateChangesButton.Location = new System.Drawing.Point(1297, 230);
+            this.validateChangesButton.Location = new System.Drawing.Point(1225, 230);
             this.validateChangesButton.Name = "validateChangesButton";
             this.validateChangesButton.Size = new System.Drawing.Size(161, 38);
             this.validateChangesButton.TabIndex = 18;
@@ -206,7 +208,7 @@
             // CreateEvent
             // 
             this.CreateEvent.BackColor = System.Drawing.Color.DarkOrange;
-            this.CreateEvent.Location = new System.Drawing.Point(1297, 185);
+            this.CreateEvent.Location = new System.Drawing.Point(1225, 185);
             this.CreateEvent.Name = "CreateEvent";
             this.CreateEvent.Size = new System.Drawing.Size(161, 38);
             this.CreateEvent.TabIndex = 16;
@@ -297,7 +299,7 @@
             // DeleteButton
             // 
             this.DeleteButton.BackColor = System.Drawing.Color.OrangeRed;
-            this.DeleteButton.Location = new System.Drawing.Point(1297, 274);
+            this.DeleteButton.Location = new System.Drawing.Point(1225, 271);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(161, 38);
             this.DeleteButton.TabIndex = 2;
@@ -323,7 +325,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(6, 6);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(1452, 175);
+            this.dataGridView1.Size = new System.Drawing.Size(1380, 175);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
@@ -332,7 +334,7 @@
             this.tabPage2.Location = new System.Drawing.Point(104, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1196, 494);
+            this.tabPage2.Size = new System.Drawing.Size(1392, 540);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Meetings";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -341,7 +343,7 @@
             // 
             this.tabPage3.Location = new System.Drawing.Point(104, 4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1196, 494);
+            this.tabPage3.Size = new System.Drawing.Size(1392, 540);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "News";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -388,13 +390,25 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(962, 305);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(215, 23);
+            this.button2.TabIndex = 26;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DarkOrange;
             this.ClientSize = new System.Drawing.Size(1536, 606);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
+            this.ForeColor = System.Drawing.SystemColors.WindowText;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
@@ -444,5 +458,6 @@
         private Button button1;
         private Label label7;
         private TextBox textBoxConfirmUpdate;
+        private Button button2;
     }
 }
