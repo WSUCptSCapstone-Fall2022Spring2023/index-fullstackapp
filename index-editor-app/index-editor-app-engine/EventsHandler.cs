@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -11,59 +12,108 @@ namespace index_editor_app_engine
 {
     public class EventsHandler
     {
-        public Events[] events;// = JsonConvert.DeserializeObject<Events[]>(eventsJson);
-        IndexAPIClient indexClient;
-        public EventsHandler()
+        public List<Events> events;// List of Events
+        public string eventsJson;  //Events json string
+        public IndexAPIClient indexClient; //API client
+        int count;
+
+        public int Count { get => count; set => count = value; }
+
+        public EventsHandler(string EventsJson, IndexAPIClient client)
         {
-            indexClient = new IndexAPIClient();
+            this.indexClient = client;
+            this.eventsJson = EventsJson;
+            this.events = JsonConvert.DeserializeObject<Events[]>(eventsJson).ToList<Events>();
         }
 
-        public async Task GetEvents()
+        public async Task GetEvents() // load events into class
         {
-            string eventsJson = await indexClient.GetDocument();
-            this.events = JsonConvert.DeserializeObject<Events[]>(eventsJson);
+            this.eventsJson = await indexClient.GetDocument();
+            this.events = JsonConvert.DeserializeObject<Events[]>(eventsJson).ToList<Events>();
+            this.count = events.Count();
+            Console.WriteLine("THIS IS THE COUNT RIGHT NOW: " + count);
         }
 
-        public static Events CreateNewEvent(string title, string description, string link, string image, string time)
+        public static string CheckEvent(string title, string des, string timeRange, string startdate, string link, string image)
         {
-            Events newevent = new Events();
-            newevent.Title = title;
-            newevent.Description = description; 
-            newevent.Link = link;
-            newevent.Image = image;
-            newevent.Time = time;
+            string result = string.Empty;
 
-            return newevent;
-        }
-
-        public Events GetEventByName(string name)
-        {
-            Events first = Array.Find(events, element => element.Title.ToLower() == name);
-            return first;
-        }
-
-        public void UpdateEventByName(string name, string title, string description, string link, string image, string time)
-        {
-            foreach (Events e in events)
+            if (title == string.Empty || title == "New event created! Edit me!" || title == null)
             {
-                if (e.Title.ToLower() == name.ToLower())
+                result += "Missing Title" + Environment.NewLine;
+            }
+            else
+            {
+                string[] titleList = title.Split(' ');
+                foreach (string word in titleList)
                 {
-                    e.Title = title;
-                    e.Description = description;
-                    e.Link = link;
-                    e.Image = image;
-                    e.Time = time;
+                    if (!Char.IsUpper(word[0]))
+                    {
+                        result += "Title has lowercase words" + Environment.NewLine;
+                        break;
+                    }
                 }
             }
+
+
+            if (des == string.Empty || des == null)
+            {
+                result += "Missing description" + Environment.NewLine;
+            }
+
+
+            if (timeRange == string.Empty || timeRange == null)
+            {
+                result += "Missing time range" + Environment.NewLine;
+            }
+
+
+            if (startdate == string.Empty || startdate == null)
+            {
+                result += "Missing startdate" + Environment.NewLine;
+            }
+
+
+            if (link == string.Empty || link == null)
+            {
+                result += "Missing URL link" + Environment.NewLine;
+            }
+
+
+            if (image == string.Empty || image == "C:/Users/josh/Desktop/testimage.png" || image == null)
+            {
+                result += "Missing image link" + Environment.NewLine;
+            }
+
+            return result;
         }
 
 
+        public string ValidatePut()
+        {
+            string basicErros = string.Empty;
+            string otherErrors = string.Empty;
+            int i = 1;
+            foreach (Events e in events)
+            {
+                string basicValidation = EventsHandler.CheckEvent(e.Title, e.Description, e.TimeRange, e.StartDate, e.Link, e.Image);
+                if (basicValidation != string.Empty)
+                {
+                    basicErros += "event #" + i + Environment.NewLine +  basicValidation;
+                }
+                //add more checks later for otherchecks
+            }
 
+            return basicErros;
+        }
 
-        //TODO sending events
-        //serialize updated Event object
-        //check against schema
-        //call PUT
+        public Task<HttpResponseMessage> PutEventsJson()
+        {
+            Events[] updatedEvents = events.ToArray();
+            string updatedEventsJsonString = JsonConvert.SerializeObject(updatedEvents);
+            var httpResponse = indexClient.PutDocument(updatedEventsJsonString);
+            return httpResponse;
+        }
 
     }
 }

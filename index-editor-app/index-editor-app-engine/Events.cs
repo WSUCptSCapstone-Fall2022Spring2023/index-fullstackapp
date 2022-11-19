@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace index_editor_app_engine
+﻿namespace index_editor_app_engine
 {
     using System;
     using System.Collections.Generic;
@@ -24,8 +18,14 @@ namespace index_editor_app_engine
         [JsonProperty("link")]
         public string Link { get; set; }
 
-        [JsonProperty("time")]
-        public string Time { get; set; }
+        [JsonProperty("start_date")]
+        public string StartDate { get; set; }
+
+        [JsonProperty("time_range")]
+        public string TimeRange { get; set; }
+
+        [JsonProperty("created_on")]
+        public string CreatedOn { get; set; }
 
         [JsonProperty("image")]
         public string Image { get; set; }
