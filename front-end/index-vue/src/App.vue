@@ -38,7 +38,7 @@
             <a class="navbar__links">Services</a>
           </li>
           <li class="navbar__item">
-            <a class="navbar__links">Events</a>
+            <router-link to="/events" class="navbar__links">Events</router-link>
           </li>
         </ul>
       </div>
