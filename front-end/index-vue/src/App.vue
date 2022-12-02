@@ -20,7 +20,7 @@
         </div>
         <ul class="navbar__menu">
           <li class="navbar__item">
-            <a class="navbar__links">Home</a>
+            <router-link to="/" class="navbar__links">Home</router-link>
           </li>
           <li class="navbar__item">
             <a class="navbar__links">About us</a>
