@@ -27,6 +27,7 @@
 </template>
 
 <script>
+    //import events from json file
     import json from '../../public/events.json'
     export default {
         data(){
