@@ -112,9 +112,25 @@
       </div>
     </div>
     <!-- Main Section -->
+
+    <!-- Events and News Section -->
+    
+    <!-- Events and News Section -->
   </div>
 
 </template>
+
+<script>
+    let json = require('../../public/events.json');
+    export default {
+        data(){
+            return {
+                events : json
+            }
+        }
+    }
+    
+</script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>

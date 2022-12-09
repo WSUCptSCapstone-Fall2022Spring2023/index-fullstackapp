@@ -94,7 +94,15 @@
   margin-left: 10px;
   color: #306eb9;
   text-align: left;
-  line-height: 1px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
+  max-height: 75px;
+}
+
+.site-title-block h2{
+  line-height: 0;
 }
 
 .navbar {
