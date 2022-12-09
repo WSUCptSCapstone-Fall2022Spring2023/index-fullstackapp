@@ -27,7 +27,7 @@
 </template>
 
 <script>
-    let json = require('../../public/events.json');
+    import json from '../../public/events.json'
     export default {
         data(){
             return {
