@@ -5,7 +5,7 @@
         </div>
         <div class = "flex-box">
             <div>
-                <div v-for="event in events" :key="event.title" class="events-container">
+                <div v-for="event in eventDataList" :key="event.title" class="events-container">
                     <article class="post">
                         <img class="event-img" v-bind:src='event.image'>
                         <div class="description-box">
@@ -28,14 +28,26 @@
 
 <script>
     //import events from json file
-    import json from '../../public/events.json'
+    import axios from "axios";
     export default {
-        data(){
+        name: "eventList",
+        data() {
             return {
-                events : json
+                eventDataList: []
+            };
+        },
+        methods: {
+            getEventData() {
+                axios
+                    .get("events.json")
+                    .then(response => (this.eventDataList = response.data));
             }
+        },
+        beforeMount()
+        {
+        this.getEventData();
         }
-    }
+    };
     
 </script>
 
