@@ -40,10 +40,7 @@ None
 TODO:
 
 ## Known Problems
-
-TODO: Describe any known issues, bugs, odd behaviors or code smells. 
-Provide steps to reproduce the problem and/or name a file or a function where the problem lives.
-
+Vue Router returns 404 when refreshing on sub-page(s) 
 
 ## Contributing
 1.Initialize git: `git init`
@@ -61,11 +58,8 @@ Provide steps to reproduce the problem and/or name a file or a function where th
 7.Push to the branch: `git push -u origin {branch name}`
 
 ## Additional Documentation
-
-TODO: Provide links to additional documentation that may exist in the repo, e.g.,
-  * Sprint reports
-  * User links
-
+  * [Sprint Reports](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/tree/main/Sprint%20Report)
+  * [Documentation](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/tree/main/Documentation)
 ## License
 
 If you haven't already, add a file called `LICENSE.txt` with the text of the appropriate license.
