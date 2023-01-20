@@ -23,7 +23,7 @@
             <router-link to="/" class="navbar__links">Home</router-link>
           </li>
           <li class="navbar__item">
-            <a class="navbar__links">About us</a>
+            <router-link to="/about" class="navbar__links">About us</router-link>
           </li>
           <li class="navbar__item">
             <a class="navbar__links">Get Involved</a>
