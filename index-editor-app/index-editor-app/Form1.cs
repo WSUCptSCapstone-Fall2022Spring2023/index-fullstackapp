@@ -13,48 +13,218 @@ namespace index_editor_app
     {
         IndexAPIClient indexClient;
         EventsHandler eventsHandler;
-        List<Events> events;
+        //List<Event> events;
 
         int eventsCount = 0;
-        int edtingEventIndex = -1;
-        int editingFlag = 0;
+        int editingEventIndex = -1;
+
 
         public Form1()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Initialize the app
+        /// </summary>
         private async void Form1_LoadAsync(object sender, EventArgs e)
         {
-            //tabControl1.TabPages.Remove(tabPage1);///////////////////////////////////////////////////////////////////////////////////////////////
+            //tabControl1.TabPages.Remove(tabPage1);
 
 
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            //Create APIClient, eventsHandler and test connection
+
             this.indexClient = new IndexAPIClient();
             if (await TestConnection())
             {
                 eventsHandler = new EventsHandler(await indexClient.GetDocument(), indexClient);
-                events = eventsHandler.events;
                 InitializeDataGrid();
             }
         }
-        public async Task<bool> TestConnection()
+
+
+
+        /// <summary>
+        /// Button click events
+        /// </summary>
+
+        private void EditButton_Click(object sender, DataGridViewCellEventArgs e)
         {
-            bool test = await indexClient.TestConnection();
-            if (test)
+            foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                return true;
+                row.DefaultCellStyle.BackColor = Color.White;
             }
-            System.Windows.Forms.MessageBox.Show("Connection fialed!" + "\n" + "See \"some ducument.txt\" for help");
-            return false;
-        }
-        
-        public void InitializeDataGrid()
+
+            //column 4 = edit button
+            if (e.ColumnIndex == 4)
+            {
+
+                //highlight the column being edited
+                dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;
+
+                //load events into fields
+                LoadEventIntoFields(e.RowIndex);
+            }
+        }//Edit button clicked => LoadEventIntoFields
+
+        private void DeleteButton_Click(object sender, EventArgs e)
         {
- 
-            
+            if (editingEventIndex == -1)
+            {
+                NoEventSelectedCheck();
+                return;
+            }
+
+            var confirmResult = MessageBox.Show("Are you sure to delete this item?", "Confirm Delete!", MessageBoxButtons.YesNo);
+
+            if (confirmResult == DialogResult.Yes)
+            {
+                eventsHandler.DeleteEvent(editingEventIndex);
+                editingEventIndex = -1;
+                InitializeDataGrid();
+            }
+        }//delete event, set edtingEventIndex = -1
+
+        private void addImageButton_Click(object sender, EventArgs e)
+        {
+            if (editingEventIndex == -1)                                                                     //CREATE NO EVENT SELECTED FUNCTION
+            {
+                NoEventSelectedCheck();
+                return;
+            }
+
+            this.openFileDialog1 = new OpenFileDialog
+            {
+                InitialDirectory = "c:\\",
+                Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*",                                         //change to images
+                FilterIndex = 2,
+                RestoreDirectory = true,
+            };
+
+            if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                eventsHandler.AddImage(openFileDialog1.FileName, editingEventIndex);
+            }
+
+        }//add local image to event
+
+        private void CreateEvent_Click(object sender, EventArgs e)
+        {
+            //create events
+            eventsHandler.CreateEvent();
+            //reset datagrid
+            InitializeDataGrid();
+            //change deiting index
+            //editingEventIndex = 0;
+            //load new event
+            //LoadEventIntoFields(0);
+            //highlight
+           // dataGridView1.Rows[0].DefaultCellStyle.BackColor = Color.Yellow;
+        }//create an event
+
+        private void ValidateChangesButton_Click(object sender, EventArgs e)
+        {
+            if (editingEventIndex == -1)
+            {
+                NoEventSelectedCheck();
+                return;
+            }
+            string status = EventsHandler.CheckEvent(titleTextBox.Text, descriptionBox1.Text, timeRangeTextBox.Text, dateTimePicker1.Value.ToString(), LinktextBox.Text, pictureBox1.ImageLocation);
+            if (status == string.Empty)
+            {
+                System.Windows.Forms.MessageBox.Show("No problems found");
+            }
+            else
+            {
+                String message = "There are propblems with the event!" + Environment.NewLine + status;
+                System.Windows.Forms.MessageBox.Show(message);
+            }
+
+        }//Display event validation
+
+        private void Update_Website_Button_Click(object sender, EventArgs e)//Push events to website
+        {
+
+            if (textBoxConfirmUpdate.Text != "confirm")
+            {
+                System.Windows.Forms.MessageBox.Show("Please type \"confirm\" to update");
+                return;
+            }
+
+            //get validation response
+            string validation = eventsHandler.ValidatePut();
+
+            //
+            if (validation == string.Empty)
+            {
+                System.Windows.Forms.MessageBox.Show("The website is being updated...");
+                var httpreseponse = eventsHandler.PutEventsJson();
+                System.Windows.Forms.MessageBox.Show(httpreseponse.ToString());
+            }
+            else
+            {
+                var confirmResult = MessageBox.Show("Would you like to continue with the following errors?" + Environment.NewLine + validation, "Errors found!", MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    System.Windows.Forms.MessageBox.Show("The website is being updated...");
+                    var httpreseponse = eventsHandler.PutEventsJson();
+                    System.Windows.Forms.MessageBox.Show(httpreseponse.ToString());
+                }
+            }
+            textBoxConfirmUpdate.ForeColor = Color.Gray;
+            textBoxConfirmUpdate.Text = "Type \"confirm\"";
+            button1.BackColor = Color.Gray;
+
+        }
+
+
+        /// <summary>
+        /// utility functions
+        /// </summary>
+        private void clearInputFields()//clears all the input fields
+        {
+            descriptionBox1.Text = "";
+            titleTextBox.Text = "";
+            timeRangeTextBox.Text = "";
+            dateTimePicker1.Value = DateTime.Now;
+            LinktextBox.Text = "";
+            pictureBox1.Image = null;
+        }
+
+
+        private async Task LoadEventIntoFields(int eventindex)//Load event[i] into fields
+        {
+            this.editingEventIndex = eventindex;
+            Event e = eventsHandler.GetEventByIndex(eventindex);
+
+
+
+            //if (e.Image == "" && !eventsHandler.HasLocalImage(e.CreatedOn))
+            //{
+            //    pictureBox1.Image = null;
+            //}
+            //else
+            //{
+            //    pictureBox1.Image = System.Drawing.Image.FromStream(await eventsHandler.LoadImageHandlerAsync(e.CreatedOn));     //ALSO CHECK FOR NO IMAGE ATTACHED
+            //}
+
+
+
+
+
+
+            creationDateLabel.Text = "You created this event on: " + e.CreatedOn;
+            dateTimePicker1.Text = e.StartDate;
+            timeRangeTextBox.Text = e.TimeRange;
+            descriptionBox1.Text = e.Description;
+            LinktextBox.Text = e.Link;
+            titleTextBox.Text = e.Title;
+            editingEventNumberLabel.Text = "You are editing event #" + (editingEventIndex + 1);
+        }
+
+        public void InitializeDataGrid()//Initialize based on size of event[]
+        {
 
             //clear the datagrid
             this.dataGridView1.CancelEdit();
@@ -71,13 +241,13 @@ namespace index_editor_app
             DataGridViewColumn titleColumn = dataGridView1.Columns[1];
             DataGridViewColumn startDateColumn = dataGridView1.Columns[2];
             DataGridViewColumn descriptionColumn = dataGridView1.Columns[3];
-            creationDatecolumn.Width = 130;
+            creationDatecolumn.Width = 100;
             titleColumn.Width = 411;
             startDateColumn.Width = 80;
-            descriptionColumn.Width = 638;
+            descriptionColumn.Width = 668;
 
             //add row index
-            this.eventsCount = events.Count();
+            this.eventsCount = eventsHandler.GetEventCount();
             this.dataGridView1.Rows.Add(eventsCount);
             foreach (DataGridViewRow row in this.dataGridView1.Rows)
             {
@@ -87,10 +257,11 @@ namespace index_editor_app
             //add event data
             for (int i = 0; i < eventsCount; i++)
             {
-                dataGridView1[0, i].Value = events[i].CreatedOn;
-                dataGridView1[1, i].Value = events[i].Title;
-                dataGridView1[2, i].Value = events[i].StartDate;
-                dataGridView1[3, i].Value = events[i].Description;
+                Event e = eventsHandler.GetEventByIndex(i);
+                dataGridView1[0, i].Value = e.CreatedOn;
+                dataGridView1[1, i].Value = e.Title;
+                dataGridView1[2, i].Value = e.StartDate;
+                dataGridView1[3, i].Value = e.Description;
             }
 
             //add edit button
@@ -102,235 +273,76 @@ namespace index_editor_app
             btn.Name = "Edit";
             btn.UseColumnTextForButtonValue = true;
             editingEventNumberLabel.Text = "You are editing event #" + "(no event selected)";
+
+            //descriptionBox1.Text = eventsHandler.eventsJson;
+        }
+
+        public async Task<bool> TestConnection()//test connection to index API
+        {
+            bool test = await indexClient.TestConnection();
+            if (test)
+            {
+                return true;
+            }
+            System.Windows.Forms.MessageBox.Show("Connection fialed!" + "\n" + "See \"some ducument.txt\" for help");
+            return false;
         }
 
 
-        //Edit button clicked
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+
+
+
+
+
+        /// <summary>
+        /// fields changing events, updates event data from inputs
+        /// </summary>
+        private void Title_TextChanged(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                row.DefaultCellStyle.BackColor = Color.White;
-            }
-
-            if (e.ColumnIndex == 4)//edit button column
-            {
-                dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;
-
-                LoadEventIntoFields(e.RowIndex);
-            }
+            if (NoEventSelectedCheck()) { return; }
+            Event currentEvent = eventsHandler.GetEventByIndex(editingEventIndex);
+            currentEvent.Title = titleTextBox.Text;
+            dataGridView1[1, editingEventIndex].Value = titleTextBox.Text;
         }
 
-        //on edit click, load that even into fields
-        private void LoadEventIntoFields(int eventindex)
+        private void Description_TextChanged(object sender, EventArgs e)
         {
-            //set global variable to index of event being edited
-            this.edtingEventIndex = eventindex;
-
-            Events editEvent = events[edtingEventIndex];
-            pictureBox1.ImageLocation = "C:/Users/josh/Desktop/testimage.png";
-            creationDateLabel.Text = "You created this event on: " + editEvent.CreatedOn;
-            dateTimePicker1.Text = editEvent.StartDate;
-            timeRangeTextBox.Text = editEvent.TimeRange;
-            descriptionBox1.Text = editEvent.Description;
-            LinktextBox.Text = events[edtingEventIndex].Link;
-            titleTextBox.Text = editEvent.Title;
-            editingEventNumberLabel.Text = "You are editing event #" + (edtingEventIndex + 1);
+            if (NoEventSelectedCheck()) { return; }
+            Event currentEvent = eventsHandler.GetEventByIndex(editingEventIndex);
+            currentEvent.Description = descriptionBox1.Text;
+            dataGridView1[3, editingEventIndex].Value = descriptionBox1.Text;
         }
 
-        //when the delete button is clicked
-        private void DeleteButton_Click(object sender, EventArgs e)
+        private void dateTimePicker_ValueChanged(object sender, EventArgs e)//start date
         {
-            if (edtingEventIndex == -1)
-            {
-                DisplayNoEventSelectedMessage();
-                return;
-            }
-            var confirmResult = MessageBox.Show("Are you sure to delete this item?", "Confirm Delete!", MessageBoxButtons.YesNo);
-            if (confirmResult == DialogResult.Yes)
-            {
-                events.RemoveAt(edtingEventIndex);
-                edtingEventIndex = -1;
-                InitializeDataGrid();
-            }
+            if (NoEventSelectedCheck()) { return; }
+            Event currentEvent = eventsHandler.GetEventByIndex(editingEventIndex);
+            currentEvent.StartDate = dateTimePicker1.Text;
+            dataGridView1[2, editingEventIndex].Value = dateTimePicker1.Value.ToShortDateString();
         }
 
-        private void addImageButton_Click(object sender, EventArgs e)
+        private void TimeRange_TextChanged(object sender, EventArgs e)
         {
-            if (edtingEventIndex == -1)
-            {
-                DisplayNoEventSelectedMessage();
-                return;
-            }
-
-            this.openFileDialog1 = new OpenFileDialog
-            {
-                InitialDirectory = "c:\\",
-                Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*", //change to images
-                FilterIndex = 2,
-                RestoreDirectory = true,
-            };
-
-            if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                var fs = this.openFileDialog1.OpenFile();
-                StreamReader reader = new(fs);
-                this.LoadImage(reader);
-            }
-
-        }
-
-        private void LoadImage(StreamReader reader)
-        {
-            //adding images coming soon.
-        }
-
-
-        private void CreateEvent_Click(object sender, EventArgs e)
-        {
-            Events newEvent = new Events();
-            newEvent.CreatedOn = DateTime.Now.ToString();
-            newEvent.Title = "New event created! Edit me!";
-            events.Insert(0, newEvent);
-            InitializeDataGrid();
-            edtingEventIndex = 0;
-            LoadEventIntoFields(0);
-            dataGridView1.Rows[0].DefaultCellStyle.BackColor = Color.Yellow;
-        }
-
-        private void validateChangesButton_Click(object sender, EventArgs e)
-        {
-            if (edtingEventIndex == -1)
-            {
-                DisplayNoEventSelectedMessage();
-                return;
-            }
-            string status = EventsHandler.CheckEvent(titleTextBox.Text, descriptionBox1.Text, timeRangeTextBox.Text, dateTimePicker1.Value.ToString(), LinktextBox.Text, pictureBox1.ImageLocation);
-            if (status == string.Empty)
-            {
-                System.Windows.Forms.MessageBox.Show("No problems found");
-            }
-            else
-            {
-                String message = "There are propblems with the event!" + Environment.NewLine + status;
-                System.Windows.Forms.MessageBox.Show(message);
-            }
-
-        }
-
-        public void DisplayNoEventSelectedMessage()
-        {
-            System.Windows.Forms.MessageBox.Show("No event selected! Edit an event or click create new.");
-        }
-
-        //clears all the input fields
-        private void clearInputFields()
-        {
-            descriptionBox1.Text = "";
-            titleTextBox.Text = "";
-            timeRangeTextBox.Text = "";
-            dateTimePicker1.Value = DateTime.Now;
-            LinktextBox.Text = "";
-        }
-
-        private void titleTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (edtingEventIndex != -1)
-            {
-                events[edtingEventIndex].Title = titleTextBox.Text;
-                dataGridView1[1, edtingEventIndex].Value = titleTextBox.Text;
-            }
-            else
-            {
-                DisplayNoEventSelectedMessage();
-            }
-        }
-
-        private void descriptionBox1_TextChanged(object sender, EventArgs e)
-        {
-            if (edtingEventIndex != -1)
-            {
-                events[edtingEventIndex].Description = descriptionBox1.Text;
-                dataGridView1[3, edtingEventIndex].Value = descriptionBox1.Text;
-            }
-            else
-            {
-                DisplayNoEventSelectedMessage();
-            }
-        }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)//start date
-        {
-            if (edtingEventIndex != -1)
-            {
-                events[edtingEventIndex].StartDate = dateTimePicker1.Text;
-                dataGridView1[2, edtingEventIndex].Value = dateTimePicker1.Value.ToShortDateString();
-            }
-            else
-            {
-                DisplayNoEventSelectedMessage();
-            }
-        }
-
-        private void timeRangeTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (edtingEventIndex != -1)
-            {
-                events[edtingEventIndex].TimeRange = timeRangeTextBox.Text;
-            }
-            else
-            {
-                DisplayNoEventSelectedMessage();
-            }
+            if (NoEventSelectedCheck()) { return; }
+            Event currentEvent = eventsHandler.GetEventByIndex(editingEventIndex);
+            currentEvent.TimeRange = timeRangeTextBox.Text;
         }
 
         private void LinktextBox_TextChanged(object sender, EventArgs e)
         {
-            if (edtingEventIndex != -1)
-            {
-                events[edtingEventIndex].Link = LinktextBox.Text;
-            }
-            else
-            {
-                DisplayNoEventSelectedMessage();
-            }
-        }
-
-        private void update_Website_Button_Click(object sender, EventArgs e)
-        {
-
-            if (textBoxConfirmUpdate.Text != "confirm")
-            {
-                System.Windows.Forms.MessageBox.Show("Please type \"Confirm\" to update");
-                return;
-            }
-
-            eventsHandler.events = this.events;
-            string validation = eventsHandler.ValidatePut();
-
-            if (validation == string.Empty)
-            {
-                System.Windows.Forms.MessageBox.Show("The website is being updated...");
-                var httpreseponse = eventsHandler.PutEventsJson();
-                System.Windows.Forms.MessageBox.Show(httpreseponse.ToString());
-            }
-            else
-            {
-                var confirmResult = MessageBox.Show("Would you like to continue with the following errors?" + Environment.NewLine + validation, "Errors found!",  MessageBoxButtons.YesNo);
-                if (confirmResult == DialogResult.Yes)
-                {
-                    System.Windows.Forms.MessageBox.Show("The website is being updated...");
-                    var httpreseponse = eventsHandler.PutEventsJson();
-                    System.Windows.Forms.MessageBox.Show(httpreseponse.ToString());
-                }
-            }
-            textBoxConfirmUpdate.ForeColor = Color.Gray;
-            textBoxConfirmUpdate.Text = "Type \"confirm\"";
-            button1.BackColor = Color.Gray;
+            if (NoEventSelectedCheck()) { return; }
+            Event currentEvent = eventsHandler.GetEventByIndex(editingEventIndex);
+            currentEvent.Link = LinktextBox.Text;
 
         }
 
 
+
+
+
+        /// <summary>
+        /// push confirmation items
+        /// </summary>
         private void Confirm_TextBox_Enter(object sender, EventArgs e)
         {
             if (textBoxConfirmUpdate.Text == "Type \"confirm\"")
@@ -339,7 +351,6 @@ namespace index_editor_app
                 textBoxConfirmUpdate.Text = "";
             }
         }
-
         private void Confirm_TextBox_Leave(object sender, EventArgs e)
         {
             if (textBoxConfirmUpdate.Text.Length == 0)
@@ -352,7 +363,6 @@ namespace index_editor_app
 
             }
         }
-
         private void textBoxConfirmUpdate_TextChanged(object sender, EventArgs e)
         {
             if (textBoxConfirmUpdate.Text == "confirm")
@@ -365,14 +375,9 @@ namespace index_editor_app
 
 
 
-
-
-
-
-
-
-
-
+        /// <summary>
+        /// WORKING ON GRAPHICS
+        /// </summary>
         private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
         {
 
@@ -408,25 +413,25 @@ namespace index_editor_app
             g.DrawString(_tabPage.Text, _tabFont, _textBrush, _tabBounds, new StringFormat(_stringFlags));
         }
 
-        private void button2_Click(object sender, EventArgs e)
+
+
+
+
+        /// <summary>
+        /// No event selected check and message
+        /// </summary>
+        public bool NoEventSelectedCheck()
         {
-
-            var response = indexClient.PutImage("test");
-            descriptionBox1.Text = response.ToString();
+            if (editingEventIndex == -1)
+            {
+                System.Windows.Forms.MessageBox.Show("No event selected! Edit an event or click create new.");
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-
-        //private void button2_Click(object sender, EventArgs e)
-        //{
-        //    tabPage1.Hide();
-        //    tabControl1.TabPages.Add(tabPage1);
-        //    tabPage1.Hide();
-        //}
-
-
-
-
-
-
 
 
     }

@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -11,7 +13,6 @@ namespace index_editor_app_engine
 {
     public class IndexAPIClient
     {
-        
         private HttpClient httpClient;
         IConfigurationRoot root;
         public IndexAPIClient()
@@ -19,7 +20,6 @@ namespace index_editor_app_engine
             //get configurations from appsettings
             IConfigurationBuilder builder = new ConfigurationBuilder().AddJsonFile("appsettings.json", false, true);
             root = builder.Build();
-
 
             //create http client with auth
             httpClient = new HttpClient();
@@ -29,14 +29,21 @@ namespace index_editor_app_engine
 
         public async Task<HttpResponseMessage> PutDocument(string document)
         {
+            if (root["INDEX_API_ENDPOINT"] == null)
+            {
+                throw new Exception("ERROR LOADING APPSETTINGS");
+            }
+
+
             var stringContent = new StringContent(document, Encoding.UTF8, "application/json");
-            var httpResponse = await httpClient.PutAsync(root["INDEX_API_ENDPOINT"] + "events.json", stringContent);
+            var httpResponse = await httpClient.PutAsync(root["INDEX_API_ENDPOINT"] + "/events", stringContent);
+
             return httpResponse;
         }
 
         public async Task<string?> GetDocument()
         {
-            var builder = new UriBuilder(root["INDEX_API_ENDPOINT"] + "events.json");
+            var builder = new UriBuilder(root["INDEX_API_ENDPOINT"] + "/events");
             var httpResponse = await httpClient.GetAsync(builder.ToString());
             if (!httpResponse.IsSuccessStatusCode)
             {
@@ -45,46 +52,42 @@ namespace index_editor_app_engine
             return await httpResponse.Content.ReadAsStringAsync();
         }
 
-        //https://bz682vosnb.execute-api.us-east-1.amazonaws.com/dev1/img/eventimages/NAME.png
-        public async Task<string> PutImage(string imagePath)
+        static byte[] GetFileByteArray(string filename)
         {
-            imagePath = "C:/Users/josh/Desktop/eventImages";
-            string asdur = "https://bz682vosnb.execute-api.us-east-1.amazonaws.com/dev1/img/eventimages/TEST22.png";
+            FileStream oFileStream = new FileStream(filename, FileMode.Open, FileAccess.Read);
 
+            // Create a byte array of file size.
+            byte[] FileByteArrayData = new byte[oFileStream.Length];
 
-            using (var client = new System.Net.Http.HttpClient())
-            {
+            //Read file in bytes from stream into the byte array
+            oFileStream.Read(FileByteArrayData, 0, System.Convert.ToInt32(oFileStream.Length));
 
-                var uri = new System.Uri(asdur);
+            //Close the File Stream
+            oFileStream.Close();
 
-                // Load the file:
-                var file = new System.IO.FileInfo(imagePath);
-                if (!file.Exists)
-                    throw new ArgumentException($"Unable to access file at: {imagePath}", nameof(imagePath));
+            return FileByteArrayData; //return the byte data
+        }
 
-                using (var stream = file.OpenRead())
-                {
-                    var multipartContent = new System.Net.Http.MultipartFormDataContent();
-                    multipartContent.Add(
-                        new System.Net.Http.StreamContent(stream),
-                        "test.png", // this is the name of FormData field
-                        file.Name);
+        public async Task<bool> PutImageAsync(string imagePath, string date)
+        {
+            byte[] myImageFile = GetFileByteArray(imagePath);
 
-                    System.Net.Http.HttpRequestMessage request = new System.Net.Http.HttpRequestMessage(System.Net.Http.HttpMethod.Post, uri);
-                    request.Content = multipartContent;
+            var imageBinaryContent = new ByteArrayContent(myImageFile);
 
-                    var response = await httpClient.SendAsync(request);
-                    response.EnsureSuccessStatusCode(); // this throws an exception on non HTTP success codes
-                    return response.ToString();
-                }
-            }
+            imageBinaryContent.Headers.Add("Content-Type", "image/png");
+
+            string imageEndpoint = "https://bz682vosnb.execute-api.us-east-1.amazonaws.com/dev1/img/eventimages/" + date;
+
+            var Putresult = await httpClient.PutAsync(imageEndpoint, imageBinaryContent);
+
+            return Putresult.IsSuccessStatusCode;
         }
 
         public async Task<bool> TestConnection()
         {
             try
             {
-                var builder = new UriBuilder(root["INDEX_API_ENDPOINT"] + "events.json");
+                var builder = new UriBuilder(root["INDEX_API_ENDPOINT"] + "/events");
                 var httpResponse = await httpClient.GetAsync(builder.ToString());
 
                 return httpResponse.IsSuccessStatusCode;
@@ -95,24 +98,15 @@ namespace index_editor_app_engine
             }
         }
 
-        //private byte[] GetFileByteArray(string filename)
-        //{
-        //    FileStream oFileStream = new FileStream(filename, FileMode.Open, FileAccess.Read);
-
-        //    // Create a byte array of file size.
-        //    byte[] FileByteArrayData = new byte[oFileStream.Length];
-
-        //    //Read file in bytes from stream into the byte array
-        //    oFileStream.Read(FileByteArrayData, 0, System.Convert.ToInt32(oFileStream.Length));
-
-        //    //Close the File Stream
-        //    oFileStream.Close();
-
-        //    return FileByteArrayData; //return the byte data
-        //}
 
 
+        public async Task<byte[]> GetImageAsync(string filename)
+        {
+            var result = await httpClient.GetAsync("https://bz682vosnb.execute-api.us-east-1.amazonaws.com/dev1/img/eventimages/" + filename);
+
+            byte[] image = await result.Content.ReadAsByteArrayAsync();
+
+            return image;
+        }
     }
-
-
 }
