@@ -29,6 +29,10 @@ namespace index_editor_app
         /// </summary>
         private async void Form1_LoadAsync(object sender, EventArgs e)
         {
+            InitializeMembersDataGrid();
+
+
+
             //tabControl1.TabPages.Remove(tabPage1);
 
 
@@ -39,7 +43,7 @@ namespace index_editor_app
             if (await TestConnection())
             {
                 eventsHandler = new EventsHandler(await indexClient.GetDocument(), indexClient);
-                InitializeDataGrid();
+                InitializeEventsDataGrid();
             }
         }
 
@@ -83,7 +87,7 @@ namespace index_editor_app
                 eventsHandler.DeleteEvent(editingEventIndex);
                 clearInputFields();
                 editingEventIndex = -1;
-                InitializeDataGrid();
+                InitializeEventsDataGrid();
             }
         }
 
@@ -115,7 +119,7 @@ namespace index_editor_app
             //create events
             eventsHandler.CreateEvent();
             //reset datagrid
-            InitializeDataGrid();
+            InitializeEventsDataGrid();
             //change deiting index
             //editingEventIndex = 0;
             //load new event
@@ -227,7 +231,7 @@ namespace index_editor_app
             editingEventNumberLabel.Text = "You are editing event #" + (editingEventIndex + 1);
         }
 
-        public void InitializeDataGrid()//Initialize based on size of event[]
+        public void InitializeEventsDataGrid()//Initialize based on size of event[]
         {
 
             //clear the datagrid
@@ -436,7 +440,6 @@ namespace index_editor_app
                 return false;
             }
         }
-
 
     }
 }
