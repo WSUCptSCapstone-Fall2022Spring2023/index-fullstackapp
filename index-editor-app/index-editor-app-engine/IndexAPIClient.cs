@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Runtime.InteropServices;
@@ -68,7 +69,7 @@ namespace index_editor_app_engine
             return FileByteArrayData; //return the byte data
         }
 
-        public async Task<bool> PutImageAsync(string imagePath, string date)
+        public async Task<bool> PutImageAsync(string imagePath)
         {
             byte[] myImageFile = GetFileByteArray(imagePath);
 
@@ -76,7 +77,9 @@ namespace index_editor_app_engine
 
             imageBinaryContent.Headers.Add("Content-Type", "image/png");
 
-            string imageEndpoint = "https://bz682vosnb.execute-api.us-east-1.amazonaws.com/dev1/img/eventimages/" + date;
+            string dirName = new DirectoryInfo(imagePath).Name;
+
+            string imageEndpoint = "https://bz682vosnb.execute-api.us-east-1.amazonaws.com/dev1/img/eventimages/" + dirName;
 
             var Putresult = await httpClient.PutAsync(imageEndpoint, imageBinaryContent);
 
@@ -100,9 +103,9 @@ namespace index_editor_app_engine
 
 
 
-        public async Task<byte[]> GetImageAsync(string filename)
+        public async Task<byte[]> GetImageAsync(string imageURL)
         {
-            var result = await httpClient.GetAsync("https://bz682vosnb.execute-api.us-east-1.amazonaws.com/dev1/img/eventimages/" + filename);
+            var result = await httpClient.GetAsync(imageURL);
 
             byte[] image = await result.Content.ReadAsByteArrayAsync();
 

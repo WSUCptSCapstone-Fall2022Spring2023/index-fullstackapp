@@ -57,7 +57,7 @@ namespace index_editor_app
             }
 
             //column 4 = edit button
-            if (e.ColumnIndex == 4)
+            if (e.ColumnIndex == 4 && e.RowIndex != -1)
             {
 
                 //highlight the column being edited
@@ -81,10 +81,11 @@ namespace index_editor_app
             if (confirmResult == DialogResult.Yes)
             {
                 eventsHandler.DeleteEvent(editingEventIndex);
+                clearInputFields();
                 editingEventIndex = -1;
                 InitializeDataGrid();
             }
-        }//delete event, set edtingEventIndex = -1
+        }
 
         private void addImageButton_Click(object sender, EventArgs e)
         {
@@ -105,8 +106,8 @@ namespace index_editor_app
             if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 eventsHandler.AddImage(openFileDialog1.FileName, editingEventIndex);
+                LoadEventIntoFields(editingEventIndex);
             }
-
         }//add local image to event
 
         private void CreateEvent_Click(object sender, EventArgs e)
@@ -155,7 +156,6 @@ namespace index_editor_app
             //get validation response
             string validation = eventsHandler.ValidatePut();
 
-            //
             if (validation == string.Empty)
             {
                 System.Windows.Forms.MessageBox.Show("The website is being updated...");
@@ -179,6 +179,8 @@ namespace index_editor_app
         }
 
 
+
+
         /// <summary>
         /// utility functions
         /// </summary>
@@ -192,30 +194,32 @@ namespace index_editor_app
             pictureBox1.Image = null;
         }
 
-
         private async Task LoadEventIntoFields(int eventindex)//Load event[i] into fields
         {
             this.editingEventIndex = eventindex;
             Event e = eventsHandler.GetEventByIndex(eventindex);
 
+            // load images
+            if (e.Image != "")
+            {
+                pictureBox1.Image = System.Drawing.Image.FromStream(await eventsHandler.LoadImageHandlerAsync(e.CreatedOn));
+            }
+            else
+            {
+                pictureBox1.Image = null;
+            }
 
-
-            //if (e.Image == "" && !eventsHandler.HasLocalImage(e.CreatedOn))
-            //{
-            //    pictureBox1.Image = null;
-            //}
-            //else
-            //{
-            //    pictureBox1.Image = System.Drawing.Image.FromStream(await eventsHandler.LoadImageHandlerAsync(e.CreatedOn));     //ALSO CHECK FOR NO IMAGE ATTACHED
-            //}
-
-
-
-
-
+            //load start date
+            if (e.StartDate != "")
+            {
+                dateTimePicker1.Value = DateTime.Parse(e.StartDate);
+            }
+            else
+            {
+                dateTimePicker1.Text = "";
+            }
 
             creationDateLabel.Text = "You created this event on: " + e.CreatedOn;
-            dateTimePicker1.Text = e.StartDate;
             timeRangeTextBox.Text = e.TimeRange;
             descriptionBox1.Text = e.Description;
             LinktextBox.Text = e.Link;
