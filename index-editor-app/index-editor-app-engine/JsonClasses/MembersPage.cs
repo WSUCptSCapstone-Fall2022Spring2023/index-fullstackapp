@@ -24,7 +24,7 @@ namespace index_editor_app_engine
         public string PageDescription { get; set; }
 
         [JsonProperty("applicationLink")]
-        public Uri ApplicationLink { get; set; }
+        public string ApplicationLink { get; set; }
 
         [JsonProperty("boardMembers")]
         public BoardMember[] BoardMembers { get; set; }
@@ -39,10 +39,10 @@ namespace index_editor_app_engine
         public string Position { get; set; }
 
         [JsonProperty("image")]
-        public Uri Image { get; set; }
+        public string Image { get; set; }
 
         [JsonProperty("bioLink")]
-        public Uri BioLink { get; set; }
+        public string BioLink { get; set; }
 
         [JsonProperty("bioDescription")]
         public string BioDescription { get; set; }
@@ -61,19 +61,19 @@ namespace index_editor_app_engine
         public string OfficeLink { get; set; }
 
         [JsonProperty("specialties")]
-        public Specialty[] Specialties { get; set; }
+        public MemberSpecialty[] Specialties { get; set; }
 
         [JsonProperty("created_on")]
         public string CreatedOn { get; set; }
     }
 
-    public partial class Specialty
+    public partial class MemberSpecialty
     {
         [JsonProperty("name")]
         public string Name { get; set; }
 
         [JsonProperty("link")]
-        public Uri Link { get; set; }
+        public string Link { get; set; }
     }
 
     public partial class MembersPage

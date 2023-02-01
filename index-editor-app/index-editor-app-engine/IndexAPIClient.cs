@@ -111,5 +111,32 @@ namespace index_editor_app_engine
 
             return image;
         }
+
+
+
+
+        public async Task<string?> GetMembers()
+        {
+            var builder = new UriBuilder(root["INDEX_API_ENDPOINT"] + "/members");
+            var httpResponse = await httpClient.GetAsync(builder.ToString());
+            if (!httpResponse.IsSuccessStatusCode)
+            {
+
+            }
+            return await httpResponse.Content.ReadAsStringAsync();
+        }
+
+        public async Task<string?> GetSpecialties()
+        {
+            var builder = new UriBuilder(root["INDEX_API_ENDPOINT"] + "/specialties");
+            var httpResponse = await httpClient.GetAsync(builder.ToString());
+            if (!httpResponse.IsSuccessStatusCode)
+            {
+
+            }
+            return await httpResponse.Content.ReadAsStringAsync();
+        }
+
+
     }
 }

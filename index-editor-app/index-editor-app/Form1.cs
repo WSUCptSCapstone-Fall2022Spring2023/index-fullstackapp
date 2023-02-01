@@ -13,6 +13,8 @@ namespace index_editor_app
     {
         IndexAPIClient indexClient;
         EventsHandler eventsHandler;
+        MembersHandler membersHandler;
+
         //List<Event> events;
 
         int eventsCount = 0;
@@ -29,21 +31,25 @@ namespace index_editor_app
         /// </summary>
         private async void Form1_LoadAsync(object sender, EventArgs e)
         {
-            InitializeMembersDataGrid();
-
 
 
             //tabControl1.TabPages.Remove(tabPage1);
 
 
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-
+            MemberPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
 
             this.indexClient = new IndexAPIClient();
             if (await TestConnection())
             {
                 eventsHandler = new EventsHandler(await indexClient.GetDocument(), indexClient);
+
+                membersHandler = new MembersHandler(await indexClient.GetMembers(), await indexClient.GetSpecialties(), indexClient);
+
                 InitializeEventsDataGrid();
+                InitializeMembersDataGrid();
+                LoadMembersData();
+                InitializeSpecialtyCheckBox();
             }
         }
 
