@@ -53,6 +53,11 @@
             this.descriptionBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.AddMemberImageButton = new System.Windows.Forms.Button();
+            this.DeleteMemberButton = new System.Windows.Forms.Button();
+            this.MemberValidationButton = new System.Windows.Forms.Button();
+            this.CreateMemberButton = new System.Windows.Forms.Button();
+            this.ConfirmMemberChangesButton = new System.Windows.Forms.Button();
             this.SpecialtyCheckedListBox = new System.Windows.Forms.CheckedListBox();
             this.MemberPictureBox = new System.Windows.Forms.PictureBox();
             this.OfficeLinkTextBox = new System.Windows.Forms.TextBox();
@@ -86,10 +91,6 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.ConfirmMemberChangesButton = new System.Windows.Forms.Button();
-            this.CreateMemberButton = new System.Windows.Forms.Button();
-            this.MemberValidationButton = new System.Windows.Forms.Button();
-            this.DeleteMemberButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -363,6 +364,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.AddMemberImageButton);
             this.tabPage2.Controls.Add(this.DeleteMemberButton);
             this.tabPage2.Controls.Add(this.MemberValidationButton);
             this.tabPage2.Controls.Add(this.CreateMemberButton);
@@ -400,6 +402,55 @@
             this.tabPage2.Text = "About Us";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // AddMemberImageButton
+            // 
+            this.AddMemberImageButton.Location = new System.Drawing.Point(970, 25);
+            this.AddMemberImageButton.Name = "AddMemberImageButton";
+            this.AddMemberImageButton.Size = new System.Drawing.Size(120, 23);
+            this.AddMemberImageButton.TabIndex = 29;
+            this.AddMemberImageButton.Text = "Upload Image";
+            this.AddMemberImageButton.UseVisualStyleBackColor = true;
+            this.AddMemberImageButton.Click += new System.EventHandler(this.AddMemberImageButton_Click);
+            // 
+            // DeleteMemberButton
+            // 
+            this.DeleteMemberButton.Location = new System.Drawing.Point(1147, 485);
+            this.DeleteMemberButton.Name = "DeleteMemberButton";
+            this.DeleteMemberButton.Size = new System.Drawing.Size(163, 23);
+            this.DeleteMemberButton.TabIndex = 28;
+            this.DeleteMemberButton.Text = "Delete Member";
+            this.DeleteMemberButton.UseVisualStyleBackColor = true;
+            this.DeleteMemberButton.Click += new System.EventHandler(this.DeleteMemberButton_Click);
+            // 
+            // MemberValidationButton
+            // 
+            this.MemberValidationButton.Location = new System.Drawing.Point(45, 437);
+            this.MemberValidationButton.Name = "MemberValidationButton";
+            this.MemberValidationButton.Size = new System.Drawing.Size(168, 23);
+            this.MemberValidationButton.TabIndex = 27;
+            this.MemberValidationButton.Text = "Validate changes";
+            this.MemberValidationButton.UseVisualStyleBackColor = true;
+            // 
+            // CreateMemberButton
+            // 
+            this.CreateMemberButton.Location = new System.Drawing.Point(45, 382);
+            this.CreateMemberButton.Name = "CreateMemberButton";
+            this.CreateMemberButton.Size = new System.Drawing.Size(182, 23);
+            this.CreateMemberButton.TabIndex = 26;
+            this.CreateMemberButton.Text = "Create new member";
+            this.CreateMemberButton.UseVisualStyleBackColor = true;
+            this.CreateMemberButton.Click += new System.EventHandler(this.CreateMemberButton_Click);
+            // 
+            // ConfirmMemberChangesButton
+            // 
+            this.ConfirmMemberChangesButton.Location = new System.Drawing.Point(44, 478);
+            this.ConfirmMemberChangesButton.Name = "ConfirmMemberChangesButton";
+            this.ConfirmMemberChangesButton.Size = new System.Drawing.Size(183, 56);
+            this.ConfirmMemberChangesButton.TabIndex = 25;
+            this.ConfirmMemberChangesButton.Text = "Update Website";
+            this.ConfirmMemberChangesButton.UseVisualStyleBackColor = true;
+            this.ConfirmMemberChangesButton.Click += new System.EventHandler(this.ConfirmMemberChangesButton_Click);
+            // 
             // SpecialtyCheckedListBox
             // 
             this.SpecialtyCheckedListBox.FormattingEnabled = true;
@@ -408,6 +459,7 @@
             this.SpecialtyCheckedListBox.Name = "SpecialtyCheckedListBox";
             this.SpecialtyCheckedListBox.Size = new System.Drawing.Size(404, 250);
             this.SpecialtyCheckedListBox.TabIndex = 24;
+            this.SpecialtyCheckedListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.SpecialtyCheckedListBox_ItemCheck);
             // 
             // MemberPictureBox
             // 
@@ -424,6 +476,7 @@
             this.OfficeLinkTextBox.Name = "OfficeLinkTextBox";
             this.OfficeLinkTextBox.Size = new System.Drawing.Size(268, 23);
             this.OfficeLinkTextBox.TabIndex = 22;
+            this.OfficeLinkTextBox.TextChanged += new System.EventHandler(this.OfficeLinkTextBox_TextChanged);
             // 
             // OfficeLocationTextBox
             // 
@@ -432,6 +485,7 @@
             this.OfficeLocationTextBox.Name = "OfficeLocationTextBox";
             this.OfficeLocationTextBox.Size = new System.Drawing.Size(258, 23);
             this.OfficeLocationTextBox.TabIndex = 21;
+            this.OfficeLocationTextBox.TextChanged += new System.EventHandler(this.OfficeLocationTextBox_TextChanged);
             // 
             // EmployeeSinceTextBox
             // 
@@ -440,6 +494,7 @@
             this.EmployeeSinceTextBox.Name = "EmployeeSinceTextBox";
             this.EmployeeSinceTextBox.Size = new System.Drawing.Size(100, 23);
             this.EmployeeSinceTextBox.TabIndex = 20;
+            this.EmployeeSinceTextBox.TextChanged += new System.EventHandler(this.EmployeeSinceTextBox_TextChanged);
             // 
             // QuoteTextBox
             // 
@@ -448,6 +503,7 @@
             this.QuoteTextBox.Name = "QuoteTextBox";
             this.QuoteTextBox.Size = new System.Drawing.Size(198, 52);
             this.QuoteTextBox.TabIndex = 19;
+            this.QuoteTextBox.TextChanged += new System.EventHandler(this.QuoteTextBox_TextChanged);
             // 
             // BioLinkTextBox
             // 
@@ -456,6 +512,7 @@
             this.BioLinkTextBox.Name = "BioLinkTextBox";
             this.BioLinkTextBox.Size = new System.Drawing.Size(184, 23);
             this.BioLinkTextBox.TabIndex = 18;
+            this.BioLinkTextBox.TextChanged += new System.EventHandler(this.BioLinkTextBox_TextChanged);
             // 
             // BioTextBox
             // 
@@ -464,6 +521,7 @@
             this.BioTextBox.Name = "BioTextBox";
             this.BioTextBox.Size = new System.Drawing.Size(339, 243);
             this.BioTextBox.TabIndex = 17;
+            this.BioTextBox.TextChanged += new System.EventHandler(this.BioTextBox_TextChanged);
             // 
             // PositionTextBox
             // 
@@ -472,6 +530,7 @@
             this.PositionTextBox.Name = "PositionTextBox";
             this.PositionTextBox.Size = new System.Drawing.Size(210, 23);
             this.PositionTextBox.TabIndex = 16;
+            this.PositionTextBox.TextChanged += new System.EventHandler(this.PositionTextBox_TextChanged);
             // 
             // label19
             // 
@@ -678,43 +737,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // ConfirmMemberChangesButton
-            // 
-            this.ConfirmMemberChangesButton.Location = new System.Drawing.Point(44, 478);
-            this.ConfirmMemberChangesButton.Name = "ConfirmMemberChangesButton";
-            this.ConfirmMemberChangesButton.Size = new System.Drawing.Size(183, 56);
-            this.ConfirmMemberChangesButton.TabIndex = 25;
-            this.ConfirmMemberChangesButton.Text = "Update Website";
-            this.ConfirmMemberChangesButton.UseVisualStyleBackColor = true;
-            // 
-            // CreateMemberButton
-            // 
-            this.CreateMemberButton.Location = new System.Drawing.Point(45, 382);
-            this.CreateMemberButton.Name = "CreateMemberButton";
-            this.CreateMemberButton.Size = new System.Drawing.Size(182, 23);
-            this.CreateMemberButton.TabIndex = 26;
-            this.CreateMemberButton.Text = "Create new member";
-            this.CreateMemberButton.UseVisualStyleBackColor = true;
-            this.CreateMemberButton.Click += new System.EventHandler(this.CreateMemberButton_Click);
-            // 
-            // MemberValidationButton
-            // 
-            this.MemberValidationButton.Location = new System.Drawing.Point(45, 437);
-            this.MemberValidationButton.Name = "MemberValidationButton";
-            this.MemberValidationButton.Size = new System.Drawing.Size(168, 23);
-            this.MemberValidationButton.TabIndex = 27;
-            this.MemberValidationButton.Text = "Validate changes";
-            this.MemberValidationButton.UseVisualStyleBackColor = true;
-            // 
-            // DeleteMemberButton
-            // 
-            this.DeleteMemberButton.Location = new System.Drawing.Point(1147, 485);
-            this.DeleteMemberButton.Name = "DeleteMemberButton";
-            this.DeleteMemberButton.Size = new System.Drawing.Size(163, 23);
-            this.DeleteMemberButton.TabIndex = 28;
-            this.DeleteMemberButton.Text = "Delete Member";
-            this.DeleteMemberButton.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -807,5 +829,6 @@
         private Button DeleteMemberButton;
         private Button MemberValidationButton;
         private Button CreateMemberButton;
+        private Button AddMemberImageButton;
     }
 }

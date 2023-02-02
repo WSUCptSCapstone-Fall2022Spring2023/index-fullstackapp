@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
@@ -124,6 +125,14 @@ namespace index_editor_app_engine
 
             }
             return await httpResponse.Content.ReadAsStringAsync();
+        }
+
+        public async Task<HttpResponseMessage> PutMembers(string document)
+        {
+            var stringContent = new StringContent(document, Encoding.UTF8, "application/json");
+            var httpResponse = await httpClient.PutAsync(root["INDEX_API_ENDPOINT"] + "/members", stringContent);
+
+            return httpResponse;
         }
 
         public async Task<string?> GetSpecialties()

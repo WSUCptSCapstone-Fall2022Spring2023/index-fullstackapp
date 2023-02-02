@@ -27,7 +27,7 @@ namespace index_editor_app_engine
         public string ApplicationLink { get; set; }
 
         [JsonProperty("boardMembers")]
-        public BoardMember[] BoardMembers { get; set; }
+        public List<BoardMember> BoardMembers { get; set; }
     }
 
     public partial class BoardMember
@@ -51,8 +51,7 @@ namespace index_editor_app_engine
         public string BioQuote { get; set; }
 
         [JsonProperty("employeeSince")]
-        [JsonConverter(typeof(ParseStringConverter))]
-        public long EmployeeSince { get; set; }
+        public string EmployeeSince { get; set; }
 
         [JsonProperty("officeLocation")]
         public string OfficeLocation { get; set; }
@@ -61,7 +60,7 @@ namespace index_editor_app_engine
         public string OfficeLink { get; set; }
 
         [JsonProperty("specialties")]
-        public MemberSpecialty[] Specialties { get; set; }
+        public List<MemberSpecialty> Specialties { get; set; }
 
         [JsonProperty("created_on")]
         public string CreatedOn { get; set; }
