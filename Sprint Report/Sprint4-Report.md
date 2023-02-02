@@ -1,9 +1,10 @@
 # Sprint 4 Report (1/9/23 - 2/2/2023)
- * Website "about us" page 
+ * Website "about us" page
  * Editor app "about us" tab
  * Updates/additions to API
  * A newletter signup component on website (unfinished, visual only)
  * News page
+ * Specialties Json and infrastructure added
 
 ## Work Summary (Developer Facing)
 In this sprint the first and primary objective was adjusting for a more modular approach.
@@ -13,15 +14,14 @@ new json object for as much of the website as possible. After planning and refac
 we were able to complete the "about us" page on with the website and editor app. 
 
 ## Unfinished Work
- * newletter functionality
+ * newsletter functionality
 The newsletter template has been made and we are currently reasearching for a suitable plugin.
  * Editor app news page tab
 The editor app news page was postponed due to the unforseen necessity of
-creating the "specialties" tab which was required to complete the "about us" tab.
+creating the "specialties" functionality which was required to complete the "about us" tab.
 
 ## Completed Issues/User Stories
 Here are links to the issues that we completed in this sprint:
-
  * [About Us page](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/issues/41)
  * [About Us Page Editor-App](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/issues/43)
  * [Sprint 4 README]()
@@ -35,9 +35,14 @@ Additional work was required for about tab and pushed this deadline to next spri
 
 ## Code Files for Review
 Please review the following code files, which were actively developed during this sprint, for quality:
- * [Name of code file 1](https://github.com/your_repo/file_extension)
- * [Name of code file 2](https://github.com/your_repo/file_extension)
- * [Name of code file 3](https://github.com/your_repo/file_extension)
+### Editor App Backend
+ * [Members.cs](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/blob/main/index-editor-app/index-editor-app/Members.cs)
+ * [MembersHandler.cs](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/blob/main/index-editor-app/index-editor-app-engine/MembersHandler.cs)
+ * [MembersPage.cs](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/blob/main/index-editor-app/index-editor-app-engine/JsonClasses/MembersPage.cs)
+ * [reateSpecialtyForm.cs](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/blob/main/index-editor-app/index-editor-app/CreateSpecialtyForm.cs)
+ * [IndexAPIClient.cs](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/blob/main/index-editor-app/index-editor-app-engine/IndexAPIClient.cs)
+### Website Frontend
+ * [AboutUs.vue](https://github.com/WSUCptSCapstone-Fall2022Spring2023/index-fullstackapp/blob/main/front-end/index-vue/src/components/AboutUs.vue)
 
 ## Retrospective Summary
 Here's what went well:
