@@ -38,7 +38,7 @@
                     .get("members.json")
                     .then(response => (
 						this.memberJson = response.data,
-						this.pageDescription = response.data.pageDescription.replace(response.data.phraseLink,"<a href=\"http://dacnw.org/wp-content/uploads/2014/04/Board-Application.pdf\">" + response.data.phraseLink + "</a>")
+						this.pageDescription = response.data.pageDescription.replace(response.data.phraseLink,"<a href=\"" + response.data.applicationLink + "\">" + response.data.phraseLink + "</a>")
 					));
             }
         },
