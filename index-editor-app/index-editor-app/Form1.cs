@@ -13,6 +13,8 @@ namespace index_editor_app
     {
         IndexAPIClient indexClient;
         EventsHandler eventsHandler;
+        MembersHandler membersHandler;
+
         //List<Event> events;
 
         int eventsCount = 0;
@@ -29,17 +31,25 @@ namespace index_editor_app
         /// </summary>
         private async void Form1_LoadAsync(object sender, EventArgs e)
         {
+
+
             //tabControl1.TabPages.Remove(tabPage1);
 
 
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-
+            MemberPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
 
             this.indexClient = new IndexAPIClient();
             if (await TestConnection())
             {
                 eventsHandler = new EventsHandler(await indexClient.GetDocument(), indexClient);
-                InitializeDataGrid();
+
+                membersHandler = new MembersHandler(await indexClient.GetMembers(), await indexClient.GetSpecialties(), indexClient);
+
+                InitializeEventsDataGrid();
+                InitializeMembersDataGrid();
+                LoadMembersData();
+                InitializeSpecialtyCheckBox();
             }
         }
 
@@ -83,7 +93,7 @@ namespace index_editor_app
                 eventsHandler.DeleteEvent(editingEventIndex);
                 clearInputFields();
                 editingEventIndex = -1;
-                InitializeDataGrid();
+                InitializeEventsDataGrid();
             }
         }
 
@@ -115,7 +125,7 @@ namespace index_editor_app
             //create events
             eventsHandler.CreateEvent();
             //reset datagrid
-            InitializeDataGrid();
+            InitializeEventsDataGrid();
             //change deiting index
             //editingEventIndex = 0;
             //load new event
@@ -227,7 +237,7 @@ namespace index_editor_app
             editingEventNumberLabel.Text = "You are editing event #" + (editingEventIndex + 1);
         }
 
-        public void InitializeDataGrid()//Initialize based on size of event[]
+        public void InitializeEventsDataGrid()//Initialize based on size of event[]
         {
 
             //clear the datagrid
