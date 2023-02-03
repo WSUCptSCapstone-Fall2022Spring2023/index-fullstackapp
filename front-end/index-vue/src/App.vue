@@ -40,6 +40,9 @@
           <li class="navbar__item">
             <router-link to="/events" class="navbar__links">Events</router-link>
           </li>
+          <li class="navbar__item">
+            <router-link to="/news" class="navbar__links">Newsletter</router-link>
+          </li>
         </ul>
       </div>
     </nav>
