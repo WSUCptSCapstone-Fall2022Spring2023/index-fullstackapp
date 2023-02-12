@@ -18,7 +18,7 @@ namespace index_editor_app_engine.JsonClasses
     public partial class Specialties
     {
         [JsonProperty("specialties")]
-        public Specialty[] SpecialtiesList { get; set; }
+        public List<Specialty> SpecialtiesList { get; set; }
     }
 
     public partial class Specialty
@@ -39,7 +39,7 @@ namespace index_editor_app_engine.JsonClasses
         public string Image { get; set; }
 
         [JsonProperty("bulletpoints")]
-        public string[] Bulletpoints { get; set; }
+        public List<string> Bulletpoints { get; set; }
     }
 
     public partial class Specialties

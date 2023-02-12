@@ -23,6 +23,9 @@ namespace index_editor_app_engine
         [JsonProperty("pageDescription")]
         public string PageDescription { get; set; }
 
+        [JsonProperty("phraseLink")]
+        public string PhraseLink { get; set; }
+
         [JsonProperty("applicationLink")]
         public string ApplicationLink { get; set; }
 

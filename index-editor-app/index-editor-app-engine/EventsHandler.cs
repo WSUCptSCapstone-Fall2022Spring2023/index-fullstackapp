@@ -34,7 +34,7 @@ namespace index_editor_app_engine
 
         public async Task LoadEventsFromAPI() // load events into class
         {
-            this.eventsJson = await indexClient.GetDocument();
+            this.eventsJson = await indexClient.GetDocument("events");
             this.events = JsonConvert.DeserializeObject<Event[]>(eventsJson).ToList<Event>();
             this.count = events.Count();
             Console.WriteLine("THIS IS THE COUNT RIGHT NOW: " + count);
@@ -253,13 +253,13 @@ namespace index_editor_app_engine
             // put all of the local images
             foreach (string key in ImageDict.Keys)
             {
-                indexClient.PutImageAsync(ImageDict[key]);
+                indexClient.PutImageAsync(ImageDict[key], "eventimages");
             }
 
             //put the json
             Event[] updatedEvents = events.ToArray();
             string updatedEventsJsonString = JsonConvert.SerializeObject(updatedEvents);
-            var httpResponse = indexClient.PutDocument(updatedEventsJsonString);
+            var httpResponse = indexClient.PutDocument(updatedEventsJsonString, "events");
             return httpResponse;
         }
 

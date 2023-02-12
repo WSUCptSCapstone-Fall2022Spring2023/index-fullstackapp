@@ -53,6 +53,8 @@
             this.descriptionBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label20 = new System.Windows.Forms.Label();
+            this.LinkPhraseTextbox = new System.Windows.Forms.TextBox();
             this.AddMemberImageButton = new System.Windows.Forms.Button();
             this.DeleteMemberButton = new System.Windows.Forms.Button();
             this.MemberValidationButton = new System.Windows.Forms.Button();
@@ -85,12 +87,30 @@
             this.MemberNameTextbox = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.AddSpecialtyImageButton = new System.Windows.Forms.Button();
+            this.label26 = new System.Windows.Forms.Label();
+            this.SpecialtyPictureBox = new System.Windows.Forms.PictureBox();
+            this.SpecialtyCheckedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.DeleteSpecialtyBulletpointButton = new System.Windows.Forms.Button();
+            this.AddBulletpointButton = new System.Windows.Forms.Button();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.SpecialtyBulletPointTextBox = new System.Windows.Forms.TextBox();
+            this.SpecialtyDescriptionTextBox = new System.Windows.Forms.TextBox();
+            this.SpecialtySubtitleTextBox = new System.Windows.Forms.TextBox();
+            this.SpecialtyLinkTextBox = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.SpecialtyNameTextBox = new System.Windows.Forms.TextBox();
+            this.SpecialtiesdataGridView3 = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.UploadSpecialtiesButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -98,6 +118,9 @@
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MemberPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SpecialtyPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpecialtiesdataGridView3)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -254,6 +277,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(673, 187);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(167, 141);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
             // 
@@ -364,6 +388,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label20);
+            this.tabPage2.Controls.Add(this.LinkPhraseTextbox);
             this.tabPage2.Controls.Add(this.AddMemberImageButton);
             this.tabPage2.Controls.Add(this.DeleteMemberButton);
             this.tabPage2.Controls.Add(this.MemberValidationButton);
@@ -401,6 +427,24 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "About Us";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(26, 300);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(269, 15);
+            this.label20.TabIndex = 31;
+            this.label20.Text = "Phrase that will contain link from page descrption";
+            // 
+            // LinkPhraseTextbox
+            // 
+            this.LinkPhraseTextbox.Location = new System.Drawing.Point(26, 318);
+            this.LinkPhraseTextbox.Multiline = true;
+            this.LinkPhraseTextbox.Name = "LinkPhraseTextbox";
+            this.LinkPhraseTextbox.Size = new System.Drawing.Size(260, 23);
+            this.LinkPhraseTextbox.TabIndex = 30;
+            this.LinkPhraseTextbox.TextChanged += new System.EventHandler(this.LinkPhraseTextbox_TextChanged);
             // 
             // AddMemberImageButton
             // 
@@ -466,6 +510,7 @@
             this.MemberPictureBox.Location = new System.Drawing.Point(842, 26);
             this.MemberPictureBox.Name = "MemberPictureBox";
             this.MemberPictureBox.Size = new System.Drawing.Size(111, 105);
+            this.MemberPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.MemberPictureBox.TabIndex = 23;
             this.MemberPictureBox.TabStop = false;
             // 
@@ -641,6 +686,7 @@
             this.ApplicationLinkTextBox.Name = "ApplicationLinkTextBox";
             this.ApplicationLinkTextBox.Size = new System.Drawing.Size(260, 23);
             this.ApplicationLinkTextBox.TabIndex = 4;
+            this.ApplicationLinkTextBox.TextChanged += new System.EventHandler(this.ApplicationLinkTextBox_TextChanged);
             // 
             // label9
             // 
@@ -667,6 +713,7 @@
             this.PageDescriptionTextBox.Name = "PageDescriptionTextBox";
             this.PageDescriptionTextBox.Size = new System.Drawing.Size(302, 167);
             this.PageDescriptionTextBox.TabIndex = 1;
+            this.PageDescriptionTextBox.TextChanged += new System.EventHandler(this.PageDescriptionTextBox_TextChanged);
             // 
             // MemberNameTextbox
             // 
@@ -688,12 +735,186 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.UploadSpecialtiesButton);
+            this.tabPage4.Controls.Add(this.AddSpecialtyImageButton);
+            this.tabPage4.Controls.Add(this.label26);
+            this.tabPage4.Controls.Add(this.SpecialtyPictureBox);
+            this.tabPage4.Controls.Add(this.SpecialtyCheckedListBox1);
+            this.tabPage4.Controls.Add(this.DeleteSpecialtyBulletpointButton);
+            this.tabPage4.Controls.Add(this.AddBulletpointButton);
+            this.tabPage4.Controls.Add(this.label25);
+            this.tabPage4.Controls.Add(this.label24);
+            this.tabPage4.Controls.Add(this.label23);
+            this.tabPage4.Controls.Add(this.label22);
+            this.tabPage4.Controls.Add(this.SpecialtyBulletPointTextBox);
+            this.tabPage4.Controls.Add(this.SpecialtyDescriptionTextBox);
+            this.tabPage4.Controls.Add(this.SpecialtySubtitleTextBox);
+            this.tabPage4.Controls.Add(this.SpecialtyLinkTextBox);
+            this.tabPage4.Controls.Add(this.label21);
+            this.tabPage4.Controls.Add(this.SpecialtyNameTextBox);
+            this.tabPage4.Controls.Add(this.SpecialtiesdataGridView3);
             this.tabPage4.Location = new System.Drawing.Point(104, 4);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(1392, 540);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Specialties";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // AddSpecialtyImageButton
+            // 
+            this.AddSpecialtyImageButton.Location = new System.Drawing.Point(427, 514);
+            this.AddSpecialtyImageButton.Name = "AddSpecialtyImageButton";
+            this.AddSpecialtyImageButton.Size = new System.Drawing.Size(105, 23);
+            this.AddSpecialtyImageButton.TabIndex = 17;
+            this.AddSpecialtyImageButton.Text = "Upload Image";
+            this.AddSpecialtyImageButton.UseVisualStyleBackColor = true;
+            this.AddSpecialtyImageButton.Click += new System.EventHandler(this.AddSpecialtyImageButton_Click);
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(313, 374);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(40, 15);
+            this.label26.TabIndex = 16;
+            this.label26.Text = "Image";
+            // 
+            // SpecialtyPictureBox
+            // 
+            this.SpecialtyPictureBox.Location = new System.Drawing.Point(258, 396);
+            this.SpecialtyPictureBox.Name = "SpecialtyPictureBox";
+            this.SpecialtyPictureBox.Size = new System.Drawing.Size(163, 141);
+            this.SpecialtyPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.SpecialtyPictureBox.TabIndex = 15;
+            this.SpecialtyPictureBox.TabStop = false;
+            // 
+            // SpecialtyCheckedListBox1
+            // 
+            this.SpecialtyCheckedListBox1.FormattingEnabled = true;
+            this.SpecialtyCheckedListBox1.Location = new System.Drawing.Point(994, 38);
+            this.SpecialtyCheckedListBox1.Name = "SpecialtyCheckedListBox1";
+            this.SpecialtyCheckedListBox1.Size = new System.Drawing.Size(334, 238);
+            this.SpecialtyCheckedListBox1.TabIndex = 14;
+            // 
+            // DeleteSpecialtyBulletpointButton
+            // 
+            this.DeleteSpecialtyBulletpointButton.Location = new System.Drawing.Point(1233, 282);
+            this.DeleteSpecialtyBulletpointButton.Name = "DeleteSpecialtyBulletpointButton";
+            this.DeleteSpecialtyBulletpointButton.Size = new System.Drawing.Size(116, 23);
+            this.DeleteSpecialtyBulletpointButton.TabIndex = 13;
+            this.DeleteSpecialtyBulletpointButton.Text = "Delete selected";
+            this.DeleteSpecialtyBulletpointButton.UseVisualStyleBackColor = true;
+            this.DeleteSpecialtyBulletpointButton.Click += new System.EventHandler(this.DeleteSpecialtyBulletpointButton_Click);
+            // 
+            // AddBulletpointButton
+            // 
+            this.AddBulletpointButton.Location = new System.Drawing.Point(1098, 366);
+            this.AddBulletpointButton.Name = "AddBulletpointButton";
+            this.AddBulletpointButton.Size = new System.Drawing.Size(119, 23);
+            this.AddBulletpointButton.TabIndex = 12;
+            this.AddBulletpointButton.Text = "Add bulletpoint";
+            this.AddBulletpointButton.UseVisualStyleBackColor = true;
+            this.AddBulletpointButton.Click += new System.EventHandler(this.AddBulletpointButton_Click);
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(1111, 20);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(70, 15);
+            this.label25.TabIndex = 10;
+            this.label25.Text = "BulletPoints";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(734, 163);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(67, 15);
+            this.label24.TabIndex = 9;
+            this.label24.Text = "Description";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(383, 163);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(47, 15);
+            this.label23.TabIndex = 8;
+            this.label23.Text = "Subtitle";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(756, 119);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(26, 15);
+            this.label22.TabIndex = 7;
+            this.label22.Text = "link";
+            // 
+            // SpecialtyBulletPointTextBox
+            // 
+            this.SpecialtyBulletPointTextBox.Location = new System.Drawing.Point(1004, 317);
+            this.SpecialtyBulletPointTextBox.Multiline = true;
+            this.SpecialtyBulletPointTextBox.Name = "SpecialtyBulletPointTextBox";
+            this.SpecialtyBulletPointTextBox.Size = new System.Drawing.Size(296, 43);
+            this.SpecialtyBulletPointTextBox.TabIndex = 6;
+            // 
+            // SpecialtyDescriptionTextBox
+            // 
+            this.SpecialtyDescriptionTextBox.Location = new System.Drawing.Point(575, 181);
+            this.SpecialtyDescriptionTextBox.Multiline = true;
+            this.SpecialtyDescriptionTextBox.Name = "SpecialtyDescriptionTextBox";
+            this.SpecialtyDescriptionTextBox.Size = new System.Drawing.Size(384, 187);
+            this.SpecialtyDescriptionTextBox.TabIndex = 5;
+            this.SpecialtyDescriptionTextBox.TextChanged += new System.EventHandler(this.SpecialtyDescriptionTextBox_TextChanged);
+            // 
+            // SpecialtySubtitleTextBox
+            // 
+            this.SpecialtySubtitleTextBox.Location = new System.Drawing.Point(258, 181);
+            this.SpecialtySubtitleTextBox.Multiline = true;
+            this.SpecialtySubtitleTextBox.Name = "SpecialtySubtitleTextBox";
+            this.SpecialtySubtitleTextBox.Size = new System.Drawing.Size(299, 103);
+            this.SpecialtySubtitleTextBox.TabIndex = 4;
+            this.SpecialtySubtitleTextBox.TextChanged += new System.EventHandler(this.SpecialtySubtitleTextBox_TextChanged);
+            // 
+            // SpecialtyLinkTextBox
+            // 
+            this.SpecialtyLinkTextBox.Location = new System.Drawing.Point(575, 137);
+            this.SpecialtyLinkTextBox.Multiline = true;
+            this.SpecialtyLinkTextBox.Name = "SpecialtyLinkTextBox";
+            this.SpecialtyLinkTextBox.Size = new System.Drawing.Size(391, 23);
+            this.SpecialtyLinkTextBox.TabIndex = 3;
+            this.SpecialtyLinkTextBox.TextChanged += new System.EventHandler(this.SpecialtyLinkTextBox_TextChanged);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(352, 64);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(87, 15);
+            this.label21.TabIndex = 2;
+            this.label21.Text = "Specialty name";
+            // 
+            // SpecialtyNameTextBox
+            // 
+            this.SpecialtyNameTextBox.Location = new System.Drawing.Point(258, 82);
+            this.SpecialtyNameTextBox.Multiline = true;
+            this.SpecialtyNameTextBox.Name = "SpecialtyNameTextBox";
+            this.SpecialtyNameTextBox.Size = new System.Drawing.Size(309, 67);
+            this.SpecialtyNameTextBox.TabIndex = 1;
+            this.SpecialtyNameTextBox.TextChanged += new System.EventHandler(this.SpecialtyNameTextBox_TextChanged);
+            // 
+            // SpecialtiesdataGridView3
+            // 
+            this.SpecialtiesdataGridView3.AllowUserToAddRows = false;
+            this.SpecialtiesdataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SpecialtiesdataGridView3.Location = new System.Drawing.Point(12, 20);
+            this.SpecialtiesdataGridView3.Name = "SpecialtiesdataGridView3";
+            this.SpecialtiesdataGridView3.RowTemplate.Height = 25;
+            this.SpecialtiesdataGridView3.Size = new System.Drawing.Size(240, 336);
+            this.SpecialtiesdataGridView3.TabIndex = 0;
+            this.SpecialtiesdataGridView3.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EditSpecialtyButtonClick);
             // 
             // menuStrip1
             // 
@@ -737,6 +958,16 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // UploadSpecialtiesButton
+            // 
+            this.UploadSpecialtiesButton.Location = new System.Drawing.Point(681, 490);
+            this.UploadSpecialtiesButton.Name = "UploadSpecialtiesButton";
+            this.UploadSpecialtiesButton.Size = new System.Drawing.Size(186, 47);
+            this.UploadSpecialtiesButton.TabIndex = 18;
+            this.UploadSpecialtiesButton.Text = "Upload Specialties";
+            this.UploadSpecialtiesButton.UseVisualStyleBackColor = true;
+            this.UploadSpecialtiesButton.Click += new System.EventHandler(this.UploadSpecialtiesButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -759,6 +990,10 @@
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MemberPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SpecialtyPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpecialtiesdataGridView3)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -830,5 +1065,25 @@
         private Button MemberValidationButton;
         private Button CreateMemberButton;
         private Button AddMemberImageButton;
+        private Label label20;
+        private TextBox LinkPhraseTextbox;
+        private DataGridView SpecialtiesdataGridView3;
+        private Label label21;
+        private TextBox SpecialtyNameTextBox;
+        private Label label25;
+        private Label label24;
+        private Label label23;
+        private Label label22;
+        private TextBox SpecialtyBulletPointTextBox;
+        private TextBox SpecialtyDescriptionTextBox;
+        private TextBox SpecialtySubtitleTextBox;
+        private TextBox SpecialtyLinkTextBox;
+        private Button AddBulletpointButton;
+        private CheckedListBox SpecialtyCheckedListBox1;
+        private Button DeleteSpecialtyBulletpointButton;
+        private PictureBox SpecialtyPictureBox;
+        private Button AddSpecialtyImageButton;
+        private Label label26;
+        private Button UploadSpecialtiesButton;
     }
 }

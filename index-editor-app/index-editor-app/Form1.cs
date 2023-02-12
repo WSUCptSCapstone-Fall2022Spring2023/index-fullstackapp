@@ -15,7 +15,6 @@ namespace index_editor_app
         EventsHandler eventsHandler;
         MembersHandler membersHandler;
 
-        //List<Event> events;
 
         int eventsCount = 0;
         int editingEventIndex = -1;
@@ -27,7 +26,16 @@ namespace index_editor_app
         }
 
         /// <summary>
-        /// Initialize the app
+        /// description and demonstration from original
+        /// instead of test plans we have test cases (for each test case there are 5 subsections whats being tested expected result what actually happened, test case requirements)
+        /// include at least one from ad least one functional and non functional
+        /// 
+        /// 
+        /// 
+        /// code delivery, how to deleiver code to clients
+        /// 
+        /// feb 17 capstone meeting https://wsu.zoom.us/j/97286634407?pwd=dFZtZ3NiaGFZZk5GSjZGcE1Dc2hwZz09
+        /// 
         /// </summary>
         private async void Form1_LoadAsync(object sender, EventArgs e)
         {
@@ -35,25 +43,21 @@ namespace index_editor_app
 
             //tabControl1.TabPages.Remove(tabPage1);
 
-
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            MemberPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-
             this.indexClient = new IndexAPIClient();
             if (await TestConnection())
             {
-                eventsHandler = new EventsHandler(await indexClient.GetDocument(), indexClient);
-
-                membersHandler = new MembersHandler(await indexClient.GetMembers(), await indexClient.GetSpecialties(), indexClient);
+                eventsHandler = new EventsHandler(await indexClient.GetDocument("events"), indexClient);
+                membersHandler = new MembersHandler(await indexClient.GetDocument("members"), await indexClient.GetDocument("specialties"), indexClient);
+                specialtiesHandler = new SpecialtyHandler(await indexClient.GetDocument("specialties"), indexClient);
 
                 InitializeEventsDataGrid();
                 InitializeMembersDataGrid();
                 LoadMembersData();
                 InitializeSpecialtyCheckBox();
+
+                InitializeSpecialties(); //specialties page
             }
         }
-
-
 
         /// <summary>
         /// Button click events
@@ -446,7 +450,5 @@ namespace index_editor_app
                 return false;
             }
         }
-
-
     }
 }
