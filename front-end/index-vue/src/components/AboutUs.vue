@@ -8,10 +8,10 @@
             <ul class="location-staff">
 				<div v-for="member in memberJson.boardMembers" :key="member.name">
 					<li>
-						<a v-bind:href='member.bioLink'>
+						<RouterLink :to="{ path: member.bioLink}">
 							<img width="200" height="200" v-bind:src='member.image' class="round-thumb no-alt wp-post-image" decoding="async" sizes="(max-width: 200px) 100vw, 200px">								
 							<span class="staff-name">{{member.name}}</span>
-						</a>
+						</RouterLink>
 						<span class="staff-position">{{member.position}}</span>
 					</li>
 				</div>
