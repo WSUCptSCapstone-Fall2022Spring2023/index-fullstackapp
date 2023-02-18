@@ -95,6 +95,12 @@ namespace index_editor_app_engine
             s.Bulletpoints = new List<string>();
             s.Bulletpoints.Add(" ");
             specialtyPage.SpecialtiesList.Add(s);
+
+
+
+
+
+
             return specialtyPage.SpecialtiesList.IndexOf(s);
         }
 

@@ -57,6 +57,7 @@ namespace index_editor_app
 
         public void InitializeMemberSpecialtyCheckBox()
         {
+            SpecialtyCheckedListBox.Items.Clear();
             foreach (string specialtyName in membersHandler.MemberSpecialtyDict.Keys)
             {
                 SpecialtyCheckedListBox.Items.Add(specialtyName);

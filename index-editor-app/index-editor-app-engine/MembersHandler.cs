@@ -32,6 +32,7 @@ namespace index_editor_app_engine
 
         public void InitializeSpecialties()
         {
+            MemberSpecialtyDict.Clear();
             //refactoring specialties to new handler
             foreach (Specialty s in specialties.SpecialtiesList)
             {

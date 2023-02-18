@@ -232,9 +232,10 @@ namespace index_editor_app
         private void CreateSpecialtyButton_Click(object sender, EventArgs e)
         {
             int index = specialtiesHandler.CreateNewSpecialty();
+            membersHandler.specialties = specialtiesHandler.specialtyPage;
+            membersHandler.InitializeSpecialties();
+            InitializeMemberSpecialtyCheckBox();
             InitializeSpecialtiesDataGrid();
-            //editingSpecialtyIndex = index;
-            //LoadSpecialtyDataAsync(index);
         }
 
         private void DeleteSpecialtyButton_Click(object sender, EventArgs e)
