@@ -83,5 +83,24 @@ namespace index_editor_app_engine
             var httpResponse = indexClient.PutDocument(updatedSpecialtiesPageString, "specialties");
             return httpResponse;
         }
+
+        public int CreateNewSpecialty()
+        {
+            Specialty s = new Specialty();
+            s.Name = "NEW SPECIALTY";
+            s.Link = "";
+            s.Subtitle = "";
+            s.Description = "";
+            s.Image = "";
+            s.Bulletpoints = new List<string>();
+            s.Bulletpoints.Add(" ");
+            specialtyPage.SpecialtiesList.Add(s);
+            return specialtyPage.SpecialtiesList.IndexOf(s);
+        }
+
+        public void DeleteSpecialty(int index)
+        {
+            specialtyPage.SpecialtiesList.RemoveAt(index);
+        }
     }
 }

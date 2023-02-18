@@ -3,8 +3,11 @@ using index_editor_app_engine.JsonClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace index_editor_app
 {
@@ -25,12 +28,8 @@ namespace index_editor_app
         // 
 
 
-
-
-
         //get the specialties from api
         //store the specialties
-        SpecialtyHandler specialtiesHandler;
 
         int editingSpecialtyIndex = -1;
         bool SpecialtySystemEditing = true;
@@ -38,11 +37,6 @@ namespace index_editor_app
         public void InitializeSpecialties()
         {
             InitializeSpecialtiesDataGrid();
-        }
-
-        public void InitializeSpecialtiesCheckBox()
-        {
-
         }
 
         public void InitializeSpecialtiesDataGrid()
@@ -96,7 +90,7 @@ namespace index_editor_app
 
         public async Task LoadSpecialtyDataAsync(int index)
         {
-            RemoveSpecialtyEvents();
+            SpecialtySystemEditing = true;
             ClearSpecialtyFields();
 
             Specialty s = specialtiesHandler.specialtyPage.SpecialtiesList[index];
@@ -104,11 +98,14 @@ namespace index_editor_app
             SpecialtySubtitleTextBox.Text = s.Subtitle;
             SpecialtyLinkTextBox.Text = s.Link;
             SpecialtyDescriptionTextBox.Text = s.Description;
-
-            foreach (string bulletpoint in s.Bulletpoints)
+            if (s.Bulletpoints.Count > 0)
             {
-                SpecialtyCheckedListBox1.Items.Add(bulletpoint);
+                foreach (string bulletpoint in s.Bulletpoints)
+                {
+                    SpecialtyCheckedListBox1.Items.Add(bulletpoint);
+                }
             }
+
 
             SpecialtyPictureBox.Image = null;
             if (s.Image != "")
@@ -116,7 +113,8 @@ namespace index_editor_app
                 SpecialtyPictureBox.Image = System.Drawing.Image.FromStream(await specialtiesHandler.LoadSpecialtyImageHandlerAsync(s.Name));
             }
 
-            AddSpecialtyEvents();
+            SpecialtySystemEditing = false;
+
         }
 
         private void UploadSpecialtiesButton_Click(object sender, EventArgs e)
@@ -132,23 +130,6 @@ namespace index_editor_app
             SpecialtyLinkTextBox.Clear();
             SpecialtyDescriptionTextBox.Clear();
             SpecialtyCheckedListBox1.Items.Clear();
-        }
-
-        public void RemoveSpecialtyEvents()
-        {
-            SpecialtyNameTextBox.TextChanged -= new System.EventHandler(SpecialtyNameTextBox_TextChanged);
-            SpecialtySubtitleTextBox.TextChanged -= new System.EventHandler(SpecialtySubtitleTextBox_TextChanged);
-            SpecialtyLinkTextBox.TextChanged -= new System.EventHandler(SpecialtyLinkTextBox_TextChanged);
-            SpecialtyDescriptionTextBox.TextChanged -= new System.EventHandler(SpecialtyDescriptionTextBox_TextChanged);
-            //SpecialtyCheckedListBox1.Items.TextChanged -= new System.EventHandler(SpecialtyNameTextBox_TextChanged);
-        }
-
-        public void AddSpecialtyEvents()
-        {
-            SpecialtyNameTextBox.TextChanged += new System.EventHandler(SpecialtyNameTextBox_TextChanged);
-            SpecialtySubtitleTextBox.TextChanged += new System.EventHandler(SpecialtySubtitleTextBox_TextChanged);
-            SpecialtyLinkTextBox.TextChanged += new System.EventHandler(SpecialtyLinkTextBox_TextChanged);
-            SpecialtyDescriptionTextBox.TextChanged += new System.EventHandler(SpecialtyDescriptionTextBox_TextChanged);
         }
 
         public bool NoSpecialtySelectedCheck()
@@ -167,31 +148,31 @@ namespace index_editor_app
 
         private void SpecialtyNameTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (NoSpecialtySelectedCheck()) { return; }
+            if (NoSpecialtySelectedCheck() || SpecialtySystemEditing) { return; }
             specialtiesHandler.specialtyPage.SpecialtiesList[editingSpecialtyIndex].Name = SpecialtyNameTextBox.Text;
         }
 
         private void SpecialtySubtitleTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (NoSpecialtySelectedCheck()) { return; }
+            if (NoSpecialtySelectedCheck() || SpecialtySystemEditing) { return; }
             specialtiesHandler.specialtyPage.SpecialtiesList[editingSpecialtyIndex].Subtitle = SpecialtySubtitleTextBox.Text;
         }
 
         private void SpecialtyLinkTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (NoSpecialtySelectedCheck()) { return; }
+            if (NoSpecialtySelectedCheck() || SpecialtySystemEditing) { return; }
             specialtiesHandler.specialtyPage.SpecialtiesList[editingSpecialtyIndex].Link = SpecialtyLinkTextBox.Text;
         }
 
         private void SpecialtyDescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (NoSpecialtySelectedCheck()) { return; }
+            if (NoSpecialtySelectedCheck() || SpecialtySystemEditing) { return; }
             specialtiesHandler.specialtyPage.SpecialtiesList[editingSpecialtyIndex].Description = SpecialtyDescriptionTextBox.Text;
         }
 
         private void DeleteSpecialtyBulletpointButton_Click(object sender, EventArgs e)
         {
-            if (NoSpecialtySelectedCheck()) { return; }
+            if (NoSpecialtySelectedCheck() || SpecialtySystemEditing) { return; }
             foreach (var item in SpecialtyCheckedListBox1.CheckedItems.OfType<string>().ToList())
             {
                 SpecialtyCheckedListBox1.Items.Remove(item);
@@ -202,10 +183,71 @@ namespace index_editor_app
 
         private void AddBulletpointButton_Click(object sender, EventArgs e)
         {
-            if (NoSpecialtySelectedCheck()) { return; }
-            specialtiesHandler.specialtyPage.SpecialtiesList[editingSpecialtyIndex].Bulletpoints.Add(SpecialtyBulletPointTextBox.Text);
+            if (NoSpecialtySelectedCheck() || SpecialtySystemEditing) { return; }
+            //specialtiesHandler.specialtyPage.SpecialtiesList[editingSpecialtyIndex].Bulletpoints.Add(SpecialtyBulletPointTextBox.Text);
+            if (AddBulletpointButton.Text.Trim() == "Add Bulletpoint")
+            {
+                specialtiesHandler.specialtyPage.SpecialtiesList[editingSpecialtyIndex].Bulletpoints.Add(SpecialtyBulletPointTextBox.Text);
+            }
+            else
+            {
+                int index = 0;
+                foreach (var item in SpecialtyCheckedListBox1.Items)
+                {
+                    if (SpecialtyCheckedListBox1.CheckedItems.Contains(item))
+                    {
+                        index = SpecialtyCheckedListBox1.Items.IndexOf(item);
+                    }
+                }
+                specialtiesHandler.specialtyPage.SpecialtiesList[editingSpecialtyIndex].Bulletpoints[index] = SpecialtyBulletPointTextBox.Text;
+                SpecialtyBulletPointTextBox.Text = "";
+                AddBulletpointButton.Text = "Add Bulletpoint";
+            }
+
             LoadSpecialtyDataAsync(editingSpecialtyIndex);
         }
+
+
+
+        private void SpecialtyCheckedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (NoSpecialtySelectedCheck() || SpecialtySystemEditing) { return; }
+
+            for(int i = 0; i < SpecialtyCheckedListBox1.Items.Count; ++i)
+            {
+                if (i != e.Index) SpecialtyCheckedListBox1.SetItemChecked(i, false);
+            }
+            if (e.NewValue != CheckState.Unchecked)
+            {
+                SpecialtyBulletPointTextBox.Text = SpecialtyCheckedListBox1.Items[e.Index].ToString();
+                AddBulletpointButton.Text = "Update Bulletpoint";
+            }
+            else
+            {
+                SpecialtyBulletPointTextBox.Text = "";
+                AddBulletpointButton.Text = "Add Bulletpoint";
+            }
+        }
+
+        private void CreateSpecialtyButton_Click(object sender, EventArgs e)
+        {
+            int index = specialtiesHandler.CreateNewSpecialty();
+            InitializeSpecialtiesDataGrid();
+            //editingSpecialtyIndex = index;
+            //LoadSpecialtyDataAsync(index);
+        }
+
+        private void DeleteSpecialtyButton_Click(object sender, EventArgs e)
+        {
+            specialtiesHandler.DeleteSpecialty(editingSpecialtyIndex);
+            InitializeSpecialtiesDataGrid();
+            SpecialtySystemEditing = true;
+            ClearSpecialtyFields();
+            SpecialtySystemEditing = false;
+            editingSpecialtyIndex = -1;
+        }
+
+
 
         private void AddSpecialtyImageButton_Click(object sender, EventArgs e)
         {

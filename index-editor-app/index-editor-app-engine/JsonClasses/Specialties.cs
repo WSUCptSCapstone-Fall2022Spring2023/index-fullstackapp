@@ -26,6 +26,9 @@ namespace index_editor_app_engine.JsonClasses
         [JsonProperty("name")]
         public string Name { get; set; }
 
+        [JsonProperty("icon")]
+        public string Icon { get; set; }
+
         [JsonProperty("link")]
         public string Link { get; set; }
 

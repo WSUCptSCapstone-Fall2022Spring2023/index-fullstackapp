@@ -55,7 +55,7 @@ namespace index_editor_app
             btn.UseColumnTextForButtonValue = true;
         }
 
-        public void InitializeSpecialtyCheckBox()
+        public void InitializeMemberSpecialtyCheckBox()
         {
             foreach (string specialtyName in membersHandler.MemberSpecialtyDict.Keys)
             {
