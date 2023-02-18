@@ -32,6 +32,7 @@ namespace index_editor_app_engine
 
         public void InitializeSpecialties()
         {
+            MemberSpecialtyDict.Clear();
             //refactoring specialties to new handler
             foreach (Specialty s in specialties.SpecialtiesList)
             {
@@ -70,17 +71,18 @@ namespace index_editor_app_engine
 
 
 
-        public void UpdateMembersPage()
+        public Task<HttpResponseMessage> UpdateMembersPage()
         {
             // put all of the local images
             foreach (string key in MemberImageDict.Keys)
             {
-                indexClient.PutImageAsync(MemberImageDict[key]);
+                indexClient.PutImageAsync(MemberImageDict[key], "memberimages");
             }
 
             MembersPage updatedMembersPage = memberspage;
             string updatedMembersPageString = JsonConvert.SerializeObject(updatedMembersPage);
-            var httpResponse = indexClient.PutMembers(updatedMembersPageString);
+            var httpResponse = indexClient.PutDocument(updatedMembersPageString, "members");
+            return httpResponse;
         }
 
         public void UpdateMemberSpecialties(bool checkboxValue, int specialtyIndex, int memberIndex)

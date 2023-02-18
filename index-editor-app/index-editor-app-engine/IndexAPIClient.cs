@@ -29,23 +29,22 @@ namespace index_editor_app_engine
             httpClient.DefaultRequestHeaders.Add("x-api-key", root["API_KEY"]);
         }
 
-        public async Task<HttpResponseMessage> PutDocument(string document)
+        public async Task<HttpResponseMessage> PutDocument(string document, string endpoint)
         {
             if (root["INDEX_API_ENDPOINT"] == null)
             {
                 throw new Exception("ERROR LOADING APPSETTINGS");
             }
 
-
             var stringContent = new StringContent(document, Encoding.UTF8, "application/json");
-            var httpResponse = await httpClient.PutAsync(root["INDEX_API_ENDPOINT"] + "/events", stringContent);
+            var httpResponse = await httpClient.PutAsync(root["INDEX_API_ENDPOINT"] + "/" + endpoint, stringContent);
 
             return httpResponse;
         }
 
-        public async Task<string?> GetDocument()
+        public async Task<string?> GetDocument(string endpoint)
         {
-            var builder = new UriBuilder(root["INDEX_API_ENDPOINT"] + "/events");
+            var builder = new UriBuilder(root["INDEX_API_ENDPOINT"] + "/" + endpoint);
             var httpResponse = await httpClient.GetAsync(builder.ToString());
             if (!httpResponse.IsSuccessStatusCode)
             {
@@ -70,7 +69,7 @@ namespace index_editor_app_engine
             return FileByteArrayData; //return the byte data
         }
 
-        public async Task<bool> PutImageAsync(string imagePath)
+        public async Task<bool> PutImageAsync(string imagePath, string endpoint)
         {
             byte[] myImageFile = GetFileByteArray(imagePath);
 
@@ -80,7 +79,7 @@ namespace index_editor_app_engine
 
             string dirName = new DirectoryInfo(imagePath).Name;
 
-            string imageEndpoint = "https://bz682vosnb.execute-api.us-east-1.amazonaws.com/dev1/img/eventimages/" + dirName;
+            string imageEndpoint = "https://bz682vosnb.execute-api.us-east-1.amazonaws.com/dev1/img/" + endpoint + "/" + dirName;
 
             var Putresult = await httpClient.PutAsync(imageEndpoint, imageBinaryContent);
 
@@ -102,8 +101,6 @@ namespace index_editor_app_engine
             }
         }
 
-
-
         public async Task<byte[]> GetImageAsync(string imageURL)
         {
             var result = await httpClient.GetAsync(imageURL);
@@ -113,39 +110,22 @@ namespace index_editor_app_engine
             return image;
         }
 
-
-
-
-        public async Task<string?> GetMembers()
+        public async Task<bool> PutMemberImageAsync(string imagePath)
         {
-            var builder = new UriBuilder(root["INDEX_API_ENDPOINT"] + "/members");
-            var httpResponse = await httpClient.GetAsync(builder.ToString());
-            if (!httpResponse.IsSuccessStatusCode)
-            {
+            byte[] myImageFile = GetFileByteArray(imagePath);
 
-            }
-            return await httpResponse.Content.ReadAsStringAsync();
+            var imageBinaryContent = new ByteArrayContent(myImageFile);
+
+            imageBinaryContent.Headers.Add("Content-Type", "image/png");
+
+            string dirName = new DirectoryInfo(imagePath).Name;
+
+            string imageEndpoint = "https://bz682vosnb.execute-api.us-east-1.amazonaws.com/dev1/img/memberimages/" + dirName;
+
+            var Putresult = await httpClient.PutAsync(imageEndpoint, imageBinaryContent);
+
+            return Putresult.IsSuccessStatusCode;
         }
-
-        public async Task<HttpResponseMessage> PutMembers(string document)
-        {
-            var stringContent = new StringContent(document, Encoding.UTF8, "application/json");
-            var httpResponse = await httpClient.PutAsync(root["INDEX_API_ENDPOINT"] + "/members", stringContent);
-
-            return httpResponse;
-        }
-
-        public async Task<string?> GetSpecialties()
-        {
-            var builder = new UriBuilder(root["INDEX_API_ENDPOINT"] + "/specialties");
-            var httpResponse = await httpClient.GetAsync(builder.ToString());
-            if (!httpResponse.IsSuccessStatusCode)
-            {
-
-            }
-            return await httpResponse.Content.ReadAsStringAsync();
-        }
-
 
     }
 }
