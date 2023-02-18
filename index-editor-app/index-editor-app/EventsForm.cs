@@ -14,16 +14,14 @@ namespace index_editor_app
     {
         int eventsCount = 0;
         int editingEventIndex = -1;
+        bool systemEditingEvents = false;
 
         private void dateTimePicker_ValueChanged(object sender, EventArgs e)//start date
         {
             if (NoEventSelectedCheck()) { return; }
             Event currentEvent = eventsHandler.GetEventByIndex(editingEventIndex);
             currentEvent.StartDate = dateTimePicker1.Text.Substring(0, dateTimePicker1.Text.Length - 6);
-
             currentEvent.EditorDateTime = dateTimePicker1.Value.ToString();
-
-
 
             dataGridView1[2, editingEventIndex].Value = dateTimePicker1.Value.ToShortDateString();
         }
@@ -46,7 +44,6 @@ namespace index_editor_app
             string date = e.EditorDateTime;
             DateTime parsedDate = DateTime.ParseExact(date, "M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
             dateTimePicker1.Value = parsedDate;
-            //titleTextBox.Text = dateTimePicker1.Value.ToString();
 
             creationDateLabel.Text = "You created this event on: " + e.CreatedOn;
             timeRangeTextBox.Text = e.TimeRange;
@@ -88,10 +85,12 @@ namespace index_editor_app
 
             if (confirmResult == DialogResult.Yes)
             {
+                systemEditingEvents = true;
                 eventsHandler.DeleteEvent(editingEventIndex);
                 ClearEventFields();
                 editingEventIndex = -1;
                 InitializeEventsDataGrid();
+                systemEditingEvents = false;
             }
         }
 
@@ -198,10 +197,6 @@ namespace index_editor_app
             titleTextBox.Text = "";
             timeRangeTextBox.Text = "";
             dateTimePicker1.Value = DateTime.Now;
-            //dateTimePicker1.Value = DateTime.Now.ToString("MM/dd/yyyy");
-            //dateTimePicker1.Value = DateTime.Now;
-
-
             LinktextBox.Text = "";
             pictureBox1.Image = null;
         }
@@ -268,7 +263,7 @@ namespace index_editor_app
         /// </summary>
         private void Title_TextChanged(object sender, EventArgs e)
         {
-            if (NoEventSelectedCheck()) { return; }
+            if (NoEventSelectedCheck() || systemEditingEvents) { return; }
             Event currentEvent = eventsHandler.GetEventByIndex(editingEventIndex);
             currentEvent.Title = titleTextBox.Text;
             dataGridView1[1, editingEventIndex].Value = titleTextBox.Text;
@@ -276,7 +271,7 @@ namespace index_editor_app
 
         private void Description_TextChanged(object sender, EventArgs e)
         {
-            if (NoEventSelectedCheck()) { return; }
+            if (NoEventSelectedCheck() || systemEditingEvents) { return; }
             Event currentEvent = eventsHandler.GetEventByIndex(editingEventIndex);
             currentEvent.Description = descriptionBox1.Text;
             dataGridView1[3, editingEventIndex].Value = descriptionBox1.Text;
@@ -284,14 +279,14 @@ namespace index_editor_app
 
         private void TimeRange_TextChanged(object sender, EventArgs e)
         {
-            if (NoEventSelectedCheck()) { return; }
+            if (NoEventSelectedCheck() || systemEditingEvents) { return; }
             Event currentEvent = eventsHandler.GetEventByIndex(editingEventIndex);
             currentEvent.TimeRange = timeRangeTextBox.Text;
         }
 
         private void LinktextBox_TextChanged(object sender, EventArgs e)
         {
-            if (NoEventSelectedCheck()) { return; }
+            if (NoEventSelectedCheck() || systemEditingEvents) { return; }
             Event currentEvent = eventsHandler.GetEventByIndex(editingEventIndex);
             currentEvent.Link = LinktextBox.Text;
 
