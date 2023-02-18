@@ -38,7 +38,7 @@
 //import members from json file
 import axios from "axios";
     export default {
-        name: "AboutUs",
+        name: "Staff",
         data() {
             return {
                 memberData: {},
