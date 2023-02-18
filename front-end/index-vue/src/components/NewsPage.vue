@@ -34,7 +34,7 @@
         methods: {
             getNewsData() {
                 axios
-                    .get("new.json")
+                    .get("news.json")
                     .then(response => (this.newsDataList = response.data.newsItems));
             }
         },
