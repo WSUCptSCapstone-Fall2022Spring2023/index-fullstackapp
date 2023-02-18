@@ -86,6 +86,28 @@
             this.PageDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.MemberNameTextbox = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.DeleteNewsButton = new System.Windows.Forms.Button();
+            this.UpdateNewsletterButton = new System.Windows.Forms.Button();
+            this.CreateNewsLetterButton = new System.Windows.Forms.Button();
+            this.NewsDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.AddNewsImageButton = new System.Windows.Forms.Button();
+            this.NewsPictureBox = new System.Windows.Forms.PictureBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.NewsPageSubtitleTextBox = new System.Windows.Forms.TextBox();
+            this.NewsPageTitleTextBox = new System.Windows.Forms.TextBox();
+            this.NewsPostedByTextBox = new System.Windows.Forms.TextBox();
+            this.NewsLinkTextBox = new System.Windows.Forms.TextBox();
+            this.NewsDescriptionTextBox = new System.Windows.Forms.TextBox();
+            this.NewsTitleTextBox = new System.Windows.Forms.TextBox();
+            this.NewsDataGridView3 = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.DeleteSpecialtyButton = new System.Windows.Forms.Button();
             this.CreateSpecialtyButton = new System.Windows.Forms.Button();
@@ -121,6 +143,9 @@
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MemberPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NewsPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NewsDataGridView3)).BeginInit();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SpecialtyPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpecialtiesdataGridView3)).BeginInit();
@@ -730,12 +755,238 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.DeleteNewsButton);
+            this.tabPage3.Controls.Add(this.UpdateNewsletterButton);
+            this.tabPage3.Controls.Add(this.CreateNewsLetterButton);
+            this.tabPage3.Controls.Add(this.NewsDateTimePicker);
+            this.tabPage3.Controls.Add(this.label37);
+            this.tabPage3.Controls.Add(this.label35);
+            this.tabPage3.Controls.Add(this.AddNewsImageButton);
+            this.tabPage3.Controls.Add(this.NewsPictureBox);
+            this.tabPage3.Controls.Add(this.label34);
+            this.tabPage3.Controls.Add(this.label33);
+            this.tabPage3.Controls.Add(this.label32);
+            this.tabPage3.Controls.Add(this.label31);
+            this.tabPage3.Controls.Add(this.label30);
+            this.tabPage3.Controls.Add(this.label29);
+            this.tabPage3.Controls.Add(this.label28);
+            this.tabPage3.Controls.Add(this.NewsPageSubtitleTextBox);
+            this.tabPage3.Controls.Add(this.NewsPageTitleTextBox);
+            this.tabPage3.Controls.Add(this.NewsPostedByTextBox);
+            this.tabPage3.Controls.Add(this.NewsLinkTextBox);
+            this.tabPage3.Controls.Add(this.NewsDescriptionTextBox);
+            this.tabPage3.Controls.Add(this.NewsTitleTextBox);
+            this.tabPage3.Controls.Add(this.NewsDataGridView3);
             this.tabPage3.Location = new System.Drawing.Point(104, 4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(1392, 540);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "News";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // DeleteNewsButton
+            // 
+            this.DeleteNewsButton.Location = new System.Drawing.Point(194, 515);
+            this.DeleteNewsButton.Name = "DeleteNewsButton";
+            this.DeleteNewsButton.Size = new System.Drawing.Size(159, 22);
+            this.DeleteNewsButton.TabIndex = 23;
+            this.DeleteNewsButton.Text = "Delete Selected Newsletter";
+            this.DeleteNewsButton.UseVisualStyleBackColor = true;
+            this.DeleteNewsButton.Click += new System.EventHandler(this.DeleteNewsButton_Click);
+            // 
+            // UpdateNewsletterButton
+            // 
+            this.UpdateNewsletterButton.Location = new System.Drawing.Point(1238, 489);
+            this.UpdateNewsletterButton.Name = "UpdateNewsletterButton";
+            this.UpdateNewsletterButton.Size = new System.Drawing.Size(151, 48);
+            this.UpdateNewsletterButton.TabIndex = 22;
+            this.UpdateNewsletterButton.Text = "Update Newsletter";
+            this.UpdateNewsletterButton.UseVisualStyleBackColor = true;
+            this.UpdateNewsletterButton.Click += new System.EventHandler(this.UpdateNewsletterButton_Click);
+            // 
+            // CreateNewsLetterButton
+            // 
+            this.CreateNewsLetterButton.Location = new System.Drawing.Point(408, 484);
+            this.CreateNewsLetterButton.Name = "CreateNewsLetterButton";
+            this.CreateNewsLetterButton.Size = new System.Drawing.Size(167, 23);
+            this.CreateNewsLetterButton.TabIndex = 21;
+            this.CreateNewsLetterButton.Text = "Create New Newsletter";
+            this.CreateNewsLetterButton.UseVisualStyleBackColor = true;
+            this.CreateNewsLetterButton.Click += new System.EventHandler(this.CreateNewsLetterButton_Click);
+            // 
+            // NewsDateTimePicker
+            // 
+            this.NewsDateTimePicker.Location = new System.Drawing.Point(615, 437);
+            this.NewsDateTimePicker.Name = "NewsDateTimePicker";
+            this.NewsDateTimePicker.Size = new System.Drawing.Size(200, 23);
+            this.NewsDateTimePicker.TabIndex = 20;
+            this.NewsDateTimePicker.ValueChanged += new System.EventHandler(this.NewsDateTimePicker_ValueChanged);
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(615, 308);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(61, 15);
+            this.label37.TabIndex = 19;
+            this.label37.Text = "News Link";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(615, 366);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(59, 15);
+            this.label35.TabIndex = 17;
+            this.label35.Text = "Posted By";
+            // 
+            // AddNewsImageButton
+            // 
+            this.AddNewsImageButton.Location = new System.Drawing.Point(1242, 159);
+            this.AddNewsImageButton.Name = "AddNewsImageButton";
+            this.AddNewsImageButton.Size = new System.Drawing.Size(103, 23);
+            this.AddNewsImageButton.TabIndex = 16;
+            this.AddNewsImageButton.Text = "Upload Image";
+            this.AddNewsImageButton.UseVisualStyleBackColor = true;
+            this.AddNewsImageButton.Click += new System.EventHandler(this.AddNewsImageButton_Click);
+            // 
+            // NewsPictureBox
+            // 
+            this.NewsPictureBox.Location = new System.Drawing.Point(1191, 33);
+            this.NewsPictureBox.Name = "NewsPictureBox";
+            this.NewsPictureBox.Size = new System.Drawing.Size(198, 120);
+            this.NewsPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.NewsPictureBox.TabIndex = 15;
+            this.NewsPictureBox.TabStop = false;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(615, 419);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(31, 15);
+            this.label34.TabIndex = 14;
+            this.label34.Text = "Date";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(615, 120);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(67, 15);
+            this.label33.TabIndex = 13;
+            this.label33.Text = "Description";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(1268, 15);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(40, 15);
+            this.label32.TabIndex = 12;
+            this.label32.Text = "Image";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(451, 15);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(71, 15);
+            this.label31.TabIndex = 11;
+            this.label31.Text = "NewsLetters";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(615, 33);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(29, 15);
+            this.label30.TabIndex = 10;
+            this.label30.Text = "Title";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(141, 144);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(76, 15);
+            this.label29.TabIndex = 9;
+            this.label29.Text = "Page Subtitle";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(150, 45);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(58, 15);
+            this.label28.TabIndex = 8;
+            this.label28.Text = "Page Title";
+            // 
+            // NewsPageSubtitleTextBox
+            // 
+            this.NewsPageSubtitleTextBox.Location = new System.Drawing.Point(3, 162);
+            this.NewsPageSubtitleTextBox.Multiline = true;
+            this.NewsPageSubtitleTextBox.Name = "NewsPageSubtitleTextBox";
+            this.NewsPageSubtitleTextBox.Size = new System.Drawing.Size(350, 97);
+            this.NewsPageSubtitleTextBox.TabIndex = 7;
+            this.NewsPageSubtitleTextBox.TextChanged += new System.EventHandler(this.NewsPageSubtitleTextBox_TextChanged);
+            // 
+            // NewsPageTitleTextBox
+            // 
+            this.NewsPageTitleTextBox.Location = new System.Drawing.Point(3, 63);
+            this.NewsPageTitleTextBox.Multiline = true;
+            this.NewsPageTitleTextBox.Name = "NewsPageTitleTextBox";
+            this.NewsPageTitleTextBox.Size = new System.Drawing.Size(350, 72);
+            this.NewsPageTitleTextBox.TabIndex = 6;
+            this.NewsPageTitleTextBox.TextChanged += new System.EventHandler(this.NewsPageTitleTextBox_TextChanged);
+            // 
+            // NewsPostedByTextBox
+            // 
+            this.NewsPostedByTextBox.Location = new System.Drawing.Point(615, 384);
+            this.NewsPostedByTextBox.Multiline = true;
+            this.NewsPostedByTextBox.Name = "NewsPostedByTextBox";
+            this.NewsPostedByTextBox.Size = new System.Drawing.Size(475, 23);
+            this.NewsPostedByTextBox.TabIndex = 4;
+            this.NewsPostedByTextBox.TextChanged += new System.EventHandler(this.NewsPostedByTextBox_TextChanged);
+            // 
+            // NewsLinkTextBox
+            // 
+            this.NewsLinkTextBox.Location = new System.Drawing.Point(615, 326);
+            this.NewsLinkTextBox.Multiline = true;
+            this.NewsLinkTextBox.Name = "NewsLinkTextBox";
+            this.NewsLinkTextBox.Size = new System.Drawing.Size(475, 23);
+            this.NewsLinkTextBox.TabIndex = 3;
+            this.NewsLinkTextBox.TextChanged += new System.EventHandler(this.NewsLinkTextBox_TextChanged);
+            // 
+            // NewsDescriptionTextBox
+            // 
+            this.NewsDescriptionTextBox.Location = new System.Drawing.Point(615, 138);
+            this.NewsDescriptionTextBox.Multiline = true;
+            this.NewsDescriptionTextBox.Name = "NewsDescriptionTextBox";
+            this.NewsDescriptionTextBox.Size = new System.Drawing.Size(475, 151);
+            this.NewsDescriptionTextBox.TabIndex = 2;
+            this.NewsDescriptionTextBox.TextChanged += new System.EventHandler(this.NewsDescriptionTextBox_TextChanged);
+            // 
+            // NewsTitleTextBox
+            // 
+            this.NewsTitleTextBox.Location = new System.Drawing.Point(615, 48);
+            this.NewsTitleTextBox.Multiline = true;
+            this.NewsTitleTextBox.Name = "NewsTitleTextBox";
+            this.NewsTitleTextBox.Size = new System.Drawing.Size(475, 55);
+            this.NewsTitleTextBox.TabIndex = 1;
+            this.NewsTitleTextBox.TextChanged += new System.EventHandler(this.NewsTitleTextBox_TextChanged);
+            // 
+            // NewsDataGridView3
+            // 
+            this.NewsDataGridView3.AllowUserToAddRows = false;
+            this.NewsDataGridView3.AllowUserToDeleteRows = false;
+            this.NewsDataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.NewsDataGridView3.Location = new System.Drawing.Point(369, 33);
+            this.NewsDataGridView3.Name = "NewsDataGridView3";
+            this.NewsDataGridView3.RowTemplate.Height = 25;
+            this.NewsDataGridView3.Size = new System.Drawing.Size(240, 445);
+            this.NewsDataGridView3.TabIndex = 0;
+            this.NewsDataGridView3.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EditNewsButtonClick);
             // 
             // tabPage4
             // 
@@ -1027,6 +1278,10 @@
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MemberPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NewsPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NewsDataGridView3)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SpecialtyPictureBox)).EndInit();
@@ -1125,5 +1380,27 @@
         private Label label27;
         private Button CreateSpecialtyButton;
         private Button DeleteSpecialtyButton;
+        private DataGridView NewsDataGridView3;
+        private TextBox NewsPostedByTextBox;
+        private TextBox NewsLinkTextBox;
+        private TextBox NewsDescriptionTextBox;
+        private TextBox NewsTitleTextBox;
+        private Label label34;
+        private Label label33;
+        private Label label32;
+        private Label label31;
+        private Label label30;
+        private Label label29;
+        private Label label28;
+        private TextBox NewsPageSubtitleTextBox;
+        private TextBox NewsPageTitleTextBox;
+        private Button AddNewsImageButton;
+        private PictureBox NewsPictureBox;
+        private Label label37;
+        private Label label35;
+        private DateTimePicker NewsDateTimePicker;
+        private Button CreateNewsLetterButton;
+        private Button UpdateNewsletterButton;
+        private Button DeleteNewsButton;
     }
 }

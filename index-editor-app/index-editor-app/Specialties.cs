@@ -69,7 +69,7 @@ namespace index_editor_app
             btn.UseColumnTextForButtonValue = true;
         }
 
-        private void EditSpecialtyButtonClick(object sender, DataGridViewCellEventArgs e)
+        public void EditSpecialtyButtonClick(object sender, DataGridViewCellEventArgs e)
         {
             foreach (DataGridViewRow row in SpecialtiesdataGridView3.Rows)
             {
