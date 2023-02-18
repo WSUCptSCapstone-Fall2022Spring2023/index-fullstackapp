@@ -9,9 +9,9 @@
                     <article class="post">
                         <img class="event-img" v-bind:src='event.image'>
                         <div class="description-box">
-                            <a v-bind:href='event.link'>
+                            <RouterLink :to="{ path: member.bioLink}">
                                 <h2 class="post-excerpt-title">{{event.title}}</h2>
-                            </a>
+                            </RouterLink>
                             <div><i class="fa fa-calendar-day"></i><b>{{event.start_date}}</b></div>
                             <div><i class="fa fa-clock"></i><b>{{event.time_range}}</b></div>
                             <p>{{event.description}}</p>
