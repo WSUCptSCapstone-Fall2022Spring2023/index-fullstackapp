@@ -16,6 +16,7 @@ namespace index_editor_app
         EventsHandler eventsHandler;
         MembersHandler membersHandler;
         SpecialtyHandler specialtiesHandler;
+        NewsHandler newsHandler;
 
         public Form1()
         {
@@ -30,12 +31,14 @@ namespace index_editor_app
                 eventsHandler = new EventsHandler(await indexClient.GetDocument("events"), indexClient);
                 membersHandler = new MembersHandler(await indexClient.GetDocument("members"), await indexClient.GetDocument("specialties"), indexClient);
                 specialtiesHandler = new SpecialtyHandler(await indexClient.GetDocument("specialties"), indexClient);
+                newsHandler = new NewsHandler(await indexClient.GetDocument("news"), indexClient);
 
                 InitializeEventsDataGrid();
                 InitializeMembersDataGrid();
                 LoadMembersData();
                 InitializeMemberSpecialtyCheckBox();
-                InitializeSpecialties(); //specialties page
+                InitializeSpecialties();
+                InitializeNews();
             }
         }
 
@@ -90,6 +93,7 @@ namespace index_editor_app
             _stringFlags.LineAlignment = StringAlignment.Center;
             g.DrawString(_tabPage.Text, _tabFont, _textBrush, _tabBounds, new StringFormat(_stringFlags));
         }
+
 
         /// <summary>
         /// description and demonstration from original
