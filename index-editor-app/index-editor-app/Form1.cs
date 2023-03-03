@@ -94,7 +94,6 @@ namespace index_editor_app
             g.DrawString(_tabPage.Text, _tabFont, _textBrush, _tabBounds, new StringFormat(_stringFlags));
         }
 
-
         /// <summary>
         /// description and demonstration from original
         /// instead of test plans we have test cases (for each test case there are 5 subsections whats being tested expected result what actually happened, test case requirements)

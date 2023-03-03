@@ -1,13 +1,20 @@
-﻿using index_editor_app_engine;
+﻿using FontAwesome.Sharp;
+using index_editor_app_engine;
 using index_editor_app_engine.JsonClasses;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Reflection;
+using System.Security.Policy;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media.Imaging;
+using System.Xml.Linq;
 
 namespace index_editor_app
 {
@@ -27,7 +34,6 @@ namespace index_editor_app
         // editing index
         // 
 
-
         //get the specialties from api
         //store the specialties
 
@@ -37,11 +43,21 @@ namespace index_editor_app
         public void InitializeSpecialties()
         {
             InitializeSpecialtiesDataGrid();
+            InitializeSpecialtiesIcons();
+        }
+
+        //add icon options to ComboBox
+        public void InitializeSpecialtiesIcons()
+        {
+            SpecialtyIconComboBox.Items.Add("None");
+            foreach (string name in specialtiesHandler.GetIconList())
+            {
+                SpecialtyIconComboBox.Items.Add(name);
+            }
         }
 
         public void InitializeSpecialtiesDataGrid()
         {
-            
             this.SpecialtiesdataGridView3.CancelEdit();
             this.SpecialtiesdataGridView3.Columns.Clear();
             this.SpecialtiesdataGridView3.Rows.Clear();
@@ -106,15 +122,18 @@ namespace index_editor_app
                 }
             }
 
-
             SpecialtyPictureBox.Image = null;
             if (s.Image != "")
             {
                 SpecialtyPictureBox.Image = System.Drawing.Image.FromStream(await specialtiesHandler.LoadSpecialtyImageHandlerAsync(s.Name));
             }
+            // load icon
+            string iconName = specialtiesHandler.GetIcon(index);
+            SpecialtyIconComboBox.SelectedIndex = SpecialtyIconComboBox.FindStringExact(iconName);
+            IconChar selectedEnumValue = (IconChar)Enum.Parse(typeof(IconChar), iconName);
+            SpecialtyIconPictureBox.Image = FormsIconHelper.ToBitmap(selectedEnumValue, Color.Black);
 
             SpecialtySystemEditing = false;
-
         }
 
         private void UploadSpecialtiesButton_Click(object sender, EventArgs e)
@@ -130,6 +149,7 @@ namespace index_editor_app
             SpecialtyLinkTextBox.Clear();
             SpecialtyDescriptionTextBox.Clear();
             SpecialtyCheckedListBox1.Items.Clear();
+            SpecialtyIconComboBox.SelectedIndex = -1;
         }
 
         public bool NoSpecialtySelectedCheck()
@@ -144,7 +164,6 @@ namespace index_editor_app
                 return false;
             }
         }
-
 
         private void SpecialtyNameTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -248,8 +267,6 @@ namespace index_editor_app
             editingSpecialtyIndex = -1;
         }
 
-
-
         private void AddSpecialtyImageButton_Click(object sender, EventArgs e)
         {
             if (NoSpecialtySelectedCheck()) { return; }
@@ -272,6 +289,16 @@ namespace index_editor_app
                 specialtiesHandler.AddSpecialtyImage(openFileDialog1.FileName, editingSpecialtyIndex);
                 LoadSpecialtyDataAsync(editingSpecialtyIndex);
             }
+        }
+
+
+        private void SpecialtyIconComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (NoSpecialtySelectedCheck() || SpecialtySystemEditing) { return; }
+            string iconName = SpecialtyIconComboBox.GetItemText(SpecialtyIconComboBox.SelectedItem);
+            IconChar selectedEnumValue = (IconChar)Enum.Parse(typeof(IconChar), iconName);
+            SpecialtyIconPictureBox.Image = FormsIconHelper.ToBitmap(selectedEnumValue, Color.Black);
+            specialtiesHandler.UpdateIcon(iconName, editingSpecialtyIndex);
         }
 
     }

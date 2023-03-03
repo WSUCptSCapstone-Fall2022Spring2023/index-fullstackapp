@@ -109,6 +109,9 @@
             this.NewsTitleTextBox = new System.Windows.Forms.TextBox();
             this.NewsDataGridView3 = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.SpecialtyIconComboBox = new System.Windows.Forms.ComboBox();
+            this.label36 = new System.Windows.Forms.Label();
+            this.SpecialtyIconPictureBox = new System.Windows.Forms.PictureBox();
             this.DeleteSpecialtyButton = new System.Windows.Forms.Button();
             this.CreateSpecialtyButton = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
@@ -147,6 +150,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.NewsPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NewsDataGridView3)).BeginInit();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SpecialtyIconPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpecialtyPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpecialtiesdataGridView3)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -990,6 +994,9 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.SpecialtyIconComboBox);
+            this.tabPage4.Controls.Add(this.label36);
+            this.tabPage4.Controls.Add(this.SpecialtyIconPictureBox);
             this.tabPage4.Controls.Add(this.DeleteSpecialtyButton);
             this.tabPage4.Controls.Add(this.CreateSpecialtyButton);
             this.tabPage4.Controls.Add(this.label27);
@@ -1017,6 +1024,32 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Specialties";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // SpecialtyIconComboBox
+            // 
+            this.SpecialtyIconComboBox.FormattingEnabled = true;
+            this.SpecialtyIconComboBox.Location = new System.Drawing.Point(847, 412);
+            this.SpecialtyIconComboBox.Name = "SpecialtyIconComboBox";
+            this.SpecialtyIconComboBox.Size = new System.Drawing.Size(255, 23);
+            this.SpecialtyIconComboBox.TabIndex = 24;
+            this.SpecialtyIconComboBox.SelectedIndexChanged += new System.EventHandler(this.SpecialtyIconComboBox_SelectedIndexChanged);
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(938, 327);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(30, 15);
+            this.label36.TabIndex = 23;
+            this.label36.Text = "Icon";
+            // 
+            // SpecialtyIconPictureBox
+            // 
+            this.SpecialtyIconPictureBox.Location = new System.Drawing.Point(938, 345);
+            this.SpecialtyIconPictureBox.Name = "SpecialtyIconPictureBox";
+            this.SpecialtyIconPictureBox.Size = new System.Drawing.Size(73, 61);
+            this.SpecialtyIconPictureBox.TabIndex = 22;
+            this.SpecialtyIconPictureBox.TabStop = false;
             // 
             // DeleteSpecialtyButton
             // 
@@ -1237,20 +1270,20 @@
             // refreshToolStripMenuItem
             // 
             this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.refreshToolStripMenuItem.Text = "Refresh";
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
-            this.loadToolStripMenuItem.Text = "Load";
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.loadToolStripMenuItem.Text = "Load Backup";
             // 
             // openFileDialog1
             // 
@@ -1284,6 +1317,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.NewsDataGridView3)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SpecialtyIconPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpecialtyPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpecialtiesdataGridView3)).EndInit();
             this.menuStrip1.ResumeLayout(false);
@@ -1402,5 +1436,8 @@
         private Button CreateNewsLetterButton;
         private Button UpdateNewsletterButton;
         private Button DeleteNewsButton;
+        private ComboBox SpecialtyIconComboBox;
+        private Label label36;
+        private PictureBox SpecialtyIconPictureBox;
     }
 }
