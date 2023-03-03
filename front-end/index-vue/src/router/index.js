@@ -5,6 +5,7 @@ import AboutUs from '../components/AboutUs.vue'
 import NewsPage from '../components/NewsPage.vue'
 import Staff from '../components/Staff.vue'
 import Event from '../components/Event.vue'
+import News from '../components/News.vue'
 
 const routes = [
     {
@@ -26,6 +27,11 @@ const routes = [
         path: '/news',
         name: 'Newsletter',
         component: NewsPage
+    },
+    {
+        path: '/newsletter/:id',
+        name: 'news',
+        component: News
     },
     {
         path: '/about',

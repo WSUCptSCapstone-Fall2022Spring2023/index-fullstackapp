@@ -9,7 +9,9 @@
                     <article class="post">
                         <img class="event-img" v-bind:src='news.image'>
                         <div class="description-box">
-                            <a v-bind:href='news.newsLink'>{{news.title}}</a>
+                            <RouterLink :to="{ path: news.newsLink}">
+                                {{news.title}}
+                            </RouterLink>
                             <div class = "time">{{news.date}}</div>
                             <p>{{news.description}}</p>
                         </div>
