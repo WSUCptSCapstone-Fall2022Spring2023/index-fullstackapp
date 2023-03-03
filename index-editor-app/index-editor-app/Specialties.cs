@@ -150,6 +150,7 @@ namespace index_editor_app
             SpecialtyDescriptionTextBox.Clear();
             SpecialtyCheckedListBox1.Items.Clear();
             SpecialtyIconComboBox.SelectedIndex = -1;
+            SpecialtyIconPictureBox.Image = null;
         }
 
         public bool NoSpecialtySelectedCheck()
@@ -252,7 +253,6 @@ namespace index_editor_app
         {
             int index = specialtiesHandler.CreateNewSpecialty();
             membersHandler.specialties = specialtiesHandler.specialtyPage;
-            membersHandler.InitializeSpecialties();
             InitializeMemberSpecialtyCheckBox();
             InitializeSpecialtiesDataGrid();
         }

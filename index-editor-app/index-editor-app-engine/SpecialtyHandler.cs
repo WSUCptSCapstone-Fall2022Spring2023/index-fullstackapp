@@ -99,6 +99,7 @@ namespace index_editor_app_engine
             s.Image = "";
             s.Bulletpoints = new List<string>();
             s.Bulletpoints.Add(" ");
+            s.Icon = "";
             specialtyPage.SpecialtiesList.Add(s);
             return specialtyPage.SpecialtiesList.IndexOf(s);
         }
@@ -177,13 +178,30 @@ namespace index_editor_app_engine
 
         public string GetIcon(int index)
         {
-            string CSSIconName = specialtyPage.SpecialtiesList[index].Icon.Substring(6);
-            return IconConversionToCharIcon[CSSIconName];
+            if (specialtyPage.SpecialtiesList[index].Icon != "")
+            {
+                string CSSIconName = specialtyPage.SpecialtiesList[index].Icon.Substring(6);
+                return IconConversionToCharIcon[CSSIconName];
+            }
+            else
+            {
+                return "None";
+            }
         }
 
         public List<string> GetIconList()
         {
             return IconConversionToCharIcon.Values.ToList();
+        }
+
+        public List<string> GetSpecialtyNames()
+        {
+            List<string> specialtyNames = new List<string>();
+            foreach (Specialty s in specialtyPage.SpecialtiesList)
+            {
+                specialtyNames.Add(s.Name);
+            }
+            return specialtyNames;
         }
     }
 }

@@ -58,7 +58,7 @@ namespace index_editor_app
         public void InitializeMemberSpecialtyCheckBox()
         {
             SpecialtyCheckedListBox.Items.Clear();
-            foreach (string specialtyName in membersHandler.MemberSpecialtyDict.Keys)
+            foreach (string specialtyName in specialtiesHandler.GetSpecialtyNames())
             {
                 SpecialtyCheckedListBox.Items.Add(specialtyName);
             }
@@ -292,27 +292,5 @@ namespace index_editor_app
         {
             membersHandler.memberspage.PhraseLink = LinkPhraseTextbox.Text;
         }
-
-        //Below is for modify specialties. It will be moved to a new dedicated tab for handling specialties in the future
-
-        //button to edit specialties is clicked
-        //private void button2_Click(object sender, EventArgs e)
-        //{
-        //    // create new form
-        //    var createSpecialtyForm = new CreateSpecialtyForm(SpecialtyCheckedListBox);
-        //    createSpecialtyForm.FormClosed += (formVisibleChanged);
-        //    createSpecialtyForm.ShowDialog();
-        //    //createSpecialtyForm.VisibleChanged += new EventHandler(formVisibleChanged);
-
-        //}
-
-        //private void formVisibleChanged(object sender, EventArgs e)
-        //{
-        //    CreateSpecialtyForm specialtyForm = (CreateSpecialtyForm)sender;
-
-        //}
-
-
-
     }
 }
