@@ -53,6 +53,8 @@
             this.descriptionBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label20 = new System.Windows.Forms.Label();
+            this.LinkPhraseTextbox = new System.Windows.Forms.TextBox();
             this.AddMemberImageButton = new System.Windows.Forms.Button();
             this.DeleteMemberButton = new System.Windows.Forms.Button();
             this.MemberValidationButton = new System.Windows.Forms.Button();
@@ -84,7 +86,50 @@
             this.PageDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.MemberNameTextbox = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.DeleteNewsButton = new System.Windows.Forms.Button();
+            this.UpdateNewsletterButton = new System.Windows.Forms.Button();
+            this.CreateNewsLetterButton = new System.Windows.Forms.Button();
+            this.NewsDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.AddNewsImageButton = new System.Windows.Forms.Button();
+            this.NewsPictureBox = new System.Windows.Forms.PictureBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.NewsPageSubtitleTextBox = new System.Windows.Forms.TextBox();
+            this.NewsPageTitleTextBox = new System.Windows.Forms.TextBox();
+            this.NewsPostedByTextBox = new System.Windows.Forms.TextBox();
+            this.NewsLinkTextBox = new System.Windows.Forms.TextBox();
+            this.NewsDescriptionTextBox = new System.Windows.Forms.TextBox();
+            this.NewsTitleTextBox = new System.Windows.Forms.TextBox();
+            this.NewsDataGridView3 = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.DeleteSpecialtyButton = new System.Windows.Forms.Button();
+            this.CreateSpecialtyButton = new System.Windows.Forms.Button();
+            this.label27 = new System.Windows.Forms.Label();
+            this.UploadSpecialtiesButton = new System.Windows.Forms.Button();
+            this.AddSpecialtyImageButton = new System.Windows.Forms.Button();
+            this.label26 = new System.Windows.Forms.Label();
+            this.SpecialtyPictureBox = new System.Windows.Forms.PictureBox();
+            this.SpecialtyCheckedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.DeleteSpecialtyBulletpointButton = new System.Windows.Forms.Button();
+            this.AddBulletpointButton = new System.Windows.Forms.Button();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.SpecialtyBulletPointTextBox = new System.Windows.Forms.TextBox();
+            this.SpecialtyDescriptionTextBox = new System.Windows.Forms.TextBox();
+            this.SpecialtySubtitleTextBox = new System.Windows.Forms.TextBox();
+            this.SpecialtyLinkTextBox = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.SpecialtyNameTextBox = new System.Windows.Forms.TextBox();
+            this.SpecialtiesdataGridView3 = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,6 +143,12 @@
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MemberPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NewsPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NewsDataGridView3)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SpecialtyPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpecialtiesdataGridView3)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -254,6 +305,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(673, 187);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(167, 141);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
             // 
@@ -268,6 +320,7 @@
             // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.CustomFormat = "";
             this.dateTimePicker1.Location = new System.Drawing.Point(673, 362);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(263, 23);
@@ -364,6 +417,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label20);
+            this.tabPage2.Controls.Add(this.LinkPhraseTextbox);
             this.tabPage2.Controls.Add(this.AddMemberImageButton);
             this.tabPage2.Controls.Add(this.DeleteMemberButton);
             this.tabPage2.Controls.Add(this.MemberValidationButton);
@@ -401,6 +456,24 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "About Us";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(26, 300);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(269, 15);
+            this.label20.TabIndex = 31;
+            this.label20.Text = "Phrase that will contain link from page descrption";
+            // 
+            // LinkPhraseTextbox
+            // 
+            this.LinkPhraseTextbox.Location = new System.Drawing.Point(26, 318);
+            this.LinkPhraseTextbox.Multiline = true;
+            this.LinkPhraseTextbox.Name = "LinkPhraseTextbox";
+            this.LinkPhraseTextbox.Size = new System.Drawing.Size(260, 23);
+            this.LinkPhraseTextbox.TabIndex = 30;
+            this.LinkPhraseTextbox.TextChanged += new System.EventHandler(this.LinkPhraseTextbox_TextChanged);
             // 
             // AddMemberImageButton
             // 
@@ -466,6 +539,7 @@
             this.MemberPictureBox.Location = new System.Drawing.Point(842, 26);
             this.MemberPictureBox.Name = "MemberPictureBox";
             this.MemberPictureBox.Size = new System.Drawing.Size(111, 105);
+            this.MemberPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.MemberPictureBox.TabIndex = 23;
             this.MemberPictureBox.TabStop = false;
             // 
@@ -641,6 +715,7 @@
             this.ApplicationLinkTextBox.Name = "ApplicationLinkTextBox";
             this.ApplicationLinkTextBox.Size = new System.Drawing.Size(260, 23);
             this.ApplicationLinkTextBox.TabIndex = 4;
+            this.ApplicationLinkTextBox.TextChanged += new System.EventHandler(this.ApplicationLinkTextBox_TextChanged);
             // 
             // label9
             // 
@@ -667,6 +742,7 @@
             this.PageDescriptionTextBox.Name = "PageDescriptionTextBox";
             this.PageDescriptionTextBox.Size = new System.Drawing.Size(302, 167);
             this.PageDescriptionTextBox.TabIndex = 1;
+            this.PageDescriptionTextBox.TextChanged += new System.EventHandler(this.PageDescriptionTextBox_TextChanged);
             // 
             // MemberNameTextbox
             // 
@@ -679,6 +755,28 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.DeleteNewsButton);
+            this.tabPage3.Controls.Add(this.UpdateNewsletterButton);
+            this.tabPage3.Controls.Add(this.CreateNewsLetterButton);
+            this.tabPage3.Controls.Add(this.NewsDateTimePicker);
+            this.tabPage3.Controls.Add(this.label37);
+            this.tabPage3.Controls.Add(this.label35);
+            this.tabPage3.Controls.Add(this.AddNewsImageButton);
+            this.tabPage3.Controls.Add(this.NewsPictureBox);
+            this.tabPage3.Controls.Add(this.label34);
+            this.tabPage3.Controls.Add(this.label33);
+            this.tabPage3.Controls.Add(this.label32);
+            this.tabPage3.Controls.Add(this.label31);
+            this.tabPage3.Controls.Add(this.label30);
+            this.tabPage3.Controls.Add(this.label29);
+            this.tabPage3.Controls.Add(this.label28);
+            this.tabPage3.Controls.Add(this.NewsPageSubtitleTextBox);
+            this.tabPage3.Controls.Add(this.NewsPageTitleTextBox);
+            this.tabPage3.Controls.Add(this.NewsPostedByTextBox);
+            this.tabPage3.Controls.Add(this.NewsLinkTextBox);
+            this.tabPage3.Controls.Add(this.NewsDescriptionTextBox);
+            this.tabPage3.Controls.Add(this.NewsTitleTextBox);
+            this.tabPage3.Controls.Add(this.NewsDataGridView3);
             this.tabPage3.Location = new System.Drawing.Point(104, 4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(1392, 540);
@@ -686,14 +784,435 @@
             this.tabPage3.Text = "News";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // DeleteNewsButton
+            // 
+            this.DeleteNewsButton.Location = new System.Drawing.Point(194, 515);
+            this.DeleteNewsButton.Name = "DeleteNewsButton";
+            this.DeleteNewsButton.Size = new System.Drawing.Size(159, 22);
+            this.DeleteNewsButton.TabIndex = 23;
+            this.DeleteNewsButton.Text = "Delete Selected Newsletter";
+            this.DeleteNewsButton.UseVisualStyleBackColor = true;
+            this.DeleteNewsButton.Click += new System.EventHandler(this.DeleteNewsButton_Click);
+            // 
+            // UpdateNewsletterButton
+            // 
+            this.UpdateNewsletterButton.Location = new System.Drawing.Point(1238, 489);
+            this.UpdateNewsletterButton.Name = "UpdateNewsletterButton";
+            this.UpdateNewsletterButton.Size = new System.Drawing.Size(151, 48);
+            this.UpdateNewsletterButton.TabIndex = 22;
+            this.UpdateNewsletterButton.Text = "Update Newsletter";
+            this.UpdateNewsletterButton.UseVisualStyleBackColor = true;
+            this.UpdateNewsletterButton.Click += new System.EventHandler(this.UpdateNewsletterButton_Click);
+            // 
+            // CreateNewsLetterButton
+            // 
+            this.CreateNewsLetterButton.Location = new System.Drawing.Point(408, 484);
+            this.CreateNewsLetterButton.Name = "CreateNewsLetterButton";
+            this.CreateNewsLetterButton.Size = new System.Drawing.Size(167, 23);
+            this.CreateNewsLetterButton.TabIndex = 21;
+            this.CreateNewsLetterButton.Text = "Create New Newsletter";
+            this.CreateNewsLetterButton.UseVisualStyleBackColor = true;
+            this.CreateNewsLetterButton.Click += new System.EventHandler(this.CreateNewsLetterButton_Click);
+            // 
+            // NewsDateTimePicker
+            // 
+            this.NewsDateTimePicker.Location = new System.Drawing.Point(615, 437);
+            this.NewsDateTimePicker.Name = "NewsDateTimePicker";
+            this.NewsDateTimePicker.Size = new System.Drawing.Size(200, 23);
+            this.NewsDateTimePicker.TabIndex = 20;
+            this.NewsDateTimePicker.ValueChanged += new System.EventHandler(this.NewsDateTimePicker_ValueChanged);
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(615, 308);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(61, 15);
+            this.label37.TabIndex = 19;
+            this.label37.Text = "News Link";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(615, 366);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(59, 15);
+            this.label35.TabIndex = 17;
+            this.label35.Text = "Posted By";
+            // 
+            // AddNewsImageButton
+            // 
+            this.AddNewsImageButton.Location = new System.Drawing.Point(1242, 159);
+            this.AddNewsImageButton.Name = "AddNewsImageButton";
+            this.AddNewsImageButton.Size = new System.Drawing.Size(103, 23);
+            this.AddNewsImageButton.TabIndex = 16;
+            this.AddNewsImageButton.Text = "Upload Image";
+            this.AddNewsImageButton.UseVisualStyleBackColor = true;
+            this.AddNewsImageButton.Click += new System.EventHandler(this.AddNewsImageButton_Click);
+            // 
+            // NewsPictureBox
+            // 
+            this.NewsPictureBox.Location = new System.Drawing.Point(1191, 33);
+            this.NewsPictureBox.Name = "NewsPictureBox";
+            this.NewsPictureBox.Size = new System.Drawing.Size(198, 120);
+            this.NewsPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.NewsPictureBox.TabIndex = 15;
+            this.NewsPictureBox.TabStop = false;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(615, 419);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(31, 15);
+            this.label34.TabIndex = 14;
+            this.label34.Text = "Date";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(615, 120);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(67, 15);
+            this.label33.TabIndex = 13;
+            this.label33.Text = "Description";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(1268, 15);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(40, 15);
+            this.label32.TabIndex = 12;
+            this.label32.Text = "Image";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(451, 15);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(71, 15);
+            this.label31.TabIndex = 11;
+            this.label31.Text = "NewsLetters";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(615, 33);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(29, 15);
+            this.label30.TabIndex = 10;
+            this.label30.Text = "Title";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(141, 144);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(76, 15);
+            this.label29.TabIndex = 9;
+            this.label29.Text = "Page Subtitle";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(150, 45);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(58, 15);
+            this.label28.TabIndex = 8;
+            this.label28.Text = "Page Title";
+            // 
+            // NewsPageSubtitleTextBox
+            // 
+            this.NewsPageSubtitleTextBox.Location = new System.Drawing.Point(3, 162);
+            this.NewsPageSubtitleTextBox.Multiline = true;
+            this.NewsPageSubtitleTextBox.Name = "NewsPageSubtitleTextBox";
+            this.NewsPageSubtitleTextBox.Size = new System.Drawing.Size(350, 97);
+            this.NewsPageSubtitleTextBox.TabIndex = 7;
+            this.NewsPageSubtitleTextBox.TextChanged += new System.EventHandler(this.NewsPageSubtitleTextBox_TextChanged);
+            // 
+            // NewsPageTitleTextBox
+            // 
+            this.NewsPageTitleTextBox.Location = new System.Drawing.Point(3, 63);
+            this.NewsPageTitleTextBox.Multiline = true;
+            this.NewsPageTitleTextBox.Name = "NewsPageTitleTextBox";
+            this.NewsPageTitleTextBox.Size = new System.Drawing.Size(350, 72);
+            this.NewsPageTitleTextBox.TabIndex = 6;
+            this.NewsPageTitleTextBox.TextChanged += new System.EventHandler(this.NewsPageTitleTextBox_TextChanged);
+            // 
+            // NewsPostedByTextBox
+            // 
+            this.NewsPostedByTextBox.Location = new System.Drawing.Point(615, 384);
+            this.NewsPostedByTextBox.Multiline = true;
+            this.NewsPostedByTextBox.Name = "NewsPostedByTextBox";
+            this.NewsPostedByTextBox.Size = new System.Drawing.Size(475, 23);
+            this.NewsPostedByTextBox.TabIndex = 4;
+            this.NewsPostedByTextBox.TextChanged += new System.EventHandler(this.NewsPostedByTextBox_TextChanged);
+            // 
+            // NewsLinkTextBox
+            // 
+            this.NewsLinkTextBox.Location = new System.Drawing.Point(615, 326);
+            this.NewsLinkTextBox.Multiline = true;
+            this.NewsLinkTextBox.Name = "NewsLinkTextBox";
+            this.NewsLinkTextBox.Size = new System.Drawing.Size(475, 23);
+            this.NewsLinkTextBox.TabIndex = 3;
+            this.NewsLinkTextBox.TextChanged += new System.EventHandler(this.NewsLinkTextBox_TextChanged);
+            // 
+            // NewsDescriptionTextBox
+            // 
+            this.NewsDescriptionTextBox.Location = new System.Drawing.Point(615, 138);
+            this.NewsDescriptionTextBox.Multiline = true;
+            this.NewsDescriptionTextBox.Name = "NewsDescriptionTextBox";
+            this.NewsDescriptionTextBox.Size = new System.Drawing.Size(475, 151);
+            this.NewsDescriptionTextBox.TabIndex = 2;
+            this.NewsDescriptionTextBox.TextChanged += new System.EventHandler(this.NewsDescriptionTextBox_TextChanged);
+            // 
+            // NewsTitleTextBox
+            // 
+            this.NewsTitleTextBox.Location = new System.Drawing.Point(615, 48);
+            this.NewsTitleTextBox.Multiline = true;
+            this.NewsTitleTextBox.Name = "NewsTitleTextBox";
+            this.NewsTitleTextBox.Size = new System.Drawing.Size(475, 55);
+            this.NewsTitleTextBox.TabIndex = 1;
+            this.NewsTitleTextBox.TextChanged += new System.EventHandler(this.NewsTitleTextBox_TextChanged);
+            // 
+            // NewsDataGridView3
+            // 
+            this.NewsDataGridView3.AllowUserToAddRows = false;
+            this.NewsDataGridView3.AllowUserToDeleteRows = false;
+            this.NewsDataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.NewsDataGridView3.Location = new System.Drawing.Point(369, 33);
+            this.NewsDataGridView3.Name = "NewsDataGridView3";
+            this.NewsDataGridView3.RowTemplate.Height = 25;
+            this.NewsDataGridView3.Size = new System.Drawing.Size(240, 445);
+            this.NewsDataGridView3.TabIndex = 0;
+            this.NewsDataGridView3.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EditNewsButtonClick);
+            // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.DeleteSpecialtyButton);
+            this.tabPage4.Controls.Add(this.CreateSpecialtyButton);
+            this.tabPage4.Controls.Add(this.label27);
+            this.tabPage4.Controls.Add(this.UploadSpecialtiesButton);
+            this.tabPage4.Controls.Add(this.AddSpecialtyImageButton);
+            this.tabPage4.Controls.Add(this.label26);
+            this.tabPage4.Controls.Add(this.SpecialtyPictureBox);
+            this.tabPage4.Controls.Add(this.SpecialtyCheckedListBox1);
+            this.tabPage4.Controls.Add(this.DeleteSpecialtyBulletpointButton);
+            this.tabPage4.Controls.Add(this.AddBulletpointButton);
+            this.tabPage4.Controls.Add(this.label25);
+            this.tabPage4.Controls.Add(this.label24);
+            this.tabPage4.Controls.Add(this.label23);
+            this.tabPage4.Controls.Add(this.label22);
+            this.tabPage4.Controls.Add(this.SpecialtyBulletPointTextBox);
+            this.tabPage4.Controls.Add(this.SpecialtyDescriptionTextBox);
+            this.tabPage4.Controls.Add(this.SpecialtySubtitleTextBox);
+            this.tabPage4.Controls.Add(this.SpecialtyLinkTextBox);
+            this.tabPage4.Controls.Add(this.label21);
+            this.tabPage4.Controls.Add(this.SpecialtyNameTextBox);
+            this.tabPage4.Controls.Add(this.SpecialtiesdataGridView3);
             this.tabPage4.Location = new System.Drawing.Point(104, 4);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(1392, 540);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Specialties";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // DeleteSpecialtyButton
+            // 
+            this.DeleteSpecialtyButton.Location = new System.Drawing.Point(3, 513);
+            this.DeleteSpecialtyButton.Name = "DeleteSpecialtyButton";
+            this.DeleteSpecialtyButton.Size = new System.Drawing.Size(157, 23);
+            this.DeleteSpecialtyButton.TabIndex = 21;
+            this.DeleteSpecialtyButton.Text = "Delete Selected Specialty";
+            this.DeleteSpecialtyButton.UseVisualStyleBackColor = true;
+            this.DeleteSpecialtyButton.Click += new System.EventHandler(this.DeleteSpecialtyButton_Click);
+            // 
+            // CreateSpecialtyButton
+            // 
+            this.CreateSpecialtyButton.Location = new System.Drawing.Point(57, 348);
+            this.CreateSpecialtyButton.Name = "CreateSpecialtyButton";
+            this.CreateSpecialtyButton.Size = new System.Drawing.Size(157, 23);
+            this.CreateSpecialtyButton.TabIndex = 20;
+            this.CreateSpecialtyButton.Text = "Create New Specialty";
+            this.CreateSpecialtyButton.UseVisualStyleBackColor = true;
+            this.CreateSpecialtyButton.Click += new System.EventHandler(this.CreateSpecialtyButton_Click);
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(675, 20);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(27, 15);
+            this.label27.TabIndex = 19;
+            this.label27.Text = "Edit";
+            // 
+            // UploadSpecialtiesButton
+            // 
+            this.UploadSpecialtiesButton.Location = new System.Drawing.Point(1203, 489);
+            this.UploadSpecialtiesButton.Name = "UploadSpecialtiesButton";
+            this.UploadSpecialtiesButton.Size = new System.Drawing.Size(186, 47);
+            this.UploadSpecialtiesButton.TabIndex = 18;
+            this.UploadSpecialtiesButton.Text = "Upload Specialties";
+            this.UploadSpecialtiesButton.UseVisualStyleBackColor = true;
+            this.UploadSpecialtiesButton.Click += new System.EventHandler(this.UploadSpecialtiesButton_Click);
+            // 
+            // AddSpecialtyImageButton
+            // 
+            this.AddSpecialtyImageButton.Location = new System.Drawing.Point(672, 501);
+            this.AddSpecialtyImageButton.Name = "AddSpecialtyImageButton";
+            this.AddSpecialtyImageButton.Size = new System.Drawing.Size(122, 23);
+            this.AddSpecialtyImageButton.TabIndex = 17;
+            this.AddSpecialtyImageButton.Text = "Upload Image";
+            this.AddSpecialtyImageButton.UseVisualStyleBackColor = true;
+            this.AddSpecialtyImageButton.Click += new System.EventHandler(this.AddSpecialtyImageButton_Click);
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(710, 361);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(40, 15);
+            this.label26.TabIndex = 16;
+            this.label26.Text = "Image";
+            // 
+            // SpecialtyPictureBox
+            // 
+            this.SpecialtyPictureBox.Location = new System.Drawing.Point(672, 379);
+            this.SpecialtyPictureBox.Name = "SpecialtyPictureBox";
+            this.SpecialtyPictureBox.Size = new System.Drawing.Size(122, 104);
+            this.SpecialtyPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.SpecialtyPictureBox.TabIndex = 15;
+            this.SpecialtyPictureBox.TabStop = false;
+            // 
+            // SpecialtyCheckedListBox1
+            // 
+            this.SpecialtyCheckedListBox1.FormattingEnabled = true;
+            this.SpecialtyCheckedListBox1.Location = new System.Drawing.Point(675, 38);
+            this.SpecialtyCheckedListBox1.Name = "SpecialtyCheckedListBox1";
+            this.SpecialtyCheckedListBox1.Size = new System.Drawing.Size(702, 166);
+            this.SpecialtyCheckedListBox1.TabIndex = 14;
+            this.SpecialtyCheckedListBox1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.SpecialtyCheckedListBox1_ItemCheck);
+            // 
+            // DeleteSpecialtyBulletpointButton
+            // 
+            this.DeleteSpecialtyBulletpointButton.Location = new System.Drawing.Point(1261, 305);
+            this.DeleteSpecialtyBulletpointButton.Name = "DeleteSpecialtyBulletpointButton";
+            this.DeleteSpecialtyBulletpointButton.Size = new System.Drawing.Size(116, 23);
+            this.DeleteSpecialtyBulletpointButton.TabIndex = 13;
+            this.DeleteSpecialtyBulletpointButton.Text = "Delete selected";
+            this.DeleteSpecialtyBulletpointButton.UseVisualStyleBackColor = true;
+            this.DeleteSpecialtyBulletpointButton.Click += new System.EventHandler(this.DeleteSpecialtyBulletpointButton_Click);
+            // 
+            // AddBulletpointButton
+            // 
+            this.AddBulletpointButton.Location = new System.Drawing.Point(675, 305);
+            this.AddBulletpointButton.Name = "AddBulletpointButton";
+            this.AddBulletpointButton.Size = new System.Drawing.Size(119, 23);
+            this.AddBulletpointButton.TabIndex = 12;
+            this.AddBulletpointButton.Text = "Add bulletpoint";
+            this.AddBulletpointButton.UseVisualStyleBackColor = true;
+            this.AddBulletpointButton.Click += new System.EventHandler(this.AddBulletpointButton_Click);
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(1002, 20);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(70, 15);
+            this.label25.TabIndex = 10;
+            this.label25.Text = "BulletPoints";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(421, 222);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(67, 15);
+            this.label24.TabIndex = 9;
+            this.label24.Text = "Description";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(421, 98);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(47, 15);
+            this.label23.TabIndex = 8;
+            this.label23.Text = "Subtitle";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(226, 505);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(26, 15);
+            this.label22.TabIndex = 7;
+            this.label22.Text = "link";
+            // 
+            // SpecialtyBulletPointTextBox
+            // 
+            this.SpecialtyBulletPointTextBox.Location = new System.Drawing.Point(675, 219);
+            this.SpecialtyBulletPointTextBox.Multiline = true;
+            this.SpecialtyBulletPointTextBox.Name = "SpecialtyBulletPointTextBox";
+            this.SpecialtyBulletPointTextBox.Size = new System.Drawing.Size(702, 80);
+            this.SpecialtyBulletPointTextBox.TabIndex = 6;
+            // 
+            // SpecialtyDescriptionTextBox
+            // 
+            this.SpecialtyDescriptionTextBox.Location = new System.Drawing.Point(258, 240);
+            this.SpecialtyDescriptionTextBox.Multiline = true;
+            this.SpecialtyDescriptionTextBox.Name = "SpecialtyDescriptionTextBox";
+            this.SpecialtyDescriptionTextBox.Size = new System.Drawing.Size(384, 241);
+            this.SpecialtyDescriptionTextBox.TabIndex = 5;
+            this.SpecialtyDescriptionTextBox.TextChanged += new System.EventHandler(this.SpecialtyDescriptionTextBox_TextChanged);
+            // 
+            // SpecialtySubtitleTextBox
+            // 
+            this.SpecialtySubtitleTextBox.Location = new System.Drawing.Point(258, 119);
+            this.SpecialtySubtitleTextBox.Multiline = true;
+            this.SpecialtySubtitleTextBox.Name = "SpecialtySubtitleTextBox";
+            this.SpecialtySubtitleTextBox.Size = new System.Drawing.Size(384, 86);
+            this.SpecialtySubtitleTextBox.TabIndex = 4;
+            this.SpecialtySubtitleTextBox.TextChanged += new System.EventHandler(this.SpecialtySubtitleTextBox_TextChanged);
+            // 
+            // SpecialtyLinkTextBox
+            // 
+            this.SpecialtyLinkTextBox.Location = new System.Drawing.Point(258, 502);
+            this.SpecialtyLinkTextBox.Multiline = true;
+            this.SpecialtyLinkTextBox.Name = "SpecialtyLinkTextBox";
+            this.SpecialtyLinkTextBox.Size = new System.Drawing.Size(384, 23);
+            this.SpecialtyLinkTextBox.TabIndex = 3;
+            this.SpecialtyLinkTextBox.TextChanged += new System.EventHandler(this.SpecialtyLinkTextBox_TextChanged);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(388, 20);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(116, 15);
+            this.label21.TabIndex = 2;
+            this.label21.Text = "Specialty Name/Title";
+            // 
+            // SpecialtyNameTextBox
+            // 
+            this.SpecialtyNameTextBox.Location = new System.Drawing.Point(258, 38);
+            this.SpecialtyNameTextBox.Multiline = true;
+            this.SpecialtyNameTextBox.Name = "SpecialtyNameTextBox";
+            this.SpecialtyNameTextBox.Size = new System.Drawing.Size(384, 46);
+            this.SpecialtyNameTextBox.TabIndex = 1;
+            this.SpecialtyNameTextBox.TextChanged += new System.EventHandler(this.SpecialtyNameTextBox_TextChanged);
+            // 
+            // SpecialtiesdataGridView3
+            // 
+            this.SpecialtiesdataGridView3.AllowUserToAddRows = false;
+            this.SpecialtiesdataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SpecialtiesdataGridView3.Location = new System.Drawing.Point(12, 20);
+            this.SpecialtiesdataGridView3.Name = "SpecialtiesdataGridView3";
+            this.SpecialtiesdataGridView3.RowTemplate.Height = 25;
+            this.SpecialtiesdataGridView3.Size = new System.Drawing.Size(240, 322);
+            this.SpecialtiesdataGridView3.TabIndex = 0;
+            this.SpecialtiesdataGridView3.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EditSpecialtyButtonClick);
             // 
             // menuStrip1
             // 
@@ -759,6 +1278,14 @@
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MemberPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NewsPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NewsDataGridView3)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SpecialtyPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpecialtiesdataGridView3)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -830,5 +1357,50 @@
         private Button MemberValidationButton;
         private Button CreateMemberButton;
         private Button AddMemberImageButton;
+        private Label label20;
+        private TextBox LinkPhraseTextbox;
+        private DataGridView SpecialtiesdataGridView3;
+        private Label label21;
+        private TextBox SpecialtyNameTextBox;
+        private Label label25;
+        private Label label24;
+        private Label label23;
+        private Label label22;
+        private TextBox SpecialtyBulletPointTextBox;
+        private TextBox SpecialtyDescriptionTextBox;
+        private TextBox SpecialtySubtitleTextBox;
+        private TextBox SpecialtyLinkTextBox;
+        private Button AddBulletpointButton;
+        private CheckedListBox SpecialtyCheckedListBox1;
+        private Button DeleteSpecialtyBulletpointButton;
+        private PictureBox SpecialtyPictureBox;
+        private Button AddSpecialtyImageButton;
+        private Label label26;
+        private Button UploadSpecialtiesButton;
+        private Label label27;
+        private Button CreateSpecialtyButton;
+        private Button DeleteSpecialtyButton;
+        private DataGridView NewsDataGridView3;
+        private TextBox NewsPostedByTextBox;
+        private TextBox NewsLinkTextBox;
+        private TextBox NewsDescriptionTextBox;
+        private TextBox NewsTitleTextBox;
+        private Label label34;
+        private Label label33;
+        private Label label32;
+        private Label label31;
+        private Label label30;
+        private Label label29;
+        private Label label28;
+        private TextBox NewsPageSubtitleTextBox;
+        private TextBox NewsPageTitleTextBox;
+        private Button AddNewsImageButton;
+        private PictureBox NewsPictureBox;
+        private Label label37;
+        private Label label35;
+        private DateTimePicker NewsDateTimePicker;
+        private Button CreateNewsLetterButton;
+        private Button UpdateNewsletterButton;
+        private Button DeleteNewsButton;
     }
 }

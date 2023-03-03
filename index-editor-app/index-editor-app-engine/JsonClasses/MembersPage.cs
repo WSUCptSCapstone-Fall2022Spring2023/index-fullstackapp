@@ -13,7 +13,6 @@ namespace index_editor_app_engine
 {
     using System;
     using System.Collections.Generic;
-
     using System.Globalization;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -22,6 +21,9 @@ namespace index_editor_app_engine
     {
         [JsonProperty("pageDescription")]
         public string PageDescription { get; set; }
+
+        [JsonProperty("phraseLink")]
+        public string PhraseLink { get; set; }
 
         [JsonProperty("applicationLink")]
         public string ApplicationLink { get; set; }

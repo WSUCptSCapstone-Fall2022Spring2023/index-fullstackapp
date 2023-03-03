@@ -55,8 +55,9 @@ namespace index_editor_app
             btn.UseColumnTextForButtonValue = true;
         }
 
-        public void InitializeSpecialtyCheckBox()
+        public void InitializeMemberSpecialtyCheckBox()
         {
+            SpecialtyCheckedListBox.Items.Clear();
             foreach (string specialtyName in membersHandler.MemberSpecialtyDict.Keys)
             {
                 SpecialtyCheckedListBox.Items.Add(specialtyName);
@@ -87,6 +88,7 @@ namespace index_editor_app
         {
             PageDescriptionTextBox.Text = membersHandler.memberspage.PageDescription;
             ApplicationLinkTextBox.Text = membersHandler.memberspage.ApplicationLink.ToString();
+            LinkPhraseTextbox.Text = membersHandler.memberspage.PhraseLink;
         }
 
         private async Task LoadMemberDataAsync(int index)
@@ -136,12 +138,14 @@ namespace index_editor_app
 
         private void AddMemberImageButton_Click(object sender, EventArgs e)
         {
+            NoMemberSelectedCheck();
             if (string.IsNullOrEmpty(membersHandler.memberspage.BoardMembers[editingMemberIndex].Name))
             {
                 System.Windows.Forms.MessageBox.Show("Warning, A name is required before adding an image");
                 return;
             }
 
+            //check this out
             if (editingMemberIndex == -1)                                                                     //CREATE NO EVENT SELECTED FUNCTION
             {
                 NoEventSelectedCheck();
@@ -181,7 +185,9 @@ namespace index_editor_app
 
         private void ConfirmMemberChangesButton_Click(object sender, EventArgs e)
         {
-            membersHandler.UpdateMembersPage();
+            System.Windows.Forms.MessageBox.Show("The website is being updated...");
+            var httpreseponse = membersHandler.UpdateMembersPage();
+            System.Windows.Forms.MessageBox.Show(httpreseponse.ToString());
         }
 
         public void ClearMemberFields()
@@ -226,53 +232,66 @@ namespace index_editor_app
 
         private void MemberNameTextbox_TextChanged(object sender, EventArgs e)
         {
-            NoMemberSelectedCheck();
+            if (NoMemberSelectedCheck()) { return; }
             membersHandler.memberspage.BoardMembers[editingMemberIndex].Name = MemberNameTextbox.Text;
         }
 
         private void PositionTextBox_TextChanged(object sender, EventArgs e)
         {
-            NoMemberSelectedCheck();
+            if (NoMemberSelectedCheck()) { return; }
             membersHandler.memberspage.BoardMembers[editingMemberIndex].Position = PositionTextBox.Text;
         }
 
         private void BioTextBox_TextChanged(object sender, EventArgs e)
         {
-            NoMemberSelectedCheck();
+            if (NoMemberSelectedCheck()) { return; }
             membersHandler.memberspage.BoardMembers[editingMemberIndex].BioDescription = BioTextBox.Text;
         }
 
         private void QuoteTextBox_TextChanged(object sender, EventArgs e)
         {
-            NoMemberSelectedCheck();
+            if (NoMemberSelectedCheck()) { return; }
             membersHandler.memberspage.BoardMembers[editingMemberIndex].BioQuote = QuoteTextBox.Text;
         }
 
         private void BioLinkTextBox_TextChanged(object sender, EventArgs e)
         {
-            NoMemberSelectedCheck();
+            if (NoMemberSelectedCheck()) { return; }
             membersHandler.memberspage.BoardMembers[editingMemberIndex].BioLink = BioLinkTextBox.Text;
         }
 
         private void EmployeeSinceTextBox_TextChanged(object sender, EventArgs e)
         {
-            NoMemberSelectedCheck();
+            if (NoMemberSelectedCheck()) { return; }
             membersHandler.memberspage.BoardMembers[editingMemberIndex].EmployeeSince = EmployeeSinceTextBox.Text;
         }
 
         private void OfficeLinkTextBox_TextChanged(object sender, EventArgs e)
         {
-            NoMemberSelectedCheck();
+            if (NoMemberSelectedCheck()) { return; }
             membersHandler.memberspage.BoardMembers[editingMemberIndex].OfficeLink = OfficeLinkTextBox.Text;
         }
 
         private void OfficeLocationTextBox_TextChanged(object sender, EventArgs e)
         {
-            NoMemberSelectedCheck();
+            if (NoMemberSelectedCheck()) { return; }
             membersHandler.memberspage.BoardMembers[editingMemberIndex].OfficeLocation = OfficeLocationTextBox.Text;
         }
 
+        private void PageDescriptionTextBox_TextChanged(object sender, EventArgs e)
+        {
+            membersHandler.memberspage.PageDescription = PageDescriptionTextBox.Text;
+        }
 
+        private void ApplicationLinkTextBox_TextChanged(object sender, EventArgs e)
+        {
+            membersHandler.memberspage.ApplicationLink = ApplicationLinkTextBox.Text;
+        }
+
+        private void LinkPhraseTextbox_TextChanged(object sender, EventArgs e)
+        {
+            membersHandler.memberspage.PhraseLink = LinkPhraseTextbox.Text;
+        }
 
         //Below is for modify specialties. It will be moved to a new dedicated tab for handling specialties in the future
 
