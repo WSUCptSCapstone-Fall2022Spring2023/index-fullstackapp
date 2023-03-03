@@ -94,6 +94,26 @@ namespace index_editor_app
             g.DrawString(_tabPage.Text, _tabFont, _textBrush, _tabBounds, new StringFormat(_stringFlags));
         }
 
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 0)
+            {
+                // Opening Event tab
+            }
+            else if (tabControl1.SelectedIndex == 1)
+            {
+                // Opening Members tab
+                InitializeMemberSpecialtyCheckBox();
+            }
+            else if (tabControl1.SelectedIndex == 2)
+            {
+                // Opening News tab
+            }
+            else if (tabControl1.SelectedIndex == 3)
+            {
+                // Opening Specialties tab
+            }
+        }
 
         /// <summary>
         /// description and demonstration from original

@@ -17,8 +17,6 @@ namespace index_editor_app_engine
         public MembersPage memberspage;
         public Specialties specialties;
 
-        public Dictionary<string, string> MemberSpecialtyDict = new Dictionary<string, string> { }; //links memebers to local image paths
-
         public Dictionary<string, string> MemberImageDict = new Dictionary<string, string> { }; //links memebers to local image paths
 
         public MembersHandler(string MembersJson, string SpecialtiesJson, IndexAPIClient client)
@@ -27,17 +25,6 @@ namespace index_editor_app_engine
             this.memberPageString = MembersJson;
             this.memberspage = JsonConvert.DeserializeObject<MembersPage>(MembersJson);
             this.specialties = JsonConvert.DeserializeObject<Specialties>(SpecialtiesJson);
-            InitializeSpecialties();
-        }
-
-        public void InitializeSpecialties()
-        {
-            MemberSpecialtyDict.Clear();
-            //refactoring specialties to new handler
-            foreach (Specialty s in specialties.SpecialtiesList)
-            {
-                MemberSpecialtyDict[s.Name] = s.Link;
-            }
         }
 
         public void CreateBoardMember()
