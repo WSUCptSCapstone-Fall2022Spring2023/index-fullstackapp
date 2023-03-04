@@ -97,6 +97,6 @@
         font-size: 1em;
         width: auto;
         margin: 10px 0 0 0;
-        padding: 10px 20px 10px
+        padding: 10px 20px 10px;
     }
 </style>
