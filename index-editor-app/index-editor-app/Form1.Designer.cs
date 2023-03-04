@@ -133,12 +133,14 @@
             this.label21 = new System.Windows.Forms.Label();
             this.SpecialtyNameTextBox = new System.Windows.Forms.TextBox();
             this.SpecialtiesdataGridView3 = new System.Windows.Forms.DataGridView();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -163,6 +165,7 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabControl1.ItemSize = new System.Drawing.Size(25, 100);
             this.tabControl1.Location = new System.Drawing.Point(12, 46);
@@ -1248,6 +1251,15 @@
             this.SpecialtiesdataGridView3.TabIndex = 0;
             this.SpecialtiesdataGridView3.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EditSpecialtyButtonClick);
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Location = new System.Drawing.Point(104, 4);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(1392, 540);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Resources";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1279,12 +1291,14 @@
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
             this.loadToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.loadToolStripMenuItem.Text = "Load Backup";
+            this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // openFileDialog1
             // 
@@ -1440,5 +1454,7 @@
         private ComboBox SpecialtyIconComboBox;
         private Label label36;
         private PictureBox SpecialtyIconPictureBox;
+        private FolderBrowserDialog folderBrowserDialog1;
+        private TabPage tabPage5;
     }
 }

@@ -7,6 +7,12 @@
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
+    public partial class EventsPage
+    {
+        [JsonProperty("Events")]
+        public Event[] Events { get; set; }
+    }
+
     public partial class Event
     {
         [JsonProperty("title")]
@@ -34,14 +40,17 @@
         public string Image { get; set; }
     }
 
-    public partial class Event
+
+
+
+    public partial class EventsPage
     {
-        public static Event[] FromJson(string json) => JsonConvert.DeserializeObject<Event[]>(json, index_editor_app_engine.Converter.Settings);
+        public static EventsPage FromJson(string json) => JsonConvert.DeserializeObject<EventsPage>(json, index_editor_app_engine.Converter.Settings);
     }
 
     public static class Serialize
     {
-        public static string ToJson(this Event[] self) => JsonConvert.SerializeObject(self, index_editor_app_engine.Converter.Settings);
+        public static string ToJson(this EventsPage self) => JsonConvert.SerializeObject(self, index_editor_app_engine.Converter.Settings);
     }
 
     internal static class Converter
