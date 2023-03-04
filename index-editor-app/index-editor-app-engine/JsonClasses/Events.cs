@@ -21,6 +21,9 @@
         [JsonProperty("start_date")]
         public string StartDate { get; set; }
 
+        [JsonProperty("editor_date_time")]
+        public string EditorDateTime { get; set; }
+
         [JsonProperty("time_range")]
         public string TimeRange { get; set; }
 

@@ -17,8 +17,6 @@ namespace index_editor_app_engine
         public MembersPage memberspage;
         public Specialties specialties;
 
-        public Dictionary<string, string> MemberSpecialtyDict = new Dictionary<string, string> { }; //links memebers to local image paths
-
         public Dictionary<string, string> MemberImageDict = new Dictionary<string, string> { }; //links memebers to local image paths
 
         public MembersHandler(string MembersJson, string SpecialtiesJson, IndexAPIClient client)
@@ -27,16 +25,6 @@ namespace index_editor_app_engine
             this.memberPageString = MembersJson;
             this.memberspage = JsonConvert.DeserializeObject<MembersPage>(MembersJson);
             this.specialties = JsonConvert.DeserializeObject<Specialties>(SpecialtiesJson);
-            InitializeSpecialties();
-        }
-
-        public void InitializeSpecialties()
-        {
-            //refactoring specialties to new handler
-            foreach (Specialty s in specialties.SpecialtiesList)
-            {
-                MemberSpecialtyDict[s.Name] = s.Link;
-            }
         }
 
         public void CreateBoardMember()
@@ -70,17 +58,18 @@ namespace index_editor_app_engine
 
 
 
-        public void UpdateMembersPage()
+        public Task<HttpResponseMessage> UpdateMembersPage()
         {
             // put all of the local images
             foreach (string key in MemberImageDict.Keys)
             {
-                indexClient.PutImageAsync(MemberImageDict[key]);
+                indexClient.PutImageAsync(MemberImageDict[key], "memberimages");
             }
 
             MembersPage updatedMembersPage = memberspage;
             string updatedMembersPageString = JsonConvert.SerializeObject(updatedMembersPage);
-            var httpResponse = indexClient.PutMembers(updatedMembersPageString);
+            var httpResponse = indexClient.PutDocument(updatedMembersPageString, "members");
+            return httpResponse;
         }
 
         public void UpdateMemberSpecialties(bool checkboxValue, int specialtyIndex, int memberIndex)
