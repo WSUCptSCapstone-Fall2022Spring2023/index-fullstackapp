@@ -17,7 +17,7 @@ namespace index_editor_app
         MembersHandler membersHandler;
         SpecialtyHandler specialtiesHandler;
         NewsHandler newsHandler;
-
+        EditorInstances editorInstances;
         public Form1()
         {
             InitializeComponent();
@@ -33,6 +33,12 @@ namespace index_editor_app
                 specialtiesHandler = new SpecialtyHandler(await indexClient.GetDocument("specialties"), indexClient);
                 newsHandler = new NewsHandler(await indexClient.GetDocument("news"), indexClient);
 
+                editorInstances = new EditorInstances();
+                editorInstances.eventsHandler = eventsHandler;
+                editorInstances.membersHandler = membersHandler;
+                editorInstances.specialtiesHandler = specialtiesHandler;
+                editorInstances.newsHandler = newsHandler;
+
                 InitializeEventsDataGrid();
                 InitializeMembersDataGrid();
                 LoadMembersData();
@@ -40,6 +46,10 @@ namespace index_editor_app
                 InitializeSpecialties();
                 InitializeNews();
             }
+
+
+
+            eventsHandler.AddOrdinalSuffix("Friday, December 15");
         }
 
         /// <summary>
@@ -112,6 +122,57 @@ namespace index_editor_app
             else if (tabControl1.SelectedIndex == 3)
             {
                 // Opening Specialties tab
+            }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    SaveLoad.Save
+                        (
+                        fbd.SelectedPath,
+                        eventsHandler.GetJsonString(),
+                        membersHandler.GetJsonString(),
+                        specialtiesHandler.GetJsonString(),
+                        newsHandler.GetJsonString()
+                        );
+                }
+            }
+        }
+
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var confirmResult = MessageBox.Show("Warning, current data will be lost when loading from backup. Continue?", "Confirm Load!", MessageBoxButtons.YesNo);
+
+            if (confirmResult == DialogResult.Yes)
+            {
+                using (var fbd = new FolderBrowserDialog())
+                {
+                    DialogResult result = fbd.ShowDialog();
+
+                    if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                    {
+                        try
+                        {
+                            SaveLoad.Load(fbd.SelectedPath, editorInstances);
+                            InitializeEventsDataGrid();
+                            InitializeMembersDataGrid();
+                            LoadMembersData();
+                            InitializeMemberSpecialtyCheckBox();
+                            InitializeSpecialties();
+                            InitializeNews();
+                        }
+                        catch (Exception error)
+                        {
+                            var errorMessageBox = MessageBox.Show(error.Message);
+                        }
+                    }
+                }
             }
         }
 

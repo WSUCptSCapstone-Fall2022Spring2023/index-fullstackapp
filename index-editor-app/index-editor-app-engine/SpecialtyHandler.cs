@@ -203,5 +203,11 @@ namespace index_editor_app_engine
             }
             return specialtyNames;
         }
+
+        public string GetJsonString()
+        {
+            string updatedSpecialtiesPageString = JsonConvert.SerializeObject(specialtyPage);
+            return updatedSpecialtiesPageString;
+        }
     }
 }

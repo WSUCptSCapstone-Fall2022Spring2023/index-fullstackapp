@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using index_editor_app_engine.JsonClasses;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,8 +16,8 @@ namespace index_editor_app_engine
 {
     public class EventsHandler
     {
+        public EventsPage eventsPage;// List of Events
         public List<Event> events;// List of Events
-        public List<Event> origrinalEvents;// List of Original events
         public string eventsJson;  //Events json string
         public IndexAPIClient indexClient; //API client
 
@@ -29,7 +30,13 @@ namespace index_editor_app_engine
         {
             this.indexClient = client;
             this.eventsJson = EventsJson;
-            this.events = JsonConvert.DeserializeObject<Event[]>(eventsJson).ToList<Event>();
+            this.eventsPage = JsonConvert.DeserializeObject<EventsPage>(eventsJson);
+            InitializeEvents();
+        }
+
+        public void InitializeEvents()
+        {
+            events = eventsPage.Events.ToList<Event>();
         }
 
         public async Task LoadEventsFromAPI() // load events into class
@@ -44,17 +51,6 @@ namespace index_editor_app_engine
         {
             return events.ElementAt(index);
         }
-
-
-
-
-
-
-
-
-
-
-
 
         //returns API image given image name
         public async Task<MemoryStream> LoadImageAPI(string name)
@@ -208,8 +204,6 @@ namespace index_editor_app_engine
 
             return result;
         }
-
-
         public string ValidatePut()
         {
             string basicErros = string.Empty;
@@ -228,27 +222,12 @@ namespace index_editor_app_engine
             return basicErros;
         }
 
-
-
-        //from ImageDict, upload images
-        public void PutImages()
-        {
-            //key = event index
-            foreach (string key in ImageDict.Keys)
-            {
-                
-            }
-        }
-
-        //Sets the "image" field to uploaded image name
-        public void LinkImages()
-        {
-
-        }
-
-
         public Task<HttpResponseMessage> PutEventsJson()
         {
+            foreach (Event e in events)
+            {
+                e.StartDate = AddOrdinalSuffix(e.StartDate);
+            }
 
             // put all of the local images
             foreach (string key in ImageDict.Keys)
@@ -257,11 +236,64 @@ namespace index_editor_app_engine
             }
 
             //put the json
-            Event[] updatedEvents = events.ToArray();
-            string updatedEventsJsonString = JsonConvert.SerializeObject(updatedEvents);
+            //Event[] updatedEvents = events.ToArray();
+            //string updatedEventsJsonString = JsonConvert.SerializeObject(updatedEvents);
+            eventsPage.Events = events.ToArray();
+            string updatedEventsJsonString = JsonConvert.SerializeObject(eventsPage);
             var httpResponse = indexClient.PutDocument(updatedEventsJsonString, "events");
             return httpResponse;
         }
 
+        public string AddOrdinalSuffix(string date)
+        {
+            char number1 = date[date.Length - 2];
+            char number2 = date[date.Length - 1];
+            char[] chars = { number1, number2 };
+            string number = new string(chars);
+
+            if (Char.IsDigit(number1) & Char.IsDigit(number2))
+            {
+                string ordinalSuffix = ordinal_suffix_of(int.Parse(number));
+                date = date.Substring(0, date.Length-2) +  ordinalSuffix;
+            }
+            else if (Char.IsDigit(number2))
+            {
+                string ordinalSuffix = ordinal_suffix_of(int.Parse(number2.ToString()));
+                date = date.Substring(0, date.Length - 1) + ordinalSuffix;
+            }
+            return date;
+        }
+
+        public string ordinal_suffix_of(int i)
+        {
+            var j = i % 10;
+            var k = i % 100;
+
+            if (j == 1 && k != 11)
+            {
+                return i + "st";
+            }
+            if (j == 2 && k != 12)
+            {
+                return i + "nd";
+            }
+            if (j == 3 && k != 13)
+            {
+                return i + "rd";
+            }
+            return i + "th";
+        }
+
+        public string GetJsonString()
+        {
+            eventsPage.Events = events.ToArray();
+
+
+            string updatedEventsJsonString = JsonConvert.SerializeObject(eventsPage);
+
+
+            //string updatedEventsJsonString = JsonConvert.SerializeObject(eventsPage);
+            return updatedEventsJsonString;
+        }
     }
 }

@@ -132,5 +132,12 @@ namespace index_editor_app_engine
             MemoryStream ms = new MemoryStream(image, 0, image.Length);
             return ms;
         }
+
+        public string GetJsonString()
+        {
+            MembersPage updatedMembersPage = memberspage;
+            string updatedMembersPageString = JsonConvert.SerializeObject(updatedMembersPage);
+            return updatedMembersPageString;
+        }
     }
 }

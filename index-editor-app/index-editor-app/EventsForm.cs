@@ -42,8 +42,11 @@ namespace index_editor_app
             }
 
             string date = e.EditorDateTime;
-            DateTime parsedDate = DateTime.ParseExact(date, "M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
-            dateTimePicker1.Value = parsedDate;
+            if (date != null)
+            {
+                DateTime parsedDate = DateTime.ParseExact(date, "M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
+                dateTimePicker1.Value = parsedDate;
+            }
 
             creationDateLabel.Text = "You created this event on: " + e.CreatedOn;
             timeRangeTextBox.Text = e.TimeRange;

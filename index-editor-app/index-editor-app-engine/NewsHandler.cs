@@ -100,6 +100,12 @@ namespace index_editor_app_engine
         {
             newsPage.NewsItems.RemoveAt(index);
         }
+
+        public string GetJsonString()
+        {
+            string updatedNewsPageString = JsonConvert.SerializeObject(newsPage);
+            return updatedNewsPageString;
+        }
     }
 }
 
