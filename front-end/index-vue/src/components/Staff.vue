@@ -24,7 +24,7 @@
                     <dt>Specialties:</dt>
                     <div v-for="specialty in memberJson.specialties" :key="specialty.name">
                         <dd>
-                            <a v-bind:href='specialty.link'><i class="fa fa-users"></i>{{specialty.name}}</a>
+                            <a v-bind:href='specialty.link'><i v-bind:class='specialtyData[specialty.name] ? specialtyData[specialty.name] : "fa fa-user"'></i>{{specialty.name}}</a>
                         </dd>
                     </div>                
                 </dl>
@@ -42,7 +42,8 @@ import axios from "axios";
         data() {
             return {
                 memberData: {},
-                memberJson: {}
+                memberJson: {},
+                specialtyData:{}
             };
         },
         methods: {
@@ -60,10 +61,22 @@ import axios from "axios";
                         }
                     }
                 );
+            },
+            getSpecialties(){
+                axios
+                    .get("../../specialties.json")
+                    .then((response) => {
+                        for(var specialty of response.data.specialties)
+                        {
+                            this.specialtyData[specialty.name] = specialty.icon;
+                        }
+                    }
+                );
             }
         },
         beforeMount()
         {
+            this.getSpecialties();
             this.getMemberData();
         }
     };
@@ -180,4 +193,16 @@ a:hover, :focus {
 		color: inherit;
 		text-decoration: underline;
 }
+
+@media screen and (max-width: 715px) {
+        .flex-box{
+            display: block;
+        }
+
+        .sidebar {
+            float: left;
+            margin: 0 0.83333%;
+            width: 100%;
+        }
+    }
 </style>

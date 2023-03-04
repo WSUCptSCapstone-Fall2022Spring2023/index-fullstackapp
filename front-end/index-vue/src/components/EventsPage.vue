@@ -9,7 +9,9 @@
                     <article class="post">
                         <img class="event-img" v-bind:src='event.image'>
                         <div class="description-box">
-                            <h2>{{event.title}}</h2>
+                            <RouterLink :to="{ path: event.link}">
+                                <h2 class="post-excerpt-title">{{event.title}}</h2>
+                            </RouterLink>
                             <div><i class="fa fa-calendar-day"></i><b>{{event.start_date}}</b></div>
                             <div><i class="fa fa-clock"></i><b>{{event.time_range}}</b></div>
                             <p>{{event.description}}</p>
@@ -40,7 +42,7 @@
             getEventData() {
                 axios
                     .get("events.json")
-                    .then(response => (this.eventDataList = response.data));
+                    .then(response => (this.eventDataList = response.data.Events));
             }
         },
         beforeMount()
@@ -88,7 +90,27 @@
         padding: 20px;
         grid-column-gap: 20px;
         margin-bottom: 20px;
+
     }
+
+    .post-excerpt-title {
+        margin: 0;
+        padding: 0;
+        font-size: 1.7em;
+        text-transform: capitalize;
+        color: #3e79a8;
+        text-decoration: none;
+    }
+
+    a{
+        text-decoration: none;
+    }
+
+    a:hover, :focus {
+		color: inherit;
+		text-decoration: underline;
+    }
+
     .event-img{
         width: auto;
         max-height: 225px;
