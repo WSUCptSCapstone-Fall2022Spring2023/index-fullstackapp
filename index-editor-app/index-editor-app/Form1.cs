@@ -17,6 +17,7 @@ namespace index_editor_app
         MembersHandler membersHandler;
         SpecialtyHandler specialtiesHandler;
         NewsHandler newsHandler;
+        ResourcesHandler resourcesHandler;
         EditorInstances editorInstances;
         public Form1()
         {
@@ -32,6 +33,7 @@ namespace index_editor_app
                 membersHandler = new MembersHandler(await indexClient.GetDocument("members"), await indexClient.GetDocument("specialties"), indexClient);
                 specialtiesHandler = new SpecialtyHandler(await indexClient.GetDocument("specialties"), indexClient);
                 newsHandler = new NewsHandler(await indexClient.GetDocument("news"), indexClient);
+                resourcesHandler = new ResourcesHandler(await indexClient.GetDocument("resources"), indexClient);
 
                 editorInstances = new EditorInstances();
                 editorInstances.eventsHandler = eventsHandler;

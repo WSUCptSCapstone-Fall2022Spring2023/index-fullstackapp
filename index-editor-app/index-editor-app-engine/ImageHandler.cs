@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace index_editor_app_engine.JsonClasses
+namespace index_editor_app_engine
 {
-    public class SaveLoad
+    internal class ImageHandler
     {
-
+        //given a url
     }
 }
