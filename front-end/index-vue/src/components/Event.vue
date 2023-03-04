@@ -37,7 +37,7 @@ import axios from "axios";
                 axios
                     .get("../../events.json")
                     .then((response) => {
-                        for(var event of response.data)
+                        for(var event of response.data.Events)
                         {
                             if(event.link.includes(this.$route.params.id))
                             {

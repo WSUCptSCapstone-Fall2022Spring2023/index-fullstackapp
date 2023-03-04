@@ -79,9 +79,13 @@ import axios from "axios";
 
     .subscribe-events{
         border: 1px solid gray;
-        width: 220px;
         height: 200px;
         padding: 10px;
     }
 
+    @media screen and (max-width: 715px) {
+        .flex-box{
+            display: block;
+        }
+    }
 </style>

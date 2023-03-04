@@ -29,7 +29,7 @@
             <a class="navbar__links">Get Involved</a>
           </li>
           <li class="navbar__item">
-            <a class="navbar__links">Contact</a>
+            <router-link to="/contact" class="navbar__links">Contact</router-link>
           </li>
           <li class="navbar__item">
             <a class="navbar__links">Resources</a>

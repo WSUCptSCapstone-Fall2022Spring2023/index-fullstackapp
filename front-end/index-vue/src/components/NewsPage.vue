@@ -9,9 +9,7 @@
                     <article class="post">
                         <img class="event-img" v-bind:src='news.image'>
                         <div class="description-box">
-                            <RouterLink :to="{ path: news.newsLink}">
-                                {{news.title}}
-                            </RouterLink>
+                            <a v-bind:href='news.newsLink'>{{news.title}}</a>
                             <div class = "time">{{news.date}}</div>
                             <p>{{news.description}}</p>
                         </div>
@@ -36,7 +34,7 @@
         methods: {
             getNewsData() {
                 axios
-                    .get("news.json")
+                    .get("../../news.json")
                     .then(response => (this.newsDataList = response.data.newsItems));
             }
         },

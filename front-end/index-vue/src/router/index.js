@@ -6,6 +6,8 @@ import NewsPage from '../components/NewsPage.vue'
 import Staff from '../components/Staff.vue'
 import Event from '../components/Event.vue'
 import News from '../components/News.vue'
+import Contact from '../components/Contact.vue'
+
 
 const routes = [
     {
@@ -37,6 +39,11 @@ const routes = [
         path: '/about',
         name: 'AboutUs',
         component: AboutUs
+    },
+    {
+        path: '/contact',
+        name: 'Contact',
+        component: Contact
     },
     {
         path: '/staff/:id',

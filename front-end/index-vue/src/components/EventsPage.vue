@@ -42,7 +42,7 @@
             getEventData() {
                 axios
                     .get("events.json")
-                    .then(response => (this.eventDataList = response.data));
+                    .then(response => (this.eventDataList = response.data.Events));
             }
         },
         beforeMount()
