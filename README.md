@@ -36,11 +36,13 @@ None
 * Using Visual studio installer, install workload: .NET desktop development
 * Rename "appsettings.example.json" to appsettings.json and add your endpoint and API key.
 
+### Back end packages added
+* dotnet add package FontAwesome.Sharp --version 6.2.1
+
 ## Functionality
 TODO:
 
 ## Known Problems
-Vue Router returns 404 when refreshing on sub-page(s) 
 
 ## Contributing
 1.Initialize git: `git init`
