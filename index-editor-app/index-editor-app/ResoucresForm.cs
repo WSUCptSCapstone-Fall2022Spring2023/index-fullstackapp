@@ -37,6 +37,15 @@ namespace index_editor_app
         public void InitializeResourcs()
         {
             InitializeResourcesDataGrid();
+            InitializeResourceIcons();
+        }
+        public void InitializeResourceIcons()
+        {
+            ResourceIconComboBox.Items.Add("None");
+            foreach (string name in resourcesHandler.GetIconList())
+            {
+                ResourceIconComboBox.Items.Add(name);
+            }
         }
 
         public void InitializeResourcesDataGrid()
@@ -92,29 +101,14 @@ namespace index_editor_app
         public async Task LoadResourceDataAsync(int index)
         {
             ResourceSystemEditing = true;
+
             ClearResourceFields();
 
             Resource r = resourcesHandler.GetResource(index);
-            //ResourcePageTitleTextBox
-            //ResourcePageLinkTextBox
-            //ResourcePageDescriptionTextBox
-
-            //ResourcePictureBox
-            //ResourceIconPictureBox
-            //ResourceIconComboBox
-            //ResourceCheckedListBox
-            //ResourcePhraseLinkCheckedListBox
-            //AddResourceBulletpointButton
-            //ResourceBulletpointLinkTextBox
-            //ResourceBulletpointDescriptionTextBox
-            //ResourceLinkPhraseTextBox
-            //ResourceLinkPhraseLinkTextBox
-            //AddResourceLinkPhraseButton
 
             ResourcePageTitleTextBox.Text = r.PageTitle;
             ResourcePageLinkTextBox.Text = r.PageLink;
             ResourcePageDescriptionTextBox.Text = r.PageDescription;
-
 
             if (r.Bulletpoints.Count() > 0)
             {
@@ -127,11 +121,11 @@ namespace index_editor_app
             ResourcePictureBox.Image = null;
             ResourcePictureBox.Image = await resourcesHandler.GetImageAsync(editingResourceIndex);
 
-            //// load icon
-            //string iconName = specialtiesHandler.GetIcon(index);
-            //SpecialtyIconComboBox.SelectedIndex = SpecialtyIconComboBox.FindStringExact(iconName);
-            //IconChar selectedEnumValue = (IconChar)Enum.Parse(typeof(IconChar), iconName);
-            //SpecialtyIconPictureBox.Image = FormsIconHelper.ToBitmap(selectedEnumValue, Color.Black);
+            // load icon
+            string iconName = resourcesHandler.GetIcon(index);
+            ResourceIconComboBox.SelectedIndex = ResourceIconComboBox.FindStringExact(iconName);
+            IconChar selectedEnumValue = (IconChar)Enum.Parse(typeof(IconChar), iconName);
+            ResourceIconPictureBox.Image = FormsIconHelper.ToBitmap(selectedEnumValue, Color.Black);
 
             ResourceSystemEditing = false;
         }
@@ -149,12 +143,12 @@ namespace index_editor_app
             ResourceBulletpointDescriptionTextBox.Clear();
             ResourceLinkPhraseTextBox.Clear();
             ResourceLinkPhraseLinkTextBox.Clear();
-
-
-
             ResourceIconComboBox.SelectedIndex = -1;
+            ResourceBulletpointCheckedListBox.SelectedIndex = -1;
+            ResourcePhraseLinkCheckedListBox.SelectedIndex = -1;
         }
 
+        //TODO Rename to ResourceBulletpointCheckedListBox_ItemCheck
         private void ResourceCheckedListBox_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             if (NoResourceSelectedCheck() || ResourceSystemEditing) { return; }
@@ -172,6 +166,7 @@ namespace index_editor_app
                 ResourceBulletpointLinkTextBox.Text = bulletpoint.Link;
                 ResourceBulletpointDescriptionTextBox.Text = bulletpoint.Description;
 
+                ResourcePhraseLinkCheckedListBox.Items.Clear();
                 foreach (LinkPhrase l in bulletpoint.LinkPhrases)
                 {
                     ResourcePhraseLinkCheckedListBox.Items.Add(l.Phrase);
@@ -187,6 +182,7 @@ namespace index_editor_app
                 ResourceLinkPhraseTextBox.Text = "";
                 ResourceLinkPhraseLinkTextBox.Text = "";
                 ResourcePhraseLinkCheckedListBox.Items.Clear();
+                ResourcePhraseLinkCheckedListBox.SelectedIndex = -1;
                 AddResourceBulletpointButton.Text = "Add Bulletpoint";
                 ResourceBulletpointCheckedListBox.SelectedIndex = -1;
             }
@@ -355,14 +351,54 @@ namespace index_editor_app
             if (NoResourceSelectedCheck() || ResourceSystemEditing) { return; }
             //TODO add update/refresh the checkbox
             resourcesHandler.AddBulletPoint(editingResourceIndex);
+            RefreshBulletpoints();
         }
 
         private void AddResourceLinkPhraseButton_Click(object sender, EventArgs e)
         {
             if (NoResourceSelectedCheck() || ResourceSystemEditing) { return; }
             if (NoBulletpointSelectedCheck()) { return; }
-            //TODO add update/refresh the checkbox
+
+            
             resourcesHandler.AddLinkPhrase(editingResourceIndex, SelectedBulletpointIndex());
+            RefreshLinkPhrase();
+        }
+
+        public void RefreshLinkPhrase()
+        {
+            ResourceSystemEditing = true;
+
+            ResourcePhraseLinkCheckedListBox.SelectedIndex = -1;
+            ResourcePhraseLinkCheckedListBox.Items.Clear();
+
+            Bulletpoint bulletpoint = resourcesHandler.GetResourceBulletpoint(editingResourceIndex, SelectedBulletpointIndex());
+
+            foreach (LinkPhrase l in bulletpoint.LinkPhrases)
+            {
+                ResourcePhraseLinkCheckedListBox.Items.Add(l.Phrase);
+            }
+
+            ResourceSystemEditing = false;
+        }
+
+        public void RefreshBulletpoints()
+        {
+            ResourceSystemEditing = true;
+
+            ResourceBulletpointCheckedListBox.SelectedIndex = -1;
+            ResourceBulletpointCheckedListBox.Items.Clear();
+
+            Resource r = resourcesHandler.GetResource(editingResourceIndex);
+
+            if (r.Bulletpoints.Count() > 0)
+            {
+                foreach (Bulletpoint bulletpoint in r.Bulletpoints)
+                {
+                    ResourceBulletpointCheckedListBox.Items.Add(bulletpoint.Title);
+                }
+            }
+
+            ResourceSystemEditing = false;
         }
 
         public int SelectedBulletpointIndex()
@@ -380,5 +416,34 @@ namespace index_editor_app
 
             System.Windows.Forms.MessageBox.Show(validationMessage);
         }
+
+        private void ResourceIconComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (NoResourceSelectedCheck() || ResourceSystemEditing) { return; }
+
+            string iconName = ResourceIconComboBox.GetItemText(ResourceIconComboBox.SelectedItem);
+            IconChar selectedEnumValue = (IconChar)Enum.Parse(typeof(IconChar), iconName);
+            ResourceIconPictureBox.Image = FormsIconHelper.ToBitmap(selectedEnumValue, Color.Black);
+            resourcesHandler.UpdateIcon(iconName, editingResourceIndex);
+        }
+
+        private void CreateResourceButton_Click(object sender, EventArgs e)
+        {
+            resourcesHandler.CreateResource();
+            InitializeResourcesDataGrid();
+        }
+
+        private void UpdateResourcePageButton_Click(object sender, EventArgs e)
+        {
+            // TODO: add confirmation
+            resourcesHandler.UpdateResourcePage();
+        }
+
+        private void DeleteResourceButton_Click(object sender, EventArgs e)
+        {
+            // TODO: add confirmation
+            resourcesHandler.DeleteResource(editingResourceIndex);
+        }
+
     }
 }

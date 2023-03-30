@@ -32,12 +32,13 @@ namespace index_editor_app
             if (await TestConnection())
             {
                 imageHandler = new ImageHandler(indexClient);
+                Icons icons = new Icons();
 
                 eventsHandler = new EventsHandler(await indexClient.GetDocument("events"), indexClient);
                 membersHandler = new MembersHandler(await indexClient.GetDocument("members"), await indexClient.GetDocument("specialties"), indexClient);
-                specialtiesHandler = new SpecialtyHandler(await indexClient.GetDocument("specialties"), indexClient, imageHandler);
+                specialtiesHandler = new SpecialtyHandler(await indexClient.GetDocument("specialties"), indexClient, imageHandler, icons);
                 newsHandler = new NewsHandler(await indexClient.GetDocument("news"), indexClient, imageHandler);
-                resourcesHandler = new ResourcesHandler(await indexClient.GetDocument("resources"), indexClient, imageHandler);
+                resourcesHandler = new ResourcesHandler(await indexClient.GetDocument("resources"), indexClient, imageHandler, icons);
 
                 editorInstances = new EditorInstances();
                 editorInstances.eventsHandler = eventsHandler;

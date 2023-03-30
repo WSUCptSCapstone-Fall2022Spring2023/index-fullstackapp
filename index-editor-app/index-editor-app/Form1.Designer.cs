@@ -134,6 +134,8 @@
             this.SpecialtyNameTextBox = new System.Windows.Forms.TextBox();
             this.SpecialtiesdataGridView3 = new System.Windows.Forms.DataGridView();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.UpdateResourcePageButton = new System.Windows.Forms.Button();
+            this.CreateResourceButton = new System.Windows.Forms.Button();
             this.ValidateLinkPhrasesButton = new System.Windows.Forms.Button();
             this.AddResourceImageButton = new System.Windows.Forms.Button();
             this.AddResourceLinkPhraseButton = new System.Windows.Forms.Button();
@@ -171,6 +173,7 @@
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.DeleteResourceButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -1287,6 +1290,9 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.DeleteResourceButton);
+            this.tabPage5.Controls.Add(this.UpdateResourcePageButton);
+            this.tabPage5.Controls.Add(this.CreateResourceButton);
             this.tabPage5.Controls.Add(this.ValidateLinkPhrasesButton);
             this.tabPage5.Controls.Add(this.AddResourceImageButton);
             this.tabPage5.Controls.Add(this.AddResourceLinkPhraseButton);
@@ -1324,9 +1330,29 @@
             this.tabPage5.Text = "Resources";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // UpdateResourcePageButton
+            // 
+            this.UpdateResourcePageButton.Location = new System.Drawing.Point(1215, 486);
+            this.UpdateResourcePageButton.Name = "UpdateResourcePageButton";
+            this.UpdateResourcePageButton.Size = new System.Drawing.Size(174, 51);
+            this.UpdateResourcePageButton.TabIndex = 31;
+            this.UpdateResourcePageButton.Text = "Update Resource Page";
+            this.UpdateResourcePageButton.UseVisualStyleBackColor = true;
+            this.UpdateResourcePageButton.Click += new System.EventHandler(this.UpdateResourcePageButton_Click);
+            // 
+            // CreateResourceButton
+            // 
+            this.CreateResourceButton.Location = new System.Drawing.Point(105, 296);
+            this.CreateResourceButton.Name = "CreateResourceButton";
+            this.CreateResourceButton.Size = new System.Drawing.Size(135, 23);
+            this.CreateResourceButton.TabIndex = 30;
+            this.CreateResourceButton.Text = "Create New Resource";
+            this.CreateResourceButton.UseVisualStyleBackColor = true;
+            this.CreateResourceButton.Click += new System.EventHandler(this.CreateResourceButton_Click);
+            // 
             // ValidateLinkPhrasesButton
             // 
-            this.ValidateLinkPhrasesButton.Location = new System.Drawing.Point(1163, 401);
+            this.ValidateLinkPhrasesButton.Location = new System.Drawing.Point(1189, 326);
             this.ValidateLinkPhrasesButton.Name = "ValidateLinkPhrasesButton";
             this.ValidateLinkPhrasesButton.Size = new System.Drawing.Size(163, 23);
             this.ValidateLinkPhrasesButton.TabIndex = 29;
@@ -1336,7 +1362,7 @@
             // 
             // AddResourceImageButton
             // 
-            this.AddResourceImageButton.Location = new System.Drawing.Point(276, 359);
+            this.AddResourceImageButton.Location = new System.Drawing.Point(257, 224);
             this.AddResourceImageButton.Name = "AddResourceImageButton";
             this.AddResourceImageButton.Size = new System.Drawing.Size(136, 23);
             this.AddResourceImageButton.TabIndex = 28;
@@ -1346,9 +1372,9 @@
             // 
             // AddResourceLinkPhraseButton
             // 
-            this.AddResourceLinkPhraseButton.Location = new System.Drawing.Point(1163, 359);
+            this.AddResourceLinkPhraseButton.Location = new System.Drawing.Point(1022, 168);
             this.AddResourceLinkPhraseButton.Name = "AddResourceLinkPhraseButton";
-            this.AddResourceLinkPhraseButton.Size = new System.Drawing.Size(163, 23);
+            this.AddResourceLinkPhraseButton.Size = new System.Drawing.Size(189, 23);
             this.AddResourceLinkPhraseButton.TabIndex = 27;
             this.AddResourceLinkPhraseButton.Text = "Add New Embeded Link";
             this.AddResourceLinkPhraseButton.UseVisualStyleBackColor = true;
@@ -1357,7 +1383,7 @@
             // label49
             // 
             this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(1203, 18);
+            this.label49.Location = new System.Drawing.Point(1022, 0);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(87, 15);
             this.label49.TabIndex = 26;
@@ -1366,7 +1392,7 @@
             // label48
             // 
             this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(1241, 310);
+            this.label48.Location = new System.Drawing.Point(1022, 279);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(29, 15);
             this.label48.TabIndex = 25;
@@ -1374,45 +1400,45 @@
             // 
             // ResourceLinkPhraseLinkTextBox
             // 
-            this.ResourceLinkPhraseLinkTextBox.Location = new System.Drawing.Point(1128, 328);
+            this.ResourceLinkPhraseLinkTextBox.Location = new System.Drawing.Point(1022, 297);
             this.ResourceLinkPhraseLinkTextBox.Multiline = true;
             this.ResourceLinkPhraseLinkTextBox.Name = "ResourceLinkPhraseLinkTextBox";
-            this.ResourceLinkPhraseLinkTextBox.Size = new System.Drawing.Size(248, 23);
+            this.ResourceLinkPhraseLinkTextBox.Size = new System.Drawing.Size(330, 23);
             this.ResourceLinkPhraseLinkTextBox.TabIndex = 24;
             this.ResourceLinkPhraseLinkTextBox.TextChanged += new System.EventHandler(this.ResourceLinkPhraseLinkTextBox_TextChanged);
             // 
             // ResourceLinkPhraseTextBox
             // 
-            this.ResourceLinkPhraseTextBox.Location = new System.Drawing.Point(1128, 223);
+            this.ResourceLinkPhraseTextBox.Location = new System.Drawing.Point(1022, 211);
             this.ResourceLinkPhraseTextBox.Multiline = true;
             this.ResourceLinkPhraseTextBox.Name = "ResourceLinkPhraseTextBox";
-            this.ResourceLinkPhraseTextBox.Size = new System.Drawing.Size(248, 59);
+            this.ResourceLinkPhraseTextBox.Size = new System.Drawing.Size(330, 59);
             this.ResourceLinkPhraseTextBox.TabIndex = 23;
             this.ResourceLinkPhraseTextBox.TextChanged += new System.EventHandler(this.ResourceLinkPhraseTextBox_TextChanged);
             // 
             // ResourceBulletpointDescriptionTextBox
             // 
-            this.ResourceBulletpointDescriptionTextBox.Location = new System.Drawing.Point(617, 328);
+            this.ResourceBulletpointDescriptionTextBox.Location = new System.Drawing.Point(640, 332);
             this.ResourceBulletpointDescriptionTextBox.Multiline = true;
             this.ResourceBulletpointDescriptionTextBox.Name = "ResourceBulletpointDescriptionTextBox";
-            this.ResourceBulletpointDescriptionTextBox.Size = new System.Drawing.Size(490, 149);
+            this.ResourceBulletpointDescriptionTextBox.Size = new System.Drawing.Size(463, 205);
             this.ResourceBulletpointDescriptionTextBox.TabIndex = 22;
             this.ResourceBulletpointDescriptionTextBox.TextChanged += new System.EventHandler(this.ResourceBulletpointDescriptionTextBox_TextChanged);
             // 
             // ResourceBulletpointLinkTextBox
             // 
-            this.ResourceBulletpointLinkTextBox.Location = new System.Drawing.Point(711, 273);
+            this.ResourceBulletpointLinkTextBox.Location = new System.Drawing.Point(640, 261);
             this.ResourceBulletpointLinkTextBox.Multiline = true;
             this.ResourceBulletpointLinkTextBox.Name = "ResourceBulletpointLinkTextBox";
-            this.ResourceBulletpointLinkTextBox.Size = new System.Drawing.Size(248, 23);
+            this.ResourceBulletpointLinkTextBox.Size = new System.Drawing.Size(326, 23);
             this.ResourceBulletpointLinkTextBox.TabIndex = 21;
             this.ResourceBulletpointLinkTextBox.TextChanged += new System.EventHandler(this.ResourceBulletpointLinkTextBox_TextChanged);
             // 
             // AddResourceBulletpointButton
             // 
-            this.AddResourceBulletpointButton.Location = new System.Drawing.Point(812, 514);
+            this.AddResourceBulletpointButton.Location = new System.Drawing.Point(640, 170);
             this.AddResourceBulletpointButton.Name = "AddResourceBulletpointButton";
-            this.AddResourceBulletpointButton.Size = new System.Drawing.Size(110, 23);
+            this.AddResourceBulletpointButton.Size = new System.Drawing.Size(259, 23);
             this.AddResourceBulletpointButton.TabIndex = 20;
             this.AddResourceBulletpointButton.Text = "Add bulletpoint";
             this.AddResourceBulletpointButton.UseVisualStyleBackColor = true;
@@ -1421,41 +1447,42 @@
             // ResourcePhraseLinkCheckedListBox
             // 
             this.ResourcePhraseLinkCheckedListBox.FormattingEnabled = true;
-            this.ResourcePhraseLinkCheckedListBox.Location = new System.Drawing.Point(1119, 36);
+            this.ResourcePhraseLinkCheckedListBox.Location = new System.Drawing.Point(1022, 18);
             this.ResourcePhraseLinkCheckedListBox.Name = "ResourcePhraseLinkCheckedListBox";
-            this.ResourcePhraseLinkCheckedListBox.Size = new System.Drawing.Size(249, 148);
+            this.ResourcePhraseLinkCheckedListBox.Size = new System.Drawing.Size(330, 148);
             this.ResourcePhraseLinkCheckedListBox.TabIndex = 19;
             this.ResourcePhraseLinkCheckedListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.ResourcePhraseLinkCheckedListBox_ItemCheck);
             // 
             // ResourceBulletpointHeaderTextBox
             // 
-            this.ResourceBulletpointHeaderTextBox.Location = new System.Drawing.Point(711, 223);
+            this.ResourceBulletpointHeaderTextBox.Location = new System.Drawing.Point(640, 211);
             this.ResourceBulletpointHeaderTextBox.Multiline = true;
             this.ResourceBulletpointHeaderTextBox.Name = "ResourceBulletpointHeaderTextBox";
-            this.ResourceBulletpointHeaderTextBox.Size = new System.Drawing.Size(248, 23);
+            this.ResourceBulletpointHeaderTextBox.Size = new System.Drawing.Size(326, 23);
             this.ResourceBulletpointHeaderTextBox.TabIndex = 18;
             this.ResourceBulletpointHeaderTextBox.TextChanged += new System.EventHandler(this.ResourceBulletpointHeaderTextBox_TextChanged);
             // 
             // ResourceBulletpointCheckedListBox
             // 
             this.ResourceBulletpointCheckedListBox.FormattingEnabled = true;
-            this.ResourceBulletpointCheckedListBox.Location = new System.Drawing.Point(792, 36);
+            this.ResourceBulletpointCheckedListBox.Location = new System.Drawing.Point(640, 18);
             this.ResourceBulletpointCheckedListBox.Name = "ResourceBulletpointCheckedListBox";
-            this.ResourceBulletpointCheckedListBox.Size = new System.Drawing.Size(259, 148);
+            this.ResourceBulletpointCheckedListBox.Size = new System.Drawing.Size(326, 148);
             this.ResourceBulletpointCheckedListBox.TabIndex = 17;
             this.ResourceBulletpointCheckedListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.ResourceCheckedListBox_ItemCheck);
             // 
             // ResourceIconComboBox
             // 
             this.ResourceIconComboBox.FormattingEnabled = true;
-            this.ResourceIconComboBox.Location = new System.Drawing.Point(458, 359);
+            this.ResourceIconComboBox.Location = new System.Drawing.Point(439, 225);
             this.ResourceIconComboBox.Name = "ResourceIconComboBox";
             this.ResourceIconComboBox.Size = new System.Drawing.Size(137, 23);
             this.ResourceIconComboBox.TabIndex = 16;
+            this.ResourceIconComboBox.SelectedIndexChanged += new System.EventHandler(this.ResourceIconComboBox_SelectedIndexChanged);
             // 
             // ResourceIconPictureBox
             // 
-            this.ResourceIconPictureBox.Location = new System.Drawing.Point(458, 223);
+            this.ResourceIconPictureBox.Location = new System.Drawing.Point(439, 113);
             this.ResourceIconPictureBox.Name = "ResourceIconPictureBox";
             this.ResourceIconPictureBox.Size = new System.Drawing.Size(137, 105);
             this.ResourceIconPictureBox.TabIndex = 15;
@@ -1463,7 +1490,7 @@
             // 
             // ResourcePictureBox
             // 
-            this.ResourcePictureBox.Location = new System.Drawing.Point(276, 224);
+            this.ResourcePictureBox.Location = new System.Drawing.Point(257, 114);
             this.ResourcePictureBox.Name = "ResourcePictureBox";
             this.ResourcePictureBox.Size = new System.Drawing.Size(136, 104);
             this.ResourcePictureBox.TabIndex = 14;
@@ -1471,28 +1498,28 @@
             // 
             // ResourcePageDescriptionTextBox
             // 
-            this.ResourcePageDescriptionTextBox.Location = new System.Drawing.Point(266, 162);
+            this.ResourcePageDescriptionTextBox.Location = new System.Drawing.Point(3, 332);
             this.ResourcePageDescriptionTextBox.Multiline = true;
             this.ResourcePageDescriptionTextBox.Name = "ResourcePageDescriptionTextBox";
-            this.ResourcePageDescriptionTextBox.Size = new System.Drawing.Size(329, 23);
+            this.ResourcePageDescriptionTextBox.Size = new System.Drawing.Size(539, 205);
             this.ResourcePageDescriptionTextBox.TabIndex = 13;
             this.ResourcePageDescriptionTextBox.TextChanged += new System.EventHandler(this.ResourcePageDescriptionTextBox_TextChanged);
             // 
             // ResourcePageLinkTextBox
             // 
-            this.ResourcePageLinkTextBox.Location = new System.Drawing.Point(266, 99);
+            this.ResourcePageLinkTextBox.Location = new System.Drawing.Point(246, 62);
             this.ResourcePageLinkTextBox.Multiline = true;
             this.ResourcePageLinkTextBox.Name = "ResourcePageLinkTextBox";
-            this.ResourcePageLinkTextBox.Size = new System.Drawing.Size(329, 23);
+            this.ResourcePageLinkTextBox.Size = new System.Drawing.Size(349, 23);
             this.ResourcePageLinkTextBox.TabIndex = 12;
             this.ResourcePageLinkTextBox.TextChanged += new System.EventHandler(this.ResourcePageLinkTextBox_TextChanged);
             // 
             // ResourcePageTitleTextBox
             // 
-            this.ResourcePageTitleTextBox.Location = new System.Drawing.Point(266, 36);
+            this.ResourcePageTitleTextBox.Location = new System.Drawing.Point(246, 18);
             this.ResourcePageTitleTextBox.Multiline = true;
             this.ResourcePageTitleTextBox.Name = "ResourcePageTitleTextBox";
-            this.ResourcePageTitleTextBox.Size = new System.Drawing.Size(329, 23);
+            this.ResourcePageTitleTextBox.Size = new System.Drawing.Size(349, 23);
             this.ResourcePageTitleTextBox.TabIndex = 11;
             this.ResourcePageTitleTextBox.TextChanged += new System.EventHandler(this.ResourcePageTitleTextBox_TextChanged);
             // 
@@ -1503,14 +1530,14 @@
             this.ResourcesDataGridView3.Location = new System.Drawing.Point(0, 0);
             this.ResourcesDataGridView3.Name = "ResourcesDataGridView3";
             this.ResourcesDataGridView3.RowTemplate.Height = 25;
-            this.ResourcesDataGridView3.Size = new System.Drawing.Size(240, 494);
+            this.ResourcesDataGridView3.Size = new System.Drawing.Size(240, 294);
             this.ResourcesDataGridView3.TabIndex = 10;
             this.ResourcesDataGridView3.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ResourcesDataGridView3_CellClick);
             // 
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(505, 205);
+            this.label47.Location = new System.Drawing.Point(486, 95);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(56, 15);
             this.label47.TabIndex = 9;
@@ -1519,7 +1546,7 @@
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(311, 206);
+            this.label46.Location = new System.Drawing.Point(292, 96);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(66, 15);
             this.label46.TabIndex = 8;
@@ -1528,16 +1555,16 @@
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(411, 81);
+            this.label45.Location = new System.Drawing.Point(246, 44);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(55, 15);
+            this.label45.Size = new System.Drawing.Size(58, 15);
             this.label45.TabIndex = 7;
-            this.label45.Text = "pageLink";
+            this.label45.Text = "Page Link";
             // 
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(711, 255);
+            this.label44.Location = new System.Drawing.Point(640, 243);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(54, 15);
             this.label44.TabIndex = 6;
@@ -1546,7 +1573,7 @@
             // label43
             // 
             this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(1203, 205);
+            this.label43.Location = new System.Drawing.Point(1022, 194);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(67, 15);
             this.label43.TabIndex = 5;
@@ -1555,7 +1582,7 @@
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(889, 18);
+            this.label42.Location = new System.Drawing.Point(640, 0);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(70, 15);
             this.label42.TabIndex = 4;
@@ -1564,7 +1591,7 @@
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(711, 206);
+            this.label41.Location = new System.Drawing.Point(640, 193);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(88, 15);
             this.label41.TabIndex = 3;
@@ -1573,29 +1600,29 @@
             // label40
             // 
             this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(396, 134);
+            this.label40.Location = new System.Drawing.Point(3, 314);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(93, 15);
+            this.label40.Size = new System.Drawing.Size(96, 15);
             this.label40.TabIndex = 2;
-            this.label40.Text = "pageDescription";
+            this.label40.Text = "Page Description";
             // 
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(827, 310);
+            this.label39.Location = new System.Drawing.Point(640, 314);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(67, 15);
+            this.label39.Size = new System.Drawing.Size(128, 15);
             this.label39.TabIndex = 1;
-            this.label39.Text = "Description";
+            this.label39.Text = "Bulletpoint Description";
             // 
             // label38
             // 
             this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(411, 18);
+            this.label38.Location = new System.Drawing.Point(246, 0);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(55, 15);
+            this.label38.Size = new System.Drawing.Size(58, 15);
             this.label38.TabIndex = 0;
-            this.label38.Text = "pageTitle";
+            this.label38.Text = "Page Title";
             // 
             // menuStrip1
             // 
@@ -1640,6 +1667,16 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // DeleteResourceButton
+            // 
+            this.DeleteResourceButton.Location = new System.Drawing.Point(249, 298);
+            this.DeleteResourceButton.Name = "DeleteResourceButton";
+            this.DeleteResourceButton.Size = new System.Drawing.Size(121, 23);
+            this.DeleteResourceButton.TabIndex = 32;
+            this.DeleteResourceButton.Text = "Delete Selected Resource";
+            this.DeleteResourceButton.UseVisualStyleBackColor = true;
+            this.DeleteResourceButton.Click += new System.EventHandler(this.DeleteResourceButton_Click);
             // 
             // Form1
             // 
@@ -1828,5 +1865,8 @@
         private Button AddResourceLinkPhraseButton;
         private Button AddResourceImageButton;
         private Button ValidateLinkPhrasesButton;
+        private Button CreateResourceButton;
+        private Button UpdateResourcePageButton;
+        private Button DeleteResourceButton;
     }
 }

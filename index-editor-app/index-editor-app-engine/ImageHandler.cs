@@ -1,4 +1,5 @@
 ﻿using index_editor_app_engine.JsonClasses;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -127,141 +128,36 @@ namespace index_editor_app_engine
         }
 
 
-        //public void GetImage(string url, string type, string key)
-        //{
-        //    //local
-        //    if (url == "" || url == null)
-        //    {
-        //        if (key == "" || key == null)
-        //        {
-        //            return null;
-        //        }
-        //        else
-        //        {
-        //            switch (type)
-        //            {
-        //                case "newsimages":
-        //                    Console.WriteLine("newsImages");
-        //                    break;
 
-        //                case "eventimages":
-        //                    Console.WriteLine("eventimages");
-        //                    break;
+        // TODO: finish refactoring upload functionality
+        public void UploadMemberImages()
+        {
 
-        //                case "memberImages":
-        //                    Console.WriteLine("memberImages");
-        //                    break;
+        }
 
-        //                case "specialtyImages":
-        //                    Console.WriteLine("specialtyImages");
-        //                    break;
+        public void UploadNewsImages()
+        {
 
-        //                case "ResourceImages":
-        //                    Console.WriteLine("ResourceImages");
-        //                    break;
+        }
 
-        //                default:
-        //                    // Type not found
-        //                    break;
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        //get from api
-        //    }
-        //}
+        public void UploadEventImages()
+        {
 
-        //public void AddLocalImage(string imagePath, string imageKey, string awsImageFolder)
-        //{
-        //    NewsImageDict[newsPage.NewsItems.ElementAt(editingNewsIndex).Title] = imagePath;
-        //    string fileName = new DirectoryInfo(imagePath).Name;
-        //    string url = "https://index-webapp.s3.amazonaws.com/img/newsimages/" + fileName;
-        //    newsPage.NewsItems.ElementAt(editingNewsIndex).Image = url;
-        //}
+        }
 
-        //public void UploadImage(string fileName)
-        //{
+        public void UploadSpecialtyImages()
+        {
+            // put all of the local images
+            //foreach (var key in SpecialtyImageDict.Keys)
+            //{
+            //    indexClient.PutImageAsync(SpecialtyImageDict[key], "specialtyimages");
+            //}
 
-        //}
+        }
 
-        ////using coresponding dictionary get the image with key
-        //public void GetLocalImage(string fileName)
-        //{
+        public void UploadResourceImages()
+        {
 
-        //}
-
-        //public void GetAPIImage(string fileName)
-        //{
-
-        //}
-
-        ////when the user changes the field that was used as the key we update it
-        //public void UpdateImageKey(string oldKey, string newKey, string type)
-        //{
-        //    if (type == "newsimages")
-        //    {
-
-        //    }
-        //    else if (type == "eventimages")
-        //    {
-
-        //    }
-        //    else if (type == "memberimages")
-        //    {
-
-        //    }
-        //    else if (type == "specialtyimages")
-        //    {
-
-        //    }
-        //    else if (type == "Resourceimages")
-        //    {
-
-        //    }
-
-        //}
-
-
-        //public void AddNewsImage(string fileName, int editingNewsIndex)
-        //{
-        //    NewsImageDict[newsPage.NewsItems.ElementAt(editingNewsIndex).Title] = fileName;
-        //    string dirName = new DirectoryInfo(fileName).Name;
-        //    string url = "https://index-webapp.s3.amazonaws.com/img/newsimages/" + dirName;
-        //    newsPage.NewsItems.ElementAt(editingNewsIndex).Image = url;
-        //}
-
-        //public async Task<MemoryStream> LoadNewsImageHandlerAsync(string title)
-        //{
-        //    NewsItem n = newsPage.NewsItems.First(item => item.Title == title);
-
-        //    if (n.Image == "")
-        //    {
-        //        return null;
-        //    }
-        //    if (NewsImageDict.ContainsKey(title))
-        //    {
-        //        return LoadImageLocal(NewsImageDict[title]);
-        //    }
-        //    else
-        //    {
-        //        return await LoadImageAPI(n.Image);
-        //    }
-        //}
-
-        //public async Task<MemoryStream> LoadImageAPI(string name)
-        //{
-        //    byte[] image = await indexClient.GetImageAsync(name);
-        //    MemoryStream ms = new MemoryStream(image, 0, image.Length);
-        //    return ms;
-        //}
-
-        ////returns LOCAL image given path
-        //public MemoryStream LoadImageLocal(string path)
-        //{
-        //    byte[] image = File.ReadAllBytes(path);
-        //    MemoryStream ms = new MemoryStream(image, 0, image.Length);
-        //    return ms;
-        //}
+        }
     }
 }

@@ -19,16 +19,17 @@ namespace index_editor_app_engine
         public Dictionary<string, string> MemberSpecialtyDict = new Dictionary<string, string> { }; //links memebers to local image paths
         public IndexAPIClient indexClient; //API client
         public Dictionary<string, string> SpecialtyImageDict = new Dictionary<string, string> { }; //links memebers to local image paths
-        public Dictionary<string, string> IconConversionToCharIcon = new Dictionary<string, string> { }; //links html name to IconChar class name
-        public Dictionary<string, string> IconConversionToCssIcon = new Dictionary<string, string> { }; //links html name to IconChar class name
+        //public Dictionary<string, string> IconConversionToCharIcon = new Dictionary<string, string> { }; //links html name to IconChar class name
+        //public Dictionary<string, string> IconConversionToCssIcon = new Dictionary<string, string> { }; //links html name to IconChar class name
         private ImageHandler imageHandler;
+        private Icons icons;
 
-        public SpecialtyHandler(string SpecialtiesJson, IndexAPIClient client, ImageHandler imageHandler)
+        public SpecialtyHandler(string SpecialtiesJson, IndexAPIClient client, ImageHandler imageHandler, Icons icons)
         {
             this.imageHandler = imageHandler;
             this.indexClient = client;
             this.specialtyPage = JsonConvert.DeserializeObject<Specialties>(SpecialtiesJson);
-            InitIconDict();
+            this.icons = icons;
         }
 
         public async Task<System.Drawing.Image> GetImageAsync(int index)
@@ -122,61 +123,6 @@ namespace index_editor_app_engine
             specialtyPage.SpecialtiesList.RemoveAt(index);
         }
 
-        private List<string> ReadIcons()
-        {
-            List<string> icons = new List<string>();
-            string path = System.IO.Path.Combine("Icons", "Icons.txt");
-            using (StreamReader reader = new StreamReader(path))
-            {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    icons.Add(line);
-                }
-            }
-            return icons;
-        }
-
-        private void InitIconDict()
-        {
-            List<string> CSSIconNames = ReadIcons();
-            List<string> iconCharIconNames = new List<string>();
-            foreach (var name in Enum.GetNames(typeof(IconChar)))
-            {
-                iconCharIconNames.Add(name);
-            }
-
-            string iconCharIconName = "";
-            foreach (string CSSIconName in CSSIconNames)
-            {
-                iconCharIconName = "";
-                Boolean isMultiPart = CSSIconName.Contains('-');
-                if (isMultiPart)
-                {
-                    string[] words = CSSIconName.Split('-');
-                    for (int i = 0; i < words.Length; i++)
-                    {
-                        string word = words[i];
-                        string upperCaseWord = char.ToUpper(word[0]) + word.Substring(1);
-                        words[i] = upperCaseWord;
-                    }
-                    foreach (string s in words)
-                    {
-                        iconCharIconName += s;
-                    }
-                }
-                else
-                {
-                    iconCharIconName = char.ToUpper(CSSIconName[0]) + CSSIconName.Substring(1);
-                }
-                if (iconCharIconNames.Contains(iconCharIconName))
-                {
-                    IconConversionToCharIcon[CSSIconName] = iconCharIconName;
-                    IconConversionToCssIcon[iconCharIconName] = CSSIconName;
-                }
-            }
-        }
-
         public void UpdateIcon(string iconName, int index)
         {
             if (iconName == "None")
@@ -185,26 +131,20 @@ namespace index_editor_app_engine
             }
             else
             {
-                specialtyPage.SpecialtiesList[index].Icon = String.Format("fa fa-{0}", IconConversionToCssIcon[iconName]);
+                //specialtyPage.SpecialtiesList[index].Icon = String.Format("fa fa-{0}", IconConversionToCssIcon[iconName]);
+                specialtyPage.SpecialtiesList[index].Icon = icons.IconToCss(iconName);
             }
         }
 
         public string GetIcon(int index)
         {
-            if (specialtyPage.SpecialtiesList[index].Icon != "")
-            {
-                string CSSIconName = specialtyPage.SpecialtiesList[index].Icon.Substring(6);
-                return IconConversionToCharIcon[CSSIconName];
-            }
-            else
-            {
-                return "None";
-            }
+            return icons.GetIcon(index, specialtyPage.SpecialtiesList[index].Icon.Substring(6));
         }
 
         public List<string> GetIconList()
         {
-            return IconConversionToCharIcon.Values.ToList();
+            return icons.GetIconList();
+            //return IconConversionToCharIcon.Values.ToList();
         }
 
         public List<string> GetSpecialtyNames()

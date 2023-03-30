@@ -32,7 +32,7 @@ namespace index_editor_app_engine.JsonClasses
     public partial class ResourcesPage
     {
         [JsonProperty("Resources")]
-        public Resource[] Resources { get; set; }
+        public List<Resource> Resources { get; set; }
     }
 
     public partial class Resource

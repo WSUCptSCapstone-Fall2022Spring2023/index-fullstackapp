@@ -14,12 +14,14 @@ namespace index_editor_app_engine
         public IndexAPIClient indexClient; //API client
         public Dictionary<string, string> resourcesImageDict = new Dictionary<string, string> { }; //links memebers to local image paths
         private ImageHandler imageHandler;
+        private Icons icons;
 
-        public ResourcesHandler(string NewsJson, IndexAPIClient client, ImageHandler imageHandler)
+        public ResourcesHandler(string NewsJson, IndexAPIClient client, ImageHandler imageHandler, Icons icons)
         {
             this.indexClient = client;
             this.resourcesPage = JsonConvert.DeserializeObject<ResourcesPage>(NewsJson);
             this.imageHandler = imageHandler;
+            this.icons = icons;
         }
 
         public int ResourcesCount()
@@ -110,44 +112,63 @@ namespace index_editor_app_engine
             return validationMessage;
         }
 
-        //public async Task<MemoryStream> LoadNewsImageHandlerAsync(string title)
-        //{
-        //    NewsItem n = newsPage.NewsItems.First(item => item.Title == title);
+        public void UpdateIcon(string iconName, int index)
+        {
+            if (iconName == "None")
+            {
+                resourcesPage.Resources[index].PageIcon = "";
+            }
+            else
+            {
+                resourcesPage.Resources[index].PageIcon = icons.IconToCss(iconName);
+            }
+        }
 
-        //    if (n.Image == "")
-        //    {
-        //        return null;
-        //    }
-        //    if (NewsImageDict.ContainsKey(title))
-        //    {
-        //        return LoadImageLocal(NewsImageDict[title]);
-        //    }
-        //    else
-        //    {
-        //        return await LoadImageAPI(n.Image);
-        //    }
-        //}
+        public List<string> GetIconList()
+        {
+            return icons.GetIconList();
+        }
+        public string GetIcon(int index)
+        {
+            return icons.GetIcon(index, resourcesPage.Resources[index].PageIcon.Substring(6));
+        }
 
-        //public async Task<MemoryStream> LoadImageAPI(string name)
-        //{
-        //    byte[] image = await indexClient.GetImageAsync(name);
-        //    MemoryStream ms = new MemoryStream(image, 0, image.Length);
-        //    return ms;
-        //}
+        public void CreateResource()
+        {
+            Resource resource = new Resource();
+            resource.PageTitle = "New Resource";
+            resource.PageIcon = "";
+            resource.PageLink = "";
+            resource.PageImage = "";
+            resource.PageDescription = "";
+            resource.Bulletpoints = new List<Bulletpoint>();
+            resourcesPage.Resources.Add(resource);
+        }
 
-        ////returns LOCAL image given path
-        //public MemoryStream LoadImageLocal(string path)
-        //{
-        //    byte[] image = File.ReadAllBytes(path);
-        //    MemoryStream ms = new MemoryStream(image, 0, image.Length);
-        //    return ms;
-        //}
+        public void DeleteResource(int resourceIndex)
+        {
+            resourcesPage.Resources.RemoveAt(resourceIndex);
+        }
 
 
+        public Task<HttpResponseMessage> UpdateResourcePage()
+        {
+            // put all of the local images
+            //foreach (string key in resourcesImageDict.Keys)
+            //{
+            //    indexClient.PutImageAsync(resourcesImageDict[key], "specialtyimages");
+            //}
 
+            string updatedResourcePageString = JsonConvert.SerializeObject(resourcesPage);
+            var httpResponse = indexClient.PutDocument(updatedResourcePageString, "resources");
+            return httpResponse;
+        }
 
-
-
+        public string GetJsonString()
+        {
+            string updatedSpecialtiesPageString = JsonConvert.SerializeObject(resourcesPage);
+            return updatedSpecialtiesPageString;
+        }
 
 
 
