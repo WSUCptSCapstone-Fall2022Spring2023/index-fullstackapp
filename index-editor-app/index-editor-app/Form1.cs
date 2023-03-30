@@ -146,8 +146,9 @@ namespace index_editor_app
                         eventsHandler.GetJsonString(),
                         membersHandler.GetJsonString(),
                         specialtiesHandler.GetJsonString(),
-                        newsHandler.GetJsonString()
-                        );
+                        newsHandler.GetJsonString(),
+                        resourcesHandler.GetJsonString()
+                        ); ;
                 }
             }
         }

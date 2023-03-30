@@ -13,14 +13,15 @@ namespace index_editor_app_engine
 {
     public static class SaveLoad
     {
-        static string[] requiredFiles = { "Events.json", "Members.json", "News.json", "Specialties.json" };
+        static string[] requiredFiles = { "Events.json", "Members.json", "News.json", "Specialties.json", "Resources.json" };
 
-        public static void Save(string path, string events, string members, string news, string specialties)
+        public static void Save(string path, string events, string members, string news, string specialties, string resources)
         {
             JObject Events = JObject.Parse(events);
             JObject Members = JObject.Parse(members);
             JObject News = JObject.Parse(news);
             JObject Specialties = JObject.Parse(specialties);
+            JObject Resources = JObject.Parse(resources);
             string folderName = "\\" + "IndexBackup" + DateTime.Now.ToString("_MMddyyyy_HHmmss");
             path = path + folderName;
             Directory.CreateDirectory(path);
@@ -29,6 +30,7 @@ namespace index_editor_app_engine
             File.WriteAllText(path + "\\Members.json", Members.ToString());
             File.WriteAllText(path + "\\News.json", News.ToString());
             File.WriteAllText(path + "\\Specialties.json", Specialties.ToString());
+            File.WriteAllText(path + "\\Resources.json", Resources.ToString());
         }
 
         public static void Load(string path, EditorInstances instacnes)
@@ -62,7 +64,7 @@ namespace index_editor_app_engine
                 instacnes.membersHandler.memberspage = JsonConvert.DeserializeObject<MembersPage>(fileContents["Members.json"]);
                 instacnes.newsHandler.newsPage = JsonConvert.DeserializeObject<NewsPage>(fileContents["News.json"]);
                 instacnes.specialtiesHandler.specialtyPage = JsonConvert.DeserializeObject<Specialties>(fileContents["Specialties.json"]);
-
+                instacnes.resourcesHandler.resourcesPage = JsonConvert.DeserializeObject<ResourcesPage>(fileContents["Resources.json"]);
                 //instacnes.newsHandler
                 //instacnes.specialtiesHandler
 
