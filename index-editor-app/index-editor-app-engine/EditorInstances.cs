@@ -13,5 +13,6 @@ namespace index_editor_app_engine
         public MembersHandler membersHandler;
         public SpecialtyHandler specialtiesHandler;
         public NewsHandler newsHandler;
+        public ResourcesHandler resourcesHandler;
     }
 }

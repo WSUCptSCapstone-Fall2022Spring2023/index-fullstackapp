@@ -18,6 +18,8 @@ namespace index_editor_app
         SpecialtyHandler specialtiesHandler;
         NewsHandler newsHandler;
         ResourcesHandler resourcesHandler;
+
+        ImageHandler imageHandler;
         EditorInstances editorInstances;
         public Form1()
         {
@@ -29,17 +31,20 @@ namespace index_editor_app
             this.indexClient = new IndexAPIClient();
             if (await TestConnection())
             {
+                imageHandler = new ImageHandler(indexClient);
+
                 eventsHandler = new EventsHandler(await indexClient.GetDocument("events"), indexClient);
                 membersHandler = new MembersHandler(await indexClient.GetDocument("members"), await indexClient.GetDocument("specialties"), indexClient);
-                specialtiesHandler = new SpecialtyHandler(await indexClient.GetDocument("specialties"), indexClient);
-                newsHandler = new NewsHandler(await indexClient.GetDocument("news"), indexClient);
-                resourcesHandler = new ResourcesHandler(await indexClient.GetDocument("resources"), indexClient);
+                specialtiesHandler = new SpecialtyHandler(await indexClient.GetDocument("specialties"), indexClient, imageHandler);
+                newsHandler = new NewsHandler(await indexClient.GetDocument("news"), indexClient, imageHandler);
+                resourcesHandler = new ResourcesHandler(await indexClient.GetDocument("resources"), indexClient, imageHandler);
 
                 editorInstances = new EditorInstances();
                 editorInstances.eventsHandler = eventsHandler;
                 editorInstances.membersHandler = membersHandler;
                 editorInstances.specialtiesHandler = specialtiesHandler;
                 editorInstances.newsHandler = newsHandler;
+                editorInstances.resourcesHandler = resourcesHandler;
 
                 InitializeEventsDataGrid();
                 InitializeMembersDataGrid();
@@ -47,9 +52,8 @@ namespace index_editor_app
                 InitializeMemberSpecialtyCheckBox();
                 InitializeSpecialties();
                 InitializeNews();
+                InitializeResourcs();
             }
-
-
 
             eventsHandler.AddOrdinalSuffix("Friday, December 15");
         }
@@ -177,6 +181,7 @@ namespace index_editor_app
                 }
             }
         }
+
 
         /// <summary>
         /// description and demonstration from original

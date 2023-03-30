@@ -1,11 +1,13 @@
 ﻿using index_editor_app_engine.JsonClasses;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Interop;
 
 namespace index_editor_app
 {
@@ -86,13 +88,9 @@ namespace index_editor_app
             NewsPostedByTextBox.Text = n.PostedBy;
 
             NewsPictureBox.Image = null;
-            if (n.Image != "")
-            {
-                NewsPictureBox.Image = System.Drawing.Image.FromStream(await newsHandler.LoadNewsImageHandlerAsync(n.Title));
-            }
+            NewsPictureBox.Image = await newsHandler.GetImageAsync(editingNewsIndex);
 
             NewsDateTimePicker.Value = DateTime.Now;
-
             string date = n.EditorDateTime;
             DateTime parsedDate = DateTime.ParseExact(date, "M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
             NewsDateTimePicker.Value = parsedDate;
@@ -189,29 +187,21 @@ namespace index_editor_app
             editingNewsIndex = -1;
         }
 
-
-
         private void AddNewsImageButton_Click(object sender, EventArgs e)
         {
             if (NoNewsSelectedCheck()) { return; }
-            if (string.IsNullOrEmpty(newsHandler.newsPage.NewsItems[editingNewsIndex].Title))
-            {
-                System.Windows.Forms.MessageBox.Show("Warning, A Title is required before adding an image");
-                return;
-            }
 
             this.openFileDialog1 = new OpenFileDialog
             {
                 InitialDirectory = "c:\\",
-                Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*",                                         //change to images
+                Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*",
                 FilterIndex = 2,
                 RestoreDirectory = true,
             };
 
             if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                newsHandler.AddNewsImage(openFileDialog1.FileName, editingNewsIndex);
-                LoadNewsDataAsync(editingNewsIndex);
+                newsHandler.AddImage(openFileDialog1.FileName, editingNewsIndex);
             }
         }
 

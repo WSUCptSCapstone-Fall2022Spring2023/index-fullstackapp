@@ -123,10 +123,8 @@ namespace index_editor_app
             }
 
             SpecialtyPictureBox.Image = null;
-            if (s.Image != "")
-            {
-                SpecialtyPictureBox.Image = System.Drawing.Image.FromStream(await specialtiesHandler.LoadSpecialtyImageHandlerAsync(s.Name));
-            }
+            SpecialtyPictureBox.Image = await specialtiesHandler.GetImageAsync(editingSpecialtyIndex);
+
             // load icon
             string iconName = specialtiesHandler.GetIcon(index);
             SpecialtyIconComboBox.SelectedIndex = SpecialtyIconComboBox.FindStringExact(iconName);
@@ -151,6 +149,8 @@ namespace index_editor_app
             SpecialtyCheckedListBox1.Items.Clear();
             SpecialtyIconComboBox.SelectedIndex = -1;
             SpecialtyIconPictureBox.Image = null;
+            // TODO
+            //Icon = null?
         }
 
         public bool NoSpecialtySelectedCheck()
@@ -270,11 +270,6 @@ namespace index_editor_app
         private void AddSpecialtyImageButton_Click(object sender, EventArgs e)
         {
             if (NoSpecialtySelectedCheck()) { return; }
-            if (string.IsNullOrEmpty(specialtiesHandler.specialtyPage.SpecialtiesList[editingSpecialtyIndex].Name))
-            {
-                System.Windows.Forms.MessageBox.Show("Warning, A name is required before adding an image");
-                return;
-            }
 
             this.openFileDialog1 = new OpenFileDialog
             {
@@ -286,8 +281,7 @@ namespace index_editor_app
 
             if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                specialtiesHandler.AddSpecialtyImage(openFileDialog1.FileName, editingSpecialtyIndex);
-                LoadSpecialtyDataAsync(editingSpecialtyIndex);
+                specialtiesHandler.AddImage(openFileDialog1.FileName, editingSpecialtyIndex);
             }
         }
 

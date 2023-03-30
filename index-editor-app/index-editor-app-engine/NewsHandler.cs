@@ -14,13 +14,29 @@ namespace index_editor_app_engine
         //public Dictionary<string, string> MemberSpecialtyDict = new Dictionary<string, string> { }; //links memebers to local image paths
         public IndexAPIClient indexClient; //API client
         public Dictionary<string, string> NewsImageDict = new Dictionary<string, string> { }; //links memebers to local image paths
+        private ImageHandler imageHandler;
 
-
-        public NewsHandler(string NewsJson, IndexAPIClient client)
+        public NewsHandler(string NewsJson, IndexAPIClient client, ImageHandler imageHandler)
         {
             this.indexClient = client;
+            this.imageHandler = imageHandler;
             this.newsPage = JsonConvert.DeserializeObject<NewsPage>(NewsJson);
         }
+
+
+
+
+        public async Task<System.Drawing.Image> GetImageAsync(int index)
+        {
+            return System.Drawing.Image.FromStream(await imageHandler.GetImageAsync(newsPage.NewsItems[index]));
+        }
+
+        public void AddImage(string path, int index)
+        {
+            imageHandler.AddImage(newsPage.NewsItems[index], path);
+        }
+
+
 
         public void AddNewsImage(string fileName, int editingNewsIndex)
         {
@@ -29,40 +45,6 @@ namespace index_editor_app_engine
             string url = "https://index-webapp.s3.amazonaws.com/img/newsimages/" + dirName;
             newsPage.NewsItems.ElementAt(editingNewsIndex).Image = url;
         }
-
-        public async Task<MemoryStream> LoadNewsImageHandlerAsync(string title)
-        {
-            NewsItem n = newsPage.NewsItems.First(item => item.Title == title);
-
-            if (n.Image == "")
-            {
-                return null;
-            }
-            if (NewsImageDict.ContainsKey(title))
-            {
-                return LoadImageLocal(NewsImageDict[title]);
-            }
-            else
-            {
-                return await LoadImageAPI(n.Image);
-            }
-        }
-
-        public async Task<MemoryStream> LoadImageAPI(string name)
-        {
-            byte[] image = await indexClient.GetImageAsync(name);
-            MemoryStream ms = new MemoryStream(image, 0, image.Length);
-            return ms;
-        }
-
-        //returns LOCAL image given path
-        public MemoryStream LoadImageLocal(string path)
-        {
-            byte[] image = File.ReadAllBytes(path);
-            MemoryStream ms = new MemoryStream(image, 0, image.Length);
-            return ms;
-        }
-
 
         public int NewsCount()
         {

@@ -21,54 +21,67 @@ namespace index_editor_app_engine
         public Dictionary<string, string> SpecialtyImageDict = new Dictionary<string, string> { }; //links memebers to local image paths
         public Dictionary<string, string> IconConversionToCharIcon = new Dictionary<string, string> { }; //links html name to IconChar class name
         public Dictionary<string, string> IconConversionToCssIcon = new Dictionary<string, string> { }; //links html name to IconChar class name
+        private ImageHandler imageHandler;
 
-        public SpecialtyHandler(string SpecialtiesJson, IndexAPIClient client)
+        public SpecialtyHandler(string SpecialtiesJson, IndexAPIClient client, ImageHandler imageHandler)
         {
+            this.imageHandler = imageHandler;
             this.indexClient = client;
             this.specialtyPage = JsonConvert.DeserializeObject<Specialties>(SpecialtiesJson);
             InitIconDict();
         }
 
-        public void AddSpecialtyImage(string fileName, int editingSpecialtyIndex)
+        public async Task<System.Drawing.Image> GetImageAsync(int index)
         {
-            SpecialtyImageDict[specialtyPage.SpecialtiesList.ElementAt(editingSpecialtyIndex).Name] = fileName;
-            string dirName = new DirectoryInfo(fileName).Name;
-            string url = "https://index-webapp.s3.amazonaws.com/img/specialtyimages/" + dirName;
-            specialtyPage.SpecialtiesList.ElementAt(editingSpecialtyIndex).Image = url;
+            return System.Drawing.Image.FromStream(await imageHandler.GetImageAsync(specialtyPage.SpecialtiesList[index]));
         }
 
-        public async Task<MemoryStream> LoadSpecialtyImageHandlerAsync(string name)
+        public void AddImage(string path, int index)
         {
-            Specialty s = specialtyPage.SpecialtiesList.First(item => item.Name == name);
-
-            if (s.Image == "")
-            {
-                return null;
-            }
-            if (SpecialtyImageDict.ContainsKey(name))
-            {
-                return LoadImageLocal(SpecialtyImageDict[name]);
-            }
-            else
-            {
-                return await LoadImageAPI(s.Image);
-            }
+            imageHandler.AddImage(specialtyPage.SpecialtiesList[index], path);
         }
 
-        public async Task<MemoryStream> LoadImageAPI(string name)
-        {
-            byte[] image = await indexClient.GetImageAsync(name);
-            MemoryStream ms = new MemoryStream(image, 0, image.Length);
-            return ms;
-        }
 
-        //returns LOCAL image given path
-        public MemoryStream LoadImageLocal(string path)
-        {
-            byte[] image = File.ReadAllBytes(path);
-            MemoryStream ms = new MemoryStream(image, 0, image.Length);
-            return ms;
-        }
+        //public void AddSpecialtyImage(string fileName, int editingSpecialtyIndex)
+        //{
+        //    SpecialtyImageDict[specialtyPage.SpecialtiesList.ElementAt(editingSpecialtyIndex).Name] = fileName;
+        //    string dirName = new DirectoryInfo(fileName).Name;
+        //    string url = "https://index-webapp.s3.amazonaws.com/img/specialtyimages/" + dirName;
+        //    specialtyPage.SpecialtiesList.ElementAt(editingSpecialtyIndex).Image = url;
+        //}
+
+        //public async Task<MemoryStream> LoadSpecialtyImageHandlerAsync(string name)
+        //{
+        //    Specialty s = specialtyPage.SpecialtiesList.First(item => item.Name == name);
+
+        //    if (s.Image == "")
+        //    {
+        //        return null;
+        //    }
+        //    if (SpecialtyImageDict.ContainsKey(name))
+        //    {
+        //        return LoadImageLocal(SpecialtyImageDict[name]);
+        //    }
+        //    else
+        //    {
+        //        return await LoadImageAPI(s.Image);
+        //    }
+        //}
+
+        //public async Task<MemoryStream> LoadImageAPI(string name)
+        //{
+        //    byte[] image = await indexClient.GetImageAsync(name);
+        //    MemoryStream ms = new MemoryStream(image, 0, image.Length);
+        //    return ms;
+        //}
+
+        ////returns LOCAL image given path
+        //public MemoryStream LoadImageLocal(string path)
+        //{
+        //    byte[] image = File.ReadAllBytes(path);
+        //    MemoryStream ms = new MemoryStream(image, 0, image.Length);
+        //    return ms;
+        //}
 
 
         public int SpecialtyCount()

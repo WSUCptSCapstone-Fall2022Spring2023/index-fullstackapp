@@ -44,16 +44,16 @@ namespace index_editor_app_engine.JsonClasses
         public string PageIcon { get; set; }
 
         [JsonProperty("pageLink")]
-        public Uri PageLink { get; set; }
+        public string PageLink { get; set; }
 
         [JsonProperty("pageImage")]
-        public Uri PageImage { get; set; }
+        public string PageImage { get; set; }
 
         [JsonProperty("pageDescription")]
         public string PageDescription { get; set; }
 
         [JsonProperty("bulletpoints")]
-        public Bulletpoint[] Bulletpoints { get; set; }
+        public List<Bulletpoint> Bulletpoints { get; set; }
     }
 
     public partial class Bulletpoint
@@ -62,13 +62,13 @@ namespace index_editor_app_engine.JsonClasses
         public string Title { get; set; }
 
         [JsonProperty("link")]
-        public Uri Link { get; set; }
+        public string Link { get; set; }
 
         [JsonProperty("description")]
         public string Description { get; set; }
 
         [JsonProperty("linkPhrases")]
-        public LinkPhrase[] LinkPhrases { get; set; }
+        public List<LinkPhrase> LinkPhrases { get; set; }
     }
 
     public partial class LinkPhrase
