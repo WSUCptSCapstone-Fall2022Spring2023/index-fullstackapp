@@ -1,20 +1,17 @@
 ﻿using index_editor_app_engine;
-using Microsoft.VisualBasic;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace index_editor_app
 {
     public partial class Form1
     {
-        int eventsCount = 0;
         int editingEventIndex = -1;
         bool systemEditingEvents = false;
+
+        public void InitializeEventsTab()
+        {
+            InitializeEventsDataGrid();
+        }
 
         private void dateTimePicker_ValueChanged(object sender, EventArgs e)//start date
         {
@@ -28,18 +25,7 @@ namespace index_editor_app
 
         private async Task LoadEventIntoFields(int eventindex)//Load event[i] into fields
         {
-            this.editingEventIndex = eventindex;
             Event e = eventsHandler.GetEventByIndex(eventindex);
-
-            // load images
-            if (e.Image != "")
-            {
-                pictureBox1.Image = System.Drawing.Image.FromStream(await eventsHandler.LoadImageHandlerAsync(e.CreatedOn));
-            }
-            else
-            {
-                pictureBox1.Image = null;
-            }
 
             string date = e.EditorDateTime;
             if (date != null)
@@ -54,8 +40,10 @@ namespace index_editor_app
             LinktextBox.Text = e.Link;
             titleTextBox.Text = e.Title;
             editingEventNumberLabel.Text = "You are editing event #" + (editingEventIndex + 1);
-        }
 
+            pictureBox1.Image = null;
+            pictureBox1.Image = await eventsHandler.GetImageAsync(eventindex);
+        }
 
         private void EditButton_Click(object sender, DataGridViewCellEventArgs e)
         {
@@ -67,14 +55,14 @@ namespace index_editor_app
             //column 4 = edit button
             if (e.ColumnIndex == 4 && e.RowIndex != -1)
             {
-
+                editingEventIndex = e.RowIndex;
                 //highlight the column being edited
                 dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;
-
+                ClearEventFields();
                 //load events into fields
-                LoadEventIntoFields(e.RowIndex);
+                LoadEventIntoFields(editingEventIndex);
             }
-        }//Edit button clicked => LoadEventIntoFields
+        }
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
@@ -99,7 +87,7 @@ namespace index_editor_app
 
         private void addImageButton_Click(object sender, EventArgs e)
         {
-            if (editingEventIndex == -1)                                                                     //CREATE NO EVENT SELECTED FUNCTION
+            if (editingEventIndex == -1)
             {
                 NoEventSelectedCheck();
                 return;
@@ -108,7 +96,7 @@ namespace index_editor_app
             this.openFileDialog1 = new OpenFileDialog
             {
                 InitialDirectory = "c:\\",
-                Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*",                                         //change to images
+                Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*",
                 FilterIndex = 2,
                 RestoreDirectory = true,
             };
@@ -122,17 +110,9 @@ namespace index_editor_app
 
         private void CreateEvent_Click(object sender, EventArgs e)
         {
-            //create events
             eventsHandler.CreateEvent();
-            //reset datagrid
             InitializeEventsDataGrid();
-            //change deiting index
-            //editingEventIndex = 0;
-            //load new event
-            //LoadEventIntoFields(0);
-            //highlight
-            // dataGridView1.Rows[0].DefaultCellStyle.BackColor = Color.Yellow;
-        }//create an event
+        }
 
         private void ValidateChangesButton_Click(object sender, EventArgs e)
         {
@@ -188,25 +168,21 @@ namespace index_editor_app
 
         }
 
-
-
-
-        /// <summary>
-        /// utility functions
-        /// </summary>
-        private void ClearEventFields()//clears all the input fields
+        private void ClearEventFields()
         {
+            systemEditingEvents = true;
+
             descriptionBox1.Text = "";
             titleTextBox.Text = "";
             timeRangeTextBox.Text = "";
             dateTimePicker1.Value = DateTime.Now;
             LinktextBox.Text = "";
             pictureBox1.Image = null;
+
+            systemEditingEvents = false;
         }
 
-
-
-        public void InitializeEventsDataGrid()//Initialize based on size of event[]
+        public void InitializeEventsDataGrid()
         {
 
             //clear the datagrid
@@ -230,15 +206,14 @@ namespace index_editor_app
             descriptionColumn.Width = 668;
 
             //add row index
-            this.eventsCount = eventsHandler.GetEventCount();
-            this.dataGridView1.Rows.Add(eventsCount);
+            this.dataGridView1.Rows.Add(eventsHandler.GetEventCount());
             foreach (DataGridViewRow row in this.dataGridView1.Rows)
             {
                 row.HeaderCell.Value = string.Format("{0}", row.Index + 1);
             }
 
             //add event data
-            for (int i = 0; i < eventsCount; i++)
+            for (int i = 0; i < eventsHandler.GetEventCount(); i++)
             {
                 Event e = eventsHandler.GetEventByIndex(i);
                 dataGridView1[0, i].Value = e.CreatedOn;
@@ -256,8 +231,6 @@ namespace index_editor_app
             btn.Name = "Edit";
             btn.UseColumnTextForButtonValue = true;
             editingEventNumberLabel.Text = "You are editing event #" + "(no event selected)";
-
-            //descriptionBox1.Text = eventsHandler.eventsJson;
         }
 
 
@@ -341,15 +314,5 @@ namespace index_editor_app
                 return false;
             }
         }
-
-
-
-
-
-
-
-
-
-
     }
 }

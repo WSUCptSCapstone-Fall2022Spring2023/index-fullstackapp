@@ -60,7 +60,6 @@ namespace index_editor_app_engine
             else
             {
                 instacnes.eventsHandler.eventsPage = JsonConvert.DeserializeObject<EventsPage>(fileContents["Events.json"]);
-                instacnes.eventsHandler.InitializeEvents();
                 instacnes.membersHandler.memberspage = JsonConvert.DeserializeObject<MembersPage>(fileContents["Members.json"]);
                 instacnes.newsHandler.newsPage = JsonConvert.DeserializeObject<NewsPage>(fileContents["News.json"]);
                 instacnes.specialtiesHandler.specialtyPage = JsonConvert.DeserializeObject<Specialties>(fileContents["Specialties.json"]);

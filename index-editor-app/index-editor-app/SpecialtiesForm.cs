@@ -1,20 +1,5 @@
 ﻿using FontAwesome.Sharp;
-using index_editor_app_engine;
 using index_editor_app_engine.JsonClasses;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Net;
-using System.Reflection;
-using System.Security.Policy;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Windows.Media.Imaging;
-using System.Xml.Linq;
 
 namespace index_editor_app
 {
@@ -40,7 +25,7 @@ namespace index_editor_app
         int editingSpecialtyIndex = -1;
         bool SpecialtySystemEditing = true;
 
-        public void InitializeSpecialties()
+        public void InitializeSpecialtiesTab()
         {
             InitializeSpecialtiesDataGrid();
             InitializeSpecialtiesIcons();
@@ -114,7 +99,8 @@ namespace index_editor_app
             SpecialtySubtitleTextBox.Text = s.Subtitle;
             SpecialtyLinkTextBox.Text = s.Link;
             SpecialtyDescriptionTextBox.Text = s.Description;
-            if (s.Bulletpoints.Count > 0)
+
+            if ((s.Bulletpoints != null) && (!s.Bulletpoints.Any()))
             {
                 foreach (string bulletpoint in s.Bulletpoints)
                 {
@@ -122,14 +108,14 @@ namespace index_editor_app
                 }
             }
 
-            SpecialtyPictureBox.Image = null;
-            SpecialtyPictureBox.Image = await specialtiesHandler.GetImageAsync(editingSpecialtyIndex);
-
             // load icon
             string iconName = specialtiesHandler.GetIcon(index);
             SpecialtyIconComboBox.SelectedIndex = SpecialtyIconComboBox.FindStringExact(iconName);
             IconChar selectedEnumValue = (IconChar)Enum.Parse(typeof(IconChar), iconName);
             SpecialtyIconPictureBox.Image = FormsIconHelper.ToBitmap(selectedEnumValue, Color.Black);
+
+            SpecialtyPictureBox.Image = null;
+            SpecialtyPictureBox.Image = await specialtiesHandler.GetImageAsync(editingSpecialtyIndex);
 
             SpecialtySystemEditing = false;
         }

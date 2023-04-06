@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label7 = new System.Windows.Forms.Label();
@@ -134,6 +135,7 @@
             this.SpecialtyNameTextBox = new System.Windows.Forms.TextBox();
             this.SpecialtiesdataGridView3 = new System.Windows.Forms.DataGridView();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.DeleteResourceButton = new System.Windows.Forms.Button();
             this.UpdateResourcePageButton = new System.Windows.Forms.Button();
             this.CreateResourceButton = new System.Windows.Forms.Button();
             this.ValidateLinkPhrasesButton = new System.Windows.Forms.Button();
@@ -166,6 +168,14 @@
             this.label40 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.DeleteImageButton = new System.Windows.Forms.Button();
+            this.PageNameLabel = new System.Windows.Forms.Label();
+            this.PageImagesComboBox = new System.Windows.Forms.ComboBox();
+            this.ImageDataGridView = new System.Windows.Forms.DataGridView();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -173,7 +183,11 @@
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.DeleteResourceButton = new System.Windows.Forms.Button();
+            this.EventsImageList = new System.Windows.Forms.ImageList(this.components);
+            this.SpecialtiesImageList = new System.Windows.Forms.ImageList(this.components);
+            this.NewsImageList = new System.Windows.Forms.ImageList(this.components);
+            this.MemberImageList = new System.Windows.Forms.ImageList(this.components);
+            this.ResourcesImageList = new System.Windows.Forms.ImageList(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -192,6 +206,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ResourceIconPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ResourcePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ResourcesDataGridView3)).BeginInit();
+            this.tabPage6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageDataGridView)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -203,6 +219,7 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabControl1.ItemSize = new System.Drawing.Size(25, 100);
             this.tabControl1.Location = new System.Drawing.Point(12, 46);
@@ -1089,6 +1106,7 @@
             this.SpecialtyIconPictureBox.Location = new System.Drawing.Point(938, 345);
             this.SpecialtyIconPictureBox.Name = "SpecialtyIconPictureBox";
             this.SpecialtyIconPictureBox.Size = new System.Drawing.Size(73, 61);
+            this.SpecialtyIconPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.SpecialtyIconPictureBox.TabIndex = 22;
             this.SpecialtyIconPictureBox.TabStop = false;
             // 
@@ -1330,6 +1348,16 @@
             this.tabPage5.Text = "Resources";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // DeleteResourceButton
+            // 
+            this.DeleteResourceButton.Location = new System.Drawing.Point(249, 298);
+            this.DeleteResourceButton.Name = "DeleteResourceButton";
+            this.DeleteResourceButton.Size = new System.Drawing.Size(121, 23);
+            this.DeleteResourceButton.TabIndex = 32;
+            this.DeleteResourceButton.Text = "Delete Selected Resource";
+            this.DeleteResourceButton.UseVisualStyleBackColor = true;
+            this.DeleteResourceButton.Click += new System.EventHandler(this.DeleteResourceButton_Click);
+            // 
             // UpdateResourcePageButton
             // 
             this.UpdateResourcePageButton.Location = new System.Drawing.Point(1215, 486);
@@ -1485,6 +1513,7 @@
             this.ResourceIconPictureBox.Location = new System.Drawing.Point(439, 113);
             this.ResourceIconPictureBox.Name = "ResourceIconPictureBox";
             this.ResourceIconPictureBox.Size = new System.Drawing.Size(137, 105);
+            this.ResourceIconPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ResourceIconPictureBox.TabIndex = 15;
             this.ResourceIconPictureBox.TabStop = false;
             // 
@@ -1493,6 +1522,7 @@
             this.ResourcePictureBox.Location = new System.Drawing.Point(257, 114);
             this.ResourcePictureBox.Name = "ResourcePictureBox";
             this.ResourcePictureBox.Size = new System.Drawing.Size(136, 104);
+            this.ResourcePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ResourcePictureBox.TabIndex = 14;
             this.ResourcePictureBox.TabStop = false;
             // 
@@ -1539,18 +1569,18 @@
             this.label47.AutoSize = true;
             this.label47.Location = new System.Drawing.Point(486, 95);
             this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(56, 15);
+            this.label47.Size = new System.Drawing.Size(59, 15);
             this.label47.TabIndex = 9;
-            this.label47.Text = "pageIcon";
+            this.label47.Text = "Page Icon";
             // 
             // label46
             // 
             this.label46.AutoSize = true;
             this.label46.Location = new System.Drawing.Point(292, 96);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(66, 15);
+            this.label46.Size = new System.Drawing.Size(69, 15);
             this.label46.TabIndex = 8;
-            this.label46.Text = "pageImage";
+            this.label46.Text = "Page Image";
             // 
             // label45
             // 
@@ -1586,16 +1616,16 @@
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(70, 15);
             this.label42.TabIndex = 4;
-            this.label42.Text = "bulletpoints";
+            this.label42.Text = "Bulletpoints";
             // 
             // label41
             // 
             this.label41.AutoSize = true;
             this.label41.Location = new System.Drawing.Point(640, 193);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(88, 15);
+            this.label41.Size = new System.Drawing.Size(90, 15);
             this.label41.TabIndex = 3;
-            this.label41.Text = "Bulletpoint title";
+            this.label41.Text = "Bulletpoint Title";
             // 
             // label40
             // 
@@ -1623,6 +1653,85 @@
             this.label38.Size = new System.Drawing.Size(58, 15);
             this.label38.TabIndex = 0;
             this.label38.Text = "Page Title";
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.textBox1);
+            this.tabPage6.Controls.Add(this.button3);
+            this.tabPage6.Controls.Add(this.DeleteImageButton);
+            this.tabPage6.Controls.Add(this.PageNameLabel);
+            this.tabPage6.Controls.Add(this.PageImagesComboBox);
+            this.tabPage6.Controls.Add(this.ImageDataGridView);
+            this.tabPage6.Location = new System.Drawing.Point(104, 4);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Size = new System.Drawing.Size(1392, 540);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "Images";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(1074, 343);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 23);
+            this.textBox1.TabIndex = 6;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(1123, 244);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // DeleteImageButton
+            // 
+            this.DeleteImageButton.BackColor = System.Drawing.Color.Orange;
+            this.DeleteImageButton.Location = new System.Drawing.Point(872, 403);
+            this.DeleteImageButton.Name = "DeleteImageButton";
+            this.DeleteImageButton.Size = new System.Drawing.Size(157, 52);
+            this.DeleteImageButton.TabIndex = 4;
+            this.DeleteImageButton.Text = "Delete Selected Image";
+            this.DeleteImageButton.UseVisualStyleBackColor = false;
+            this.DeleteImageButton.Click += new System.EventHandler(this.DeleteImageButton_Click);
+            // 
+            // PageNameLabel
+            // 
+            this.PageNameLabel.AutoSize = true;
+            this.PageNameLabel.Location = new System.Drawing.Point(736, 34);
+            this.PageNameLabel.Name = "PageNameLabel";
+            this.PageNameLabel.Size = new System.Drawing.Size(169, 15);
+            this.PageNameLabel.TabIndex = 3;
+            this.PageNameLabel.Text = "Select a Page to edit its images";
+            // 
+            // PageImagesComboBox
+            // 
+            this.PageImagesComboBox.FormattingEnabled = true;
+            this.PageImagesComboBox.Location = new System.Drawing.Point(736, 65);
+            this.PageImagesComboBox.Name = "PageImagesComboBox";
+            this.PageImagesComboBox.Size = new System.Drawing.Size(173, 23);
+            this.PageImagesComboBox.TabIndex = 2;
+            this.PageImagesComboBox.SelectedIndexChanged += new System.EventHandler(this.PageImagesComboBox_SelectedIndexChanged);
+            // 
+            // ImageDataGridView
+            // 
+            this.ImageDataGridView.AllowUserToAddRows = false;
+            this.ImageDataGridView.AllowUserToDeleteRows = false;
+            this.ImageDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ImageDataGridView.Location = new System.Drawing.Point(32, 35);
+            this.ImageDataGridView.Name = "ImageDataGridView";
+            this.ImageDataGridView.RowTemplate.Height = 25;
+            this.ImageDataGridView.Size = new System.Drawing.Size(676, 482);
+            this.ImageDataGridView.TabIndex = 1;
+            this.ImageDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ImageDataGridView_CellClick);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(116, 27);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(1392, 50);
+            this.progressBar1.TabIndex = 26;
             // 
             // menuStrip1
             // 
@@ -1668,15 +1777,35 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // DeleteResourceButton
+            // EventsImageList
             // 
-            this.DeleteResourceButton.Location = new System.Drawing.Point(249, 298);
-            this.DeleteResourceButton.Name = "DeleteResourceButton";
-            this.DeleteResourceButton.Size = new System.Drawing.Size(121, 23);
-            this.DeleteResourceButton.TabIndex = 32;
-            this.DeleteResourceButton.Text = "Delete Selected Resource";
-            this.DeleteResourceButton.UseVisualStyleBackColor = true;
-            this.DeleteResourceButton.Click += new System.EventHandler(this.DeleteResourceButton_Click);
+            this.EventsImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.EventsImageList.ImageSize = new System.Drawing.Size(16, 16);
+            this.EventsImageList.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // SpecialtiesImageList
+            // 
+            this.SpecialtiesImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.SpecialtiesImageList.ImageSize = new System.Drawing.Size(16, 16);
+            this.SpecialtiesImageList.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // NewsImageList
+            // 
+            this.NewsImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.NewsImageList.ImageSize = new System.Drawing.Size(16, 16);
+            this.NewsImageList.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // MemberImageList
+            // 
+            this.MemberImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.MemberImageList.ImageSize = new System.Drawing.Size(16, 16);
+            this.MemberImageList.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // ResourcesImageList
+            // 
+            this.ResourcesImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.ResourcesImageList.ImageSize = new System.Drawing.Size(16, 16);
+            this.ResourcesImageList.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // Form1
             // 
@@ -1684,6 +1813,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkOrange;
             this.ClientSize = new System.Drawing.Size(1536, 606);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -1714,6 +1844,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.ResourceIconPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ResourcePictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ResourcesDataGridView3)).EndInit();
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageDataGridView)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -1868,5 +2001,18 @@
         private Button CreateResourceButton;
         private Button UpdateResourcePageButton;
         private Button DeleteResourceButton;
+        private TabPage tabPage6;
+        private ImageList EventsImageList;
+        private ImageList SpecialtiesImageList;
+        private ImageList NewsImageList;
+        private ImageList MemberImageList;
+        private DataGridView ImageDataGridView;
+        private ComboBox PageImagesComboBox;
+        private Label PageNameLabel;
+        private TextBox textBox1;
+        private Button button3;
+        private Button DeleteImageButton;
+        private ImageList ResourcesImageList;
+        private ProgressBar progressBar1;
     }
 }

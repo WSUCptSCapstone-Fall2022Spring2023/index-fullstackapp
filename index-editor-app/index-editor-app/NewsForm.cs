@@ -1,13 +1,5 @@
 ﻿using index_editor_app_engine.JsonClasses;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
 using System.Globalization;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Interop;
 
 namespace index_editor_app
 {
@@ -16,7 +8,7 @@ namespace index_editor_app
         int editingNewsIndex = -1;
         bool NewsSystemEditing = true;
 
-        public void InitializeNews()
+        public void InitializeNewsTab()
         {
             InitializeNewsDataGrid();
             InitializeNewsPage();
@@ -87,13 +79,13 @@ namespace index_editor_app
             NewsTitleTextBox.Text = n.Title;
             NewsPostedByTextBox.Text = n.PostedBy;
 
-            NewsPictureBox.Image = null;
-            NewsPictureBox.Image = await newsHandler.GetImageAsync(editingNewsIndex);
-
             NewsDateTimePicker.Value = DateTime.Now;
             string date = n.EditorDateTime;
             DateTime parsedDate = DateTime.ParseExact(date, "M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
             NewsDateTimePicker.Value = parsedDate;
+
+            NewsPictureBox.Image = null;
+            NewsPictureBox.Image = await newsHandler.GetImageAsync(editingNewsIndex);
 
             NewsSystemEditing = false;
         }

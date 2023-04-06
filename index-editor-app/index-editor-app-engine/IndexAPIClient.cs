@@ -1,15 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Reflection.Metadata;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 
 namespace index_editor_app_engine
 {
@@ -53,34 +43,8 @@ namespace index_editor_app_engine
             return await httpResponse.Content.ReadAsStringAsync();
         }
 
-        static byte[] GetFileByteArray(string filename)
+        public async Task<bool> PutImageAsync(string imageEndpoint, ByteArrayContent imageBinaryContent)
         {
-            FileStream oFileStream = new FileStream(filename, FileMode.Open, FileAccess.Read);
-
-            // Create a byte array of file size.
-            byte[] FileByteArrayData = new byte[oFileStream.Length];
-
-            //Read file in bytes from stream into the byte array
-            oFileStream.Read(FileByteArrayData, 0, System.Convert.ToInt32(oFileStream.Length));
-
-            //Close the File Stream
-            oFileStream.Close();
-
-            return FileByteArrayData; //return the byte data
-        }
-
-        public async Task<bool> PutImageAsync(string imagePath, string endpoint)
-        {
-            byte[] myImageFile = GetFileByteArray(imagePath);
-
-            var imageBinaryContent = new ByteArrayContent(myImageFile);
-
-            imageBinaryContent.Headers.Add("Content-Type", "image/png");
-
-            string dirName = new DirectoryInfo(imagePath).Name;
-
-            string imageEndpoint = "https://bz682vosnb.execute-api.us-east-1.amazonaws.com/dev1/img/" + endpoint + "/" + dirName;
-
             var Putresult = await httpClient.PutAsync(imageEndpoint, imageBinaryContent);
 
             return Putresult.IsSuccessStatusCode;
@@ -109,23 +73,5 @@ namespace index_editor_app_engine
 
             return image;
         }
-
-        public async Task<bool> PutMemberImageAsync(string imagePath)
-        {
-            byte[] myImageFile = GetFileByteArray(imagePath);
-
-            var imageBinaryContent = new ByteArrayContent(myImageFile);
-
-            imageBinaryContent.Headers.Add("Content-Type", "image/png");
-
-            string dirName = new DirectoryInfo(imagePath).Name;
-
-            string imageEndpoint = "https://bz682vosnb.execute-api.us-east-1.amazonaws.com/dev1/img/memberimages/" + dirName;
-
-            var Putresult = await httpClient.PutAsync(imageEndpoint, imageBinaryContent);
-
-            return Putresult.IsSuccessStatusCode;
-        }
-
     }
 }

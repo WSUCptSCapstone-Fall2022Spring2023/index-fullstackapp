@@ -11,9 +11,7 @@ namespace index_editor_app_engine
     public class NewsHandler
     {
         public NewsPage newsPage;
-        //public Dictionary<string, string> MemberSpecialtyDict = new Dictionary<string, string> { }; //links memebers to local image paths
-        public IndexAPIClient indexClient; //API client
-        public Dictionary<string, string> NewsImageDict = new Dictionary<string, string> { }; //links memebers to local image paths
+        public IndexAPIClient indexClient;
         private ImageHandler imageHandler;
 
         public NewsHandler(string NewsJson, IndexAPIClient client, ImageHandler imageHandler)
@@ -23,27 +21,14 @@ namespace index_editor_app_engine
             this.newsPage = JsonConvert.DeserializeObject<NewsPage>(NewsJson);
         }
 
-
-
-
         public async Task<System.Drawing.Image> GetImageAsync(int index)
         {
-            return System.Drawing.Image.FromStream(await imageHandler.GetImageAsync(newsPage.NewsItems[index]));
+            return System.Drawing.Image.FromStream(await imageHandler.GetImageAsync(newsPage.NewsItems[index].Image));
         }
 
         public void AddImage(string path, int index)
         {
-            imageHandler.AddImage(newsPage.NewsItems[index], path);
-        }
-
-
-
-        public void AddNewsImage(string fileName, int editingNewsIndex)
-        {
-            NewsImageDict[newsPage.NewsItems.ElementAt(editingNewsIndex).Title] = fileName;
-            string dirName = new DirectoryInfo(fileName).Name;
-            string url = "https://index-webapp.s3.amazonaws.com/img/newsimages/" + dirName;
-            newsPage.NewsItems.ElementAt(editingNewsIndex).Image = url;
+            newsPage.NewsItems[index].Image = path;
         }
 
         public int NewsCount()
@@ -53,11 +38,7 @@ namespace index_editor_app_engine
 
         public Task<HttpResponseMessage> Upload()
         {
-            // put all of the local images
-            foreach (string key in NewsImageDict.Keys)
-            {
-                indexClient.PutImageAsync(NewsImageDict[key], "newsimages");
-            }
+            imageHandler.UploadNewsImages(newsPage);
 
             string updatedNewsPageString = JsonConvert.SerializeObject(newsPage);
             var httpResponse = indexClient.PutDocument(updatedNewsPageString, "news");
@@ -87,6 +68,16 @@ namespace index_editor_app_engine
         {
             string updatedNewsPageString = JsonConvert.SerializeObject(newsPage);
             return updatedNewsPageString;
+        }
+
+        public List<string> GetImageList()
+        {
+            List<string> urls = new List<string>();
+            foreach (NewsItem n in newsPage.NewsItems)
+            {
+                urls.Add(n.Image);
+            }
+            return urls;
         }
     }
 }

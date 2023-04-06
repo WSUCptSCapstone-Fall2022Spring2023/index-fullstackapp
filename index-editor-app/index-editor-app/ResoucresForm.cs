@@ -12,29 +12,10 @@ namespace index_editor_app
 {
     public partial class Form1
     {
-        //STEPS
-        //1. create json
-        //2. create API enpoint
-        //3. create C# class
-        //4. Create handler
-        //5. Create form1 extension with handler in it
-
-        //6. Form1_LoadAsync: init handler and Initialize___form1 extension___();
-        //7. Each form should....
-        // Initialize_______(); load data into fields
-        // all TextBox_TextChanged events
-        // clear all textbox method
-        // editing index
-        // 
-
-        //get the specialties from api
-        //store the specialties
-
         int editingResourceIndex = -1;
         bool ResourceSystemEditing = true;
 
-
-        public void InitializeResourcs()
+        public void InitializeResourcsTab()
         {
             InitializeResourcesDataGrid();
             InitializeResourceIcons();
@@ -47,7 +28,6 @@ namespace index_editor_app
                 ResourceIconComboBox.Items.Add(name);
             }
         }
-
         public void InitializeResourcesDataGrid()
         {
             this.ResourcesDataGridView3.CancelEdit();
@@ -86,7 +66,7 @@ namespace index_editor_app
                 row.DefaultCellStyle.BackColor = Color.White;
             }
 
-            //column 4 = edit button
+            //column 1 = edit button
             if (e.ColumnIndex == 1 && e.RowIndex != -1)
             {
                 editingResourceIndex = e.RowIndex;
@@ -118,14 +98,14 @@ namespace index_editor_app
                 }
             }
 
-            ResourcePictureBox.Image = null;
-            ResourcePictureBox.Image = await resourcesHandler.GetImageAsync(editingResourceIndex);
-
             // load icon
             string iconName = resourcesHandler.GetIcon(index);
             ResourceIconComboBox.SelectedIndex = ResourceIconComboBox.FindStringExact(iconName);
             IconChar selectedEnumValue = (IconChar)Enum.Parse(typeof(IconChar), iconName);
             ResourceIconPictureBox.Image = FormsIconHelper.ToBitmap(selectedEnumValue, Color.Black);
+
+            ResourcePictureBox.Image = null;
+            ResourcePictureBox.Image = await resourcesHandler.GetImageAsync(editingResourceIndex);
 
             ResourceSystemEditing = false;
         }

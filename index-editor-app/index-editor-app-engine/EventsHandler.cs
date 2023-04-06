@@ -16,119 +16,34 @@ namespace index_editor_app_engine
 {
     public class EventsHandler
     {
-        public EventsPage eventsPage;// List of Events
-        public List<Event> events;// List of Events
-        public string eventsJson;  //Events json string
-        public IndexAPIClient indexClient; //API client
+        public EventsPage eventsPage;
+        public IndexAPIClient indexClient;
+        private ImageHandler imageHandler;
 
-        public Dictionary<string, string> ImageDict = new Dictionary<string, string> { }; //links events to local image paths
-        int count;
-
-        public int Count { get => count; set => count = value; }
-
-        public EventsHandler(string EventsJson, IndexAPIClient client)
+        public EventsHandler(string eventsJson, IndexAPIClient client, ImageHandler imageHandler)
         {
             this.indexClient = client;
-            this.eventsJson = EventsJson;
             this.eventsPage = JsonConvert.DeserializeObject<EventsPage>(eventsJson);
-            InitializeEvents();
-        }
-
-        public void InitializeEvents()
-        {
-            events = eventsPage.Events.ToList<Event>();
-        }
-
-        public async Task LoadEventsFromAPI() // load events into class
-        {
-            this.eventsJson = await indexClient.GetDocument("events");
-            this.events = JsonConvert.DeserializeObject<Event[]>(eventsJson).ToList<Event>();
-            this.count = events.Count();
-            Console.WriteLine("THIS IS THE COUNT RIGHT NOW: " + count);
+            this.imageHandler = imageHandler;
         }
 
         public Event GetEventByIndex(int index)
         {
-            return events.ElementAt(index);
+            return eventsPage.Events[index];
         }
 
-        //returns API image given image name
-        public async Task<MemoryStream> LoadImageAPI(string name)
+        public async Task<System.Drawing.Image> GetImageAsync(int index)
         {
-            byte[] image = await indexClient.GetImageAsync(name);
-            MemoryStream ms = new MemoryStream(image, 0, image.Length);
-            return ms;
+            return System.Drawing.Image.FromStream(await imageHandler.GetImageAsync(eventsPage.Events[index].Image));
         }
 
-        //returns LOCAL image given path
-        public MemoryStream LoadImageLocal(string path)
-        {
-            byte[] image = File.ReadAllBytes(path);
-            MemoryStream ms = new MemoryStream(image, 0, image.Length);
-            return ms;
-        }
-
-        //returns either local or API image
-        public async Task<MemoryStream> LoadImageHandlerAsync(string createdOn)
-        {
-            Event e = events.Find(e => e.CreatedOn == createdOn);
-
-            if (e.Image == "")
-            {
-                return null;
-            }
-
-            if (ImageDict.ContainsKey(createdOn))
-            {
-                return LoadImageLocal(ImageDict[createdOn]);
-            }
-            else
-            {
-                return await LoadImageAPI(e.Image);
-            }
-        }
-
-        //add local image to dict. key = event.createdOn
         public void AddImage(string path, int index)
         {
-            ImageDict[events.ElementAt(index).CreatedOn] = path;
-            string dirName = new DirectoryInfo(path).Name;
-            string url = "https://index-webapp.s3.amazonaws.com/img/eventimages/" + dirName;
-            events.ElementAt(index).Image = url;
+            eventsPage.Events[index].Image = path;
         }
-
-
-
-
-
-
-        public bool HasLocalImage(string createdOn)
-        {
-            if (ImageDict.ContainsKey(createdOn))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
         public void DeleteEvent(int index)
         {
-            this.events.RemoveAt(index);
+            eventsPage.Events.RemoveAt(index);
         }
 
         public void CreateEvent()
@@ -140,16 +55,14 @@ namespace index_editor_app_engine
             newEvent.TimeRange = "";
             newEvent.Description = "New event created! Edit me!";
             newEvent.Image = "";
-            int size = events.Count();
 
-            events.Insert(0, newEvent);
+            eventsPage.Events.Add(newEvent);
         }
 
         public int GetEventCount()
         {
-            return events.Count();
+            return eventsPage.Events.Count();
         }
-
 
         public static string CheckEvent(string title, string des, string timeRange, string startdate, string link, string image)
         {
@@ -171,7 +84,6 @@ namespace index_editor_app_engine
                     }
                 }
             }
-
 
             if (des == string.Empty || des == null)
             {
@@ -209,7 +121,7 @@ namespace index_editor_app_engine
             string basicErros = string.Empty;
             string otherErrors = string.Empty;
             int i = 1;
-            foreach (Event e in events)
+            foreach (Event e in eventsPage.Events)
             {
                 string basicValidation = EventsHandler.CheckEvent(e.Title, e.Description, e.TimeRange, e.StartDate, e.Link, e.Image);
                 if (basicValidation != string.Empty)
@@ -224,21 +136,14 @@ namespace index_editor_app_engine
 
         public Task<HttpResponseMessage> PutEventsJson()
         {
-            foreach (Event e in events)
+            // update datetime to have ordinal suffix
+            foreach (Event e in eventsPage.Events)
             {
                 e.StartDate = AddOrdinalSuffix(e.StartDate);
             }
 
-            // put all of the local images
-            foreach (string key in ImageDict.Keys)
-            {
-                indexClient.PutImageAsync(ImageDict[key], "eventimages");
-            }
+            imageHandler.UploadEventImages(eventsPage);
 
-            //put the json
-            //Event[] updatedEvents = events.ToArray();
-            //string updatedEventsJsonString = JsonConvert.SerializeObject(updatedEvents);
-            eventsPage.Events = events.ToArray();
             string updatedEventsJsonString = JsonConvert.SerializeObject(eventsPage);
             var httpResponse = indexClient.PutDocument(updatedEventsJsonString, "events");
             return httpResponse;
@@ -286,14 +191,18 @@ namespace index_editor_app_engine
 
         public string GetJsonString()
         {
-            eventsPage.Events = events.ToArray();
-
-
             string updatedEventsJsonString = JsonConvert.SerializeObject(eventsPage);
-
-
-            //string updatedEventsJsonString = JsonConvert.SerializeObject(eventsPage);
             return updatedEventsJsonString;
+        }
+
+        public List<string> GetImageList()
+        {
+            List<string> urls = new List<string>();
+            foreach(Event e in eventsPage.Events)
+            {
+                urls.Add(e.Image);
+            }
+            return urls;
         }
     }
 }

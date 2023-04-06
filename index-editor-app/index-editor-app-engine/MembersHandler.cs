@@ -12,19 +12,16 @@ namespace index_editor_app_engine
 {
     public class MembersHandler
     {
-        string memberPageString;
-        public IndexAPIClient indexClient; //API client
+        public IndexAPIClient indexClient;
         public MembersPage memberspage;
+        private ImageHandler imageHandler;
         public Specialties specialties;
-
-        public Dictionary<string, string> MemberImageDict = new Dictionary<string, string> { }; //links memebers to local image paths
-
-        public MembersHandler(string MembersJson, string SpecialtiesJson, IndexAPIClient client)
+        public MembersHandler(string MembersJson, string SpecialtiesJson, IndexAPIClient client, ImageHandler imageHandler)
         {
             this.indexClient = client;
-            this.memberPageString = MembersJson;
             this.memberspage = JsonConvert.DeserializeObject<MembersPage>(MembersJson);
             this.specialties = JsonConvert.DeserializeObject<Specialties>(SpecialtiesJson);
+            this.imageHandler = imageHandler;
         }
 
         public void CreateBoardMember()
@@ -47,24 +44,18 @@ namespace index_editor_app_engine
         {
             memberspage.BoardMembers.RemoveAt(index);
         }
-
-        public void AddMemberImage(string path, int index)
+        public async Task<System.Drawing.Image> GetImageAsync(int index)
         {
-            MemberImageDict[memberspage.BoardMembers.ElementAt(index).Name] = path;
-            string dirName = new DirectoryInfo(path).Name;
-            string url = "https://index-webapp.s3.amazonaws.com/img/memberimages/" + dirName;
-            memberspage.BoardMembers.ElementAt(index).Image = url;
+            return System.Drawing.Image.FromStream(await imageHandler.GetImageAsync(memberspage.BoardMembers[index].Image));
         }
-
-
+        public void AddImage(string path, int index)
+        {
+            memberspage.BoardMembers[index].Image = path;
+        }
 
         public Task<HttpResponseMessage> UpdateMembersPage()
         {
-            // put all of the local images
-            foreach (string key in MemberImageDict.Keys)
-            {
-                indexClient.PutImageAsync(MemberImageDict[key], "memberimages");
-            }
+            imageHandler.UploadMemberImages(memberspage);
 
             MembersPage updatedMembersPage = memberspage;
             string updatedMembersPageString = JsonConvert.SerializeObject(updatedMembersPage);
@@ -87,7 +78,6 @@ namespace index_editor_app_engine
             }
         }
 
-
         public int GetMemberCount()
         {
             return memberspage.BoardMembers.Count();
@@ -98,46 +88,20 @@ namespace index_editor_app_engine
             return memberspage.BoardMembers[index];
         }
 
-        public async Task<MemoryStream> LoadMemberImageHandlerAsync(string name)
-        {
-            BoardMember m = memberspage.BoardMembers.First(item => item.Name == name);
-
-            if (m.Image == "")
-            {
-                return null;
-            }
-
-            if (MemberImageDict.ContainsKey(name))
-            {
-                return LoadImageLocal(MemberImageDict[name]);
-            }
-            else
-            {
-                return await LoadImageAPI(m.Image);
-            }
-        }
-
-        //returns API image given image name
-        public async Task<MemoryStream> LoadImageAPI(string name)
-        {
-            byte[] image = await indexClient.GetImageAsync(name);
-            MemoryStream ms = new MemoryStream(image, 0, image.Length);
-            return ms;
-        }
-
-        //returns LOCAL image given path
-        public MemoryStream LoadImageLocal(string path)
-        {
-            byte[] image = File.ReadAllBytes(path);
-            MemoryStream ms = new MemoryStream(image, 0, image.Length);
-            return ms;
-        }
-
         public string GetJsonString()
         {
             MembersPage updatedMembersPage = memberspage;
             string updatedMembersPageString = JsonConvert.SerializeObject(updatedMembersPage);
             return updatedMembersPageString;
+        }
+        public List<string> GetImageList()
+        {
+            List<string> urls = new List<string>();
+            foreach (BoardMember b in memberspage.BoardMembers)
+            {
+                urls.Add(b.Image);
+            }
+            return urls;
         }
     }
 }

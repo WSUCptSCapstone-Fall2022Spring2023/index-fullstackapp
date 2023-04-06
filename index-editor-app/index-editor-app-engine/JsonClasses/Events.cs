@@ -10,7 +10,7 @@
     public partial class EventsPage
     {
         [JsonProperty("Events")]
-        public Event[] Events { get; set; }
+        public List<Event> Events { get; set; }
     }
 
     public partial class Event

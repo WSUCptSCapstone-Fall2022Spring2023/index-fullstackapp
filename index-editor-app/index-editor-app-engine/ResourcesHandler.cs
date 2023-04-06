@@ -11,15 +11,14 @@ namespace index_editor_app_engine
     public class ResourcesHandler
     {
         public ResourcesPage resourcesPage;
-        public IndexAPIClient indexClient; //API client
-        public Dictionary<string, string> resourcesImageDict = new Dictionary<string, string> { }; //links memebers to local image paths
+        public IndexAPIClient indexClient;
         private ImageHandler imageHandler;
         private Icons icons;
 
-        public ResourcesHandler(string NewsJson, IndexAPIClient client, ImageHandler imageHandler, Icons icons)
+        public ResourcesHandler(string resourceJson, IndexAPIClient client, ImageHandler imageHandler, Icons icons)
         {
             this.indexClient = client;
-            this.resourcesPage = JsonConvert.DeserializeObject<ResourcesPage>(NewsJson);
+            this.resourcesPage = JsonConvert.DeserializeObject<ResourcesPage>(resourceJson);
             this.imageHandler = imageHandler;
             this.icons = icons;
         }
@@ -63,15 +62,14 @@ namespace index_editor_app_engine
         {
             resourcesPage.Resources[resourceIndex].Bulletpoints[bulletpointIndex].LinkPhrases[linkPhraseIndex] = linkPhrase;
         }
-
         public async Task<System.Drawing.Image> GetImageAsync(int index)
         {
-            return System.Drawing.Image.FromStream(await imageHandler.GetImageAsync(resourcesPage.Resources[index]));
+            return System.Drawing.Image.FromStream(await imageHandler.GetImageAsync(resourcesPage.Resources[index].PageImage));
         }
 
         public void AddImage(string path, int index)
         {
-            imageHandler.AddImage(GetResource(index), path);
+            resourcesPage.Resources[index].PageImage = path;
         }
 
         public void AddBulletPoint(int resourceIndex)
@@ -92,7 +90,6 @@ namespace index_editor_app_engine
             linkPhrase.Link = "";
             resourcesPage.Resources[resourceIndex].Bulletpoints[bulletpointIndex].LinkPhrases.Add(linkPhrase);
         }
-
         public string ValidateLinkPhrases(int resourceIndex, int bulletpointIndex)
         {
             string validationMessage = "";
@@ -144,20 +141,13 @@ namespace index_editor_app_engine
             resource.Bulletpoints = new List<Bulletpoint>();
             resourcesPage.Resources.Add(resource);
         }
-
         public void DeleteResource(int resourceIndex)
         {
             resourcesPage.Resources.RemoveAt(resourceIndex);
         }
-
-
         public Task<HttpResponseMessage> UpdateResourcePage()
         {
-            // put all of the local images
-            //foreach (string key in resourcesImageDict.Keys)
-            //{
-            //    indexClient.PutImageAsync(resourcesImageDict[key], "specialtyimages");
-            //}
+            imageHandler.UploadResourceImages(resourcesPage);
 
             string updatedResourcePageString = JsonConvert.SerializeObject(resourcesPage);
             var httpResponse = indexClient.PutDocument(updatedResourcePageString, "resources");
@@ -169,8 +159,14 @@ namespace index_editor_app_engine
             string updatedSpecialtiesPageString = JsonConvert.SerializeObject(resourcesPage);
             return updatedSpecialtiesPageString;
         }
-
-
-
+        public List<string> GetImageList()
+        {
+            List<string> urls = new List<string>();
+            foreach (Resource r in resourcesPage.Resources)
+            {
+                urls.Add(r.PageImage);
+            }
+            return urls;
+        }
     }
 }
