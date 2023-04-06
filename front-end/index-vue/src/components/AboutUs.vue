@@ -7,6 +7,22 @@
             <p v-html="pageDescription"></p>
             <ul class="location-staff">
 				<div v-for="member in memberJson.boardMembers" :key="member.name">
+					<li v-if = "member.specialties.some(item => item['name'] == 'Board Members')">
+						<RouterLink :to="{ path: member.bioLink}">
+							<img width="200" height="200" v-bind:src='member.image' class="round-thumb no-alt wp-post-image" decoding="async" sizes="(max-width: 200px) 100vw, 200px">								
+							<span class="staff-name">{{member.name}}</span>
+						</RouterLink>
+						<span class="staff-position">{{member.position}}</span>
+					</li>
+				</div>
+			</ul>
+        </div>
+        <div>
+            <h1 class = "title" >Staffs</h1>
+        </div>
+        <div class = "content">
+            <ul class="location-staff">
+				<div v-for="member in memberJson.boardMembers" :key="member.name">
 					<li>
 						<RouterLink :to="{ path: member.bioLink}">
 							<img width="200" height="200" v-bind:src='member.image' class="round-thumb no-alt wp-post-image" decoding="async" sizes="(max-width: 200px) 100vw, 200px">								
@@ -73,15 +89,14 @@
     ul.location-staff {
         clear: both;
         width: 100%;
-        display: block;
+        display: flex;
         list-style: none;
+        flex-wrap: wrap;
         margin: 0;
         padding: 0;
     }
 
     ul.location-staff li {
-        float: left;
-        width: 44%;
         margin: 3%;
         text-align: center;
     }
@@ -101,7 +116,7 @@
 
     @media only screen and (min-width: 40.063em){
         ul.location-staff li {
-            width: 27.33333%;
+            width: 280px;
         }
     }
 </style>
