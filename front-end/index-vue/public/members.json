@@ -34,23 +34,23 @@
         "specialties": [
           {
             "name": "Housing Advocacy & Assistance",
-            "link": "https://dacnw.org/programs-services/housing-home-modification-and-shelter-services/"
+            "link": "/programs-services/housing-home-modification-and-shelter-services/"
           },
           {
             "name": "Independent Living Skills",
-            "link": "https://dacnw.org/programs-services/life-skills-training/"
+            "link": "/programs-services/life-skills-training/"
           },
           {
             "name": "Individual & Community Advocacy",
-            "link": "https://dacnw.org/programs-services/advocacy/"
+            "link": "/programs-services/advocacy/"
           },
           {
             "name": "Information and Referral",
-            "link": "https://dacnw.org/programs-services/information-and-refferal/"
+            "link": "/programs-services/information-and-refferal/"
           },
           {
             "name": "Peer Advocacy Counseling",
-            "link": "https://dacnw.org/programs-services/peer-support/"
+            "link": "/programs-services/peer-support/"
           }
         ],
         "created_on": "1/19/2022"

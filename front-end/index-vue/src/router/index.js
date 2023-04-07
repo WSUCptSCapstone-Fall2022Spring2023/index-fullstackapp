@@ -7,7 +7,7 @@ import Staff from '../components/Staff.vue'
 import Event from '../components/Event.vue'
 import News from '../components/News.vue'
 import Contact from '../components/Contact.vue'
-
+import Speciality from '../components/Specialty.vue'
 
 const routes = [
     {
@@ -49,6 +49,11 @@ const routes = [
         path: '/staff/:id',
         name: 'staff',
         component: Staff
+    },
+    {
+        path: '/programs-services/:id',
+        name: 'Speciality',
+        component: Speciality
     }
 ]
 
