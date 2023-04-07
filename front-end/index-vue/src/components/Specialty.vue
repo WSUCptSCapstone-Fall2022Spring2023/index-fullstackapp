@@ -87,7 +87,6 @@
     }
 
     .page-header-wrapper{
-        line-height: 0;
         padding: 51px 0;
     }
 
@@ -96,9 +95,10 @@
         font-weight: 400;
         font-size: 1.3em;
         color: #a2c3dd;
-        text-transform: capitalize;
         word-spacing: 0.1em;
         text-align: left;
+        text-overflow: ellipsis;
+        line-height: 0;
     }
 
     .flex-box{
@@ -169,6 +169,11 @@
         padding: 0;
     }
 
+    .related-pages li{
+        width: 100%;
+        text-align: left;
+    }
+
     .related-pages li a {
         display: block;
         margin: 3px 0px;
@@ -203,5 +208,21 @@
 
     ul {
         line-height: 1em;
+    }
+
+    @media screen and (max-width: 715px) {
+        .flex-box{
+            display: block;
+        }
+        .sidebar {
+            margin: 0;
+            width: 100%;
+        }
+    }
+
+    @media screen and (max-width: 930px) {
+        .page-description{
+            line-height: 1.65rem;
+        }
     }
 </style>

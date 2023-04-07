@@ -67,6 +67,7 @@
 
     .search-box{
         text-align: left;
+        color: #df6c18;
     }
 
     .subscribe-events{

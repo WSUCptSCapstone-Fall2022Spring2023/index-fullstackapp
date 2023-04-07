@@ -8,6 +8,8 @@ import Event from '../components/Event.vue'
 import News from '../components/News.vue'
 import Contact from '../components/Contact.vue'
 import Speciality from '../components/Specialty.vue'
+import Resources from '../components/Resources.vue'
+import Resource from '../components/Resource.vue'
 
 const routes = [
     {
@@ -54,6 +56,16 @@ const routes = [
         path: '/programs-services/:id',
         name: 'Speciality',
         component: Speciality
+    },
+    {
+        path: '/resources',
+        name: 'Resources',
+        component: Resources
+    },
+    {
+        path: '/resources/:id',
+        name: 'Resource',
+        component: Resource
     }
 ]
 
