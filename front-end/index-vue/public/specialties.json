@@ -2,12 +2,13 @@
     "specialties": [
         {
             "name": "Board Members",
-            "icon": "fa fa-users"
+            "icon": "fa fa-users",
+            "link": "/about"
         },
         {
             "name": "Housing Advocacy & Assistance",
             "icon": "fa fa-address-book",
-            "link": "https://dacnw.org/programs-services/housing-home-modification-and-shelter-services/",
+            "link": "/programs-services/housing-home-modification-and-shelter-services/",
             "subtitle": "In America, access is always about architecture and never about human beings. - John Hockenberry",
             "description": "You are faced with numerous challenges in finding adequate housing to meet your disability needs. Homes may require the installation of a ramp or grab bars to increase accessibility. Our staff has access to resources to conduct home modifications for qualified individuals.",
             "image": "http://dacnw.org/wp-content/uploads/2014/04/renters-rights.jpeg",
@@ -20,38 +21,9 @@
             ]
         },
         {
-            "name": "Independent Living Skills",
-            "icon": "fa fa-book",
-            "link": "https://dacnw.org/programs-services/life-skills-training/",
-            "subtitle": "This is a test",
-            "description": "This is a test",
-            "image": "https://index-webapp.s3.amazonaws.com/img/specialtyimages/Screen-Shot-2019-05-09-at-9.40.22-AM-338x225.png",
-            "bulletpoints": [
-                "",
-                "",
-                "",
-                "",
-                "This is a test"
-            ]
-        },
-        {
-            "name": "Individual & Community Advocacy",
-            "icon": "fa fa-house-user",
-            "link": "https://dacnw.org/programs-services/advocacy/",
-            "subtitle": "",
-            "description": "",
-            "image": "",
-            "bulletpoints": [
-                "",
-                "",
-                "",
-                ""
-            ]
-        },
-        {
             "name": "Information and Referral",
             "icon": "fa fa-address-book",
-            "link": "https://dacnw.org/programs-services/information-and-refferal/",
+            "link": "/programs-services/information-and-refferal/",
             "subtitle": "Information is Power!",
             "description": "To control your life, you need accessible and accurate information. DAC provides information and referrals directly to people with disabilities and to other interested people such as family members, friends, employers and service providers. Information that covers a wide variety of disability related issues: Community services and organizations, Disability Laws, Disability Benefits, Independent Living Issues, Counseling and other supports, Accessible Housing, Transportation, information on different types of disabilities, removing architectural barriers, assistive technology. Our staff has access to a wealth of community resources and will direct you to these resources. We also produce a monthly newsletter to keep you informed. Follow our Facebook pages and learn about information and programs that may benefit you in real time.",
             "image": "https://dacnw.org/wp-content/uploads/2014/04/information2.jpg",
@@ -65,7 +37,7 @@
         {
             "name": "Peer Advocacy Counseling",
             "icon": "fa fa-address-book",
-            "link": "https://dacnw.org/programs-services/peer-support/",
+            "link": "/programs-services/peer-support/",
             "subtitle": "",
             "description": "",
             "image": "",
