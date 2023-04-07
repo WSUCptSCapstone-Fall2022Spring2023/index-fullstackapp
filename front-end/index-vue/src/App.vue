@@ -32,10 +32,7 @@
             <router-link to="/contact" class="navbar__links">Contact</router-link>
           </li>
           <li class="navbar__item">
-            <a class="navbar__links">Resources</a>
-          </li>
-          <li class="navbar__item">
-            <a class="navbar__links">Services</a>
+            <router-link to="/resources" class="navbar__links">Resources</router-link>
           </li>
           <li class="navbar__item">
             <router-link to="/events" class="navbar__links">Events</router-link>

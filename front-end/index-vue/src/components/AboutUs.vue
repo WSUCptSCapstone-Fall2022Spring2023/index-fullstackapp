@@ -69,6 +69,7 @@
 <style scoped>
     .title {
         text-align: left;
+        color: #df6c18;
     }
 
     .content{
