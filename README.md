@@ -4,13 +4,14 @@ INDEx Full Stack App
 
 ## Project summary
 
- As a nonprofit staffed by volunteers, INDEx doesn’t have the means of hiring/supporting a web developer. We are giving them a hand by providing a easily maintainable website, even with no coding experience. 
+INDEx, being a nonprofit organization run by volunteers, lacks the resources to hire or support a web developer. However, we are assisting them by designing a user-friendly, scalable website, and an accompanying editor application that allows INDEx staff to make necessary modifications and additions to the site without any coding expertise.
 
 ### Additional information about the project
 
-INDEx currently only has a small reference to their organization on their parent companies website (dacnw.org). INDEx plans on extending this reference to an entirely new website hosted under their own domain name. This means developing a website and making minor edits to the existing reference. 
+At present, INDEx has a limited presence on their parent company's website (dacnw.org). However, they intend to expand their online presence with a new website hosted on their own domain name. This will involve developing a new website from scratch and making some minor revisions to the existing reference on (dacnw.org).
 
 ## Installation
+
 
 ### Prerequisites
 None
@@ -47,7 +48,16 @@ None
 * dotnet add package FontAwesome.Sharp --version 6.2.1
 
 ## Functionality
-TODO:
+The editor app allows staff to create, delete and update...
+* [Events](http://index-webapp.s3-website-us-east-1.amazonaws.com/events)
+* [News](http://index-webapp.s3-website-us-east-1.amazonaws.com/news)
+* Specialties
+* [Members](http://index-webapp.s3-website-us-east-1.amazonaws.com/about)
+* Resources
+
+The editor app also allows staff to...
+* Save/backup the website.
+* Load/restore the website.
 
 ## Known Problems
 
