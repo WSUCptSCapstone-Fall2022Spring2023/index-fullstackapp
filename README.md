@@ -36,6 +36,13 @@ None
 * Using Visual studio installer, install workload: .NET desktop development
 * Rename "appsettings.example.json" to appsettings.json and add your endpoint and API key.
 
+### Infrastructure
+* Download and install Terraform from the official website: https://www.terraform.io/downloads.html.
+* Download AWS CLI: Follow the instructions in the official AWS documentation to install the AWS CLI: https://aws.amazon.com/cli/
+* Ensure that you have AWS credentials set up correctly.
+* Configure AWS CLI with your AWS Access Key ID, Secret Access Key, default region, and default output format
+* Run terraform init, terraform plan and terraform apply to deploy
+
 ### Back end packages added
 * dotnet add package FontAwesome.Sharp --version 6.2.1
 
