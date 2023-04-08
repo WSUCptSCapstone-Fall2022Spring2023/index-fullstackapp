@@ -1,15 +1,4 @@
 ﻿using index_editor_app_engine;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.DataFormats;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace index_editor_app
 {
@@ -19,6 +8,12 @@ namespace index_editor_app
         int editingMemberIndex = -1;
         bool systemLoadingChecks = true;
 
+        public void InitializeMembersTab()
+        {
+            InitializeMembersDataGrid();
+            LoadMembersPageData();
+            InitializeMemberSpecialtyCheckBox();
+        }
 
         public void InitializeMembersDataGrid()
         {
@@ -84,7 +79,7 @@ namespace index_editor_app
             }
         }
 
-        private void LoadMembersData()
+        private void LoadMembersPageData()
         {
             PageDescriptionTextBox.Text = membersHandler.memberspage.PageDescription;
             ApplicationLinkTextBox.Text = membersHandler.memberspage.ApplicationLink.ToString();
@@ -122,12 +117,8 @@ namespace index_editor_app
             }
             systemLoadingChecks = false;
 
-
             MemberPictureBox.Image = null;
-            if (m.Image != "")
-            {
-                MemberPictureBox.Image = System.Drawing.Image.FromStream(await membersHandler.LoadMemberImageHandlerAsync(m.Name));
-            }
+            MemberPictureBox.Image = await membersHandler.GetImageAsync(index);
         }
 
         private void CreateMemberButton_Click(object sender, EventArgs e)
@@ -162,7 +153,7 @@ namespace index_editor_app
 
             if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                membersHandler.AddMemberImage(openFileDialog1.FileName, editingMemberIndex);
+                membersHandler.AddImage(openFileDialog1.FileName, editingMemberIndex);
                 LoadMemberDataAsync(editingMemberIndex);
             }
         }

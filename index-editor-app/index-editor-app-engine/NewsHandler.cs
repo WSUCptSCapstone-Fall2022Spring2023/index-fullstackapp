@@ -11,58 +11,25 @@ namespace index_editor_app_engine
     public class NewsHandler
     {
         public NewsPage newsPage;
-        //public Dictionary<string, string> MemberSpecialtyDict = new Dictionary<string, string> { }; //links memebers to local image paths
-        public IndexAPIClient indexClient; //API client
-        public Dictionary<string, string> NewsImageDict = new Dictionary<string, string> { }; //links memebers to local image paths
+        public IndexAPIClient indexClient;
+        private ImageHandler imageHandler;
 
-
-        public NewsHandler(string NewsJson, IndexAPIClient client)
+        public NewsHandler(string NewsJson, IndexAPIClient client, ImageHandler imageHandler)
         {
             this.indexClient = client;
+            this.imageHandler = imageHandler;
             this.newsPage = JsonConvert.DeserializeObject<NewsPage>(NewsJson);
         }
 
-        public void AddNewsImage(string fileName, int editingNewsIndex)
+        public async Task<System.Drawing.Image> GetImageAsync(int index)
         {
-            NewsImageDict[newsPage.NewsItems.ElementAt(editingNewsIndex).Title] = fileName;
-            string dirName = new DirectoryInfo(fileName).Name;
-            string url = "https://index-webapp.s3.amazonaws.com/img/newsimages/" + dirName;
-            newsPage.NewsItems.ElementAt(editingNewsIndex).Image = url;
+            return System.Drawing.Image.FromStream(await imageHandler.GetImageAsync(newsPage.NewsItems[index].Image));
         }
 
-        public async Task<MemoryStream> LoadNewsImageHandlerAsync(string title)
+        public void AddImage(string path, int index)
         {
-            NewsItem n = newsPage.NewsItems.First(item => item.Title == title);
-
-            if (n.Image == "")
-            {
-                return null;
-            }
-            if (NewsImageDict.ContainsKey(title))
-            {
-                return LoadImageLocal(NewsImageDict[title]);
-            }
-            else
-            {
-                return await LoadImageAPI(n.Image);
-            }
+            newsPage.NewsItems[index].Image = path;
         }
-
-        public async Task<MemoryStream> LoadImageAPI(string name)
-        {
-            byte[] image = await indexClient.GetImageAsync(name);
-            MemoryStream ms = new MemoryStream(image, 0, image.Length);
-            return ms;
-        }
-
-        //returns LOCAL image given path
-        public MemoryStream LoadImageLocal(string path)
-        {
-            byte[] image = File.ReadAllBytes(path);
-            MemoryStream ms = new MemoryStream(image, 0, image.Length);
-            return ms;
-        }
-
 
         public int NewsCount()
         {
@@ -71,11 +38,7 @@ namespace index_editor_app_engine
 
         public Task<HttpResponseMessage> Upload()
         {
-            // put all of the local images
-            foreach (string key in NewsImageDict.Keys)
-            {
-                indexClient.PutImageAsync(NewsImageDict[key], "newsimages");
-            }
+            imageHandler.UploadNewsImages(newsPage);
 
             string updatedNewsPageString = JsonConvert.SerializeObject(newsPage);
             var httpResponse = indexClient.PutDocument(updatedNewsPageString, "news");
@@ -105,6 +68,16 @@ namespace index_editor_app_engine
         {
             string updatedNewsPageString = JsonConvert.SerializeObject(newsPage);
             return updatedNewsPageString;
+        }
+
+        public List<string> GetImageList()
+        {
+            List<string> urls = new List<string>();
+            foreach (NewsItem n in newsPage.NewsItems)
+            {
+                urls.Add(n.Image);
+            }
+            return urls;
         }
     }
 }
