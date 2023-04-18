@@ -64,9 +64,6 @@ namespace index_editor_app_engine
                 instacnes.newsHandler.newsPage = JsonConvert.DeserializeObject<NewsPage>(fileContents["News.json"]);
                 instacnes.specialtiesHandler.specialtyPage = JsonConvert.DeserializeObject<Specialties>(fileContents["Specialties.json"]);
                 instacnes.resourcesHandler.resourcesPage = JsonConvert.DeserializeObject<ResourcesPage>(fileContents["Resources.json"]);
-                //instacnes.newsHandler
-                //instacnes.specialtiesHandler
-
             }
         }
     }
