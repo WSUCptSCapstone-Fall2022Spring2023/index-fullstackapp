@@ -41,7 +41,7 @@ namespace index_editor_app
             imageHandler = new ImageHandler(indexClient, await indexClient.GetDocument("indeximages"));
             eventsHandler = new EventsHandler(await indexClient.GetDocument("events"), indexClient, imageHandler);
             progressBar1.Increment(20);
-            membersHandler = new MembersHandler(await indexClient.GetDocument("members"), await indexClient.GetDocument("specialties"), indexClient, imageHandler);
+            membersHandler = new MembersHandler(await indexClient.GetDocument("members"), indexClient, imageHandler);
             progressBar1.Increment(20);
             specialtiesHandler = new SpecialtyHandler(await indexClient.GetDocument("specialties"), indexClient, imageHandler, icons);
             progressBar1.Increment(20);
@@ -108,8 +108,8 @@ namespace index_editor_app
                         fbd.SelectedPath,
                         eventsHandler.GetJsonString(),
                         membersHandler.GetJsonString(),
-                        specialtiesHandler.GetJsonString(),
                         newsHandler.GetJsonString(),
+                        specialtiesHandler.GetJsonString(),
                         resourcesHandler.GetJsonString()
                         );
                 }
@@ -118,6 +118,9 @@ namespace index_editor_app
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            tabControl1.Hide();
+            progressBar1.Value = 0;
+            progressBar1.Show();
             var confirmResult = MessageBox.Show("Warning, current data will be lost when loading from backup. Continue?", "Confirm Load!", MessageBoxButtons.YesNo);
 
             if (confirmResult == DialogResult.Yes)
@@ -131,12 +134,9 @@ namespace index_editor_app
                         try
                         {
                             SaveLoad.Load(fbd.SelectedPath, editorInstances);
-                            InitializeEventsDataGrid();
-                            InitializeMembersDataGrid();
-                            LoadMembersPageData();
-                            InitializeMemberSpecialtyCheckBox();
-                            InitializeSpecialtiesTab();
-                            InitializeNewsTab();
+                            progressBar1.Increment(50);
+                            InitTabsAsync();
+                            progressBar1.Increment(100);
                         }
                         catch (Exception error)
                         {
@@ -145,6 +145,8 @@ namespace index_editor_app
                     }
                 }
             }
+            tabControl1.Show();
+            progressBar1.Hide();
         }
 
         /// <summary>

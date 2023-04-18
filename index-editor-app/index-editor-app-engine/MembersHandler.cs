@@ -17,11 +17,10 @@ namespace index_editor_app_engine
         public MembersPage memberspage;
         private ImageHandler imageHandler;
         public Specialties specialties;
-        public MembersHandler(string MembersJson, string SpecialtiesJson, IndexAPIClient client, ImageHandler imageHandler)
+        public MembersHandler(string MembersJson, IndexAPIClient client, ImageHandler imageHandler)
         {
             this.indexClient = client;
             this.memberspage = JsonConvert.DeserializeObject<MembersPage>(MembersJson);
-            this.specialties = JsonConvert.DeserializeObject<Specialties>(SpecialtiesJson);
             this.imageHandler = imageHandler;
         }
 
