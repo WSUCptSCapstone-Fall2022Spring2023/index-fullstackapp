@@ -18,6 +18,9 @@ namespace index_editor_app
         {
             NewsPageSubtitleTextBox.Text = newsHandler.newsPage.PageSubtitle;
             NewsPageTitleTextBox.Text = newsHandler.newsPage.PageTitle;
+
+            NewsDateTimePicker.Format = DateTimePickerFormat.Short;
+            NewsDateTimePicker.CustomFormat = "MMMM d, yyyy";
         }
 
         public void InitializeNewsDataGrid()
@@ -80,8 +83,10 @@ namespace index_editor_app
             NewsPostedByTextBox.Text = n.PostedBy;
 
             NewsDateTimePicker.Value = DateTime.Now;
-            string date = n.EditorDateTime;
-            DateTime parsedDate = DateTime.ParseExact(date, "M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
+            string date = n.Date;
+
+
+            DateTime parsedDate = DateTime.ParseExact(date, "MMMM d, yyyy", CultureInfo.InvariantCulture);
             NewsDateTimePicker.Value = parsedDate;
 
             NewsPictureBox.Image = null;
@@ -162,7 +167,6 @@ namespace index_editor_app
             System.Windows.Forms.MessageBox.Show(httpreseponse.ToString());
         }
 
-
         private void CreateNewsLetterButton_Click(object sender, EventArgs e)
         {
             newsHandler.CreateNewNews();
@@ -194,6 +198,23 @@ namespace index_editor_app
             if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 newsHandler.AddImage(openFileDialog1.FileName, editingNewsIndex);
+            }
+        }
+
+        private void ValdiateNewsButton_Click(object sender, EventArgs e)
+        {
+            IList<string> errors = new List<string>();
+            bool isValid = newsHandler.CheckSchema(out errors);
+
+            if (isValid)
+            {
+                String message = "There are NO propblems with the events!" + Environment.NewLine;
+                System.Windows.Forms.MessageBox.Show(message);
+            }
+            else
+            {
+                String message = "There are propblems with the events!" + Environment.NewLine + string.Join(Environment.NewLine, errors);
+                System.Windows.Forms.MessageBox.Show(message);
             }
         }
 

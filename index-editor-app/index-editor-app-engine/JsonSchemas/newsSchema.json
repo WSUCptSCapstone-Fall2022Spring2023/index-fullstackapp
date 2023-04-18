@@ -1,0 +1,59 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "pageTitle": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pageSubtitle": {
+      "type": "string",
+      "minLength": 1
+    },
+    "newsItems": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "date": {
+            "type": "string",
+            "minLength": 1
+          },
+          "image": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "newsLink": {
+            "type": "string",
+            "minLength": 1
+          },
+          "postedBy": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "title",
+          "date",
+          "image",
+          "description",
+          "newsLink",
+          "postedBy"
+        ]
+      }
+    }
+  },
+  "required": [
+    "pageTitle",
+    "pageSubtitle",
+    "newsItems"
+  ]
+}

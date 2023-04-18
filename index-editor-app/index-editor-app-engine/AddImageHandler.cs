@@ -1,5 +1,7 @@
 ﻿using index_editor_app_engine.JsonClasses;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Schema;
 using System.Text.RegularExpressions;
 
 namespace index_editor_app_engine
@@ -273,6 +275,25 @@ namespace index_editor_app_engine
             oFileStream.Close();
 
             return FileByteArrayData; //return the byte data
+        }
+
+        public string GetJsonString()
+        {
+            string updatedJsonString = JsonConvert.SerializeObject(imageList);
+            return updatedJsonString;
+        }
+
+        public bool CheckSchema(out IList<string> errors)
+        {
+            // Get the Schema
+            string schemaFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JsonSchemas", "indeximagesSchema.json");
+            string schemaContent = File.ReadAllText(schemaFilePath);
+            JSchema schema = JSchema.Parse(schemaContent);
+
+            // get the current json
+            JObject json = JObject.Parse(GetJsonString());
+
+            return json.IsValid(schema, out errors);
         }
     }
 }

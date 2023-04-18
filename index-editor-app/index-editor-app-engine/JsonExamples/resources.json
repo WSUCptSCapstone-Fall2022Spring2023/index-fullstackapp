@@ -1,0 +1,155 @@
+﻿{
+  "Resources": [
+    {
+      "pageTitle": "Accessibility",
+      "pageIcon": "fa fa-wheelchair",
+      "pageLink": "https://dacnw.org/resources/housing/",
+      "pageImage": "https://dacnw.org/wp-content/uploads/2014/05/goal_42_transitionnew_page-300x200.png",
+      "pageDescription": "write something here",
+      "bulletpoints": [
+        {
+          "title": "Department of Justice Access Board",
+          "link": "https://www.access-board.gov/",
+          "description": "Also known as the Architectural and Transportation Barriers Compliance Board, which offers technical assistance on the ADA Accessibility Guidelines (ADAG), as set forth by the U.S. Department of Justice.",
+          "linkPhrases": []
+        },
+        {
+          "title": "Equal Employment Opportunity Commission",
+          "link": "https://www.eeoc.gov/",
+          "description": "Offers technical assistance on the ADA provisions applying to employment; also provides information on how to file ADA complaints.",
+          "linkPhrases": []
+        },
+        {
+          "title": "Federal Communications Commission",
+          "link": "https://www.fcc.gov/",
+          "description": "Offers technical assistance on ADA telephone relay service requirements.",
+          "linkPhrases": []
+        },
+        {
+          "title": "Moss Rehab Resource Net",
+          "link": "https://dacnw.org/resources/accessibility/www.MossResourceNet.org",
+          "description": "Accessible travel, disability fact sheets, general resources, ADA, newsgroups, search tools, and more.",
+          "linkPhrases": []
+        },
+        {
+          "title": "Office of Disability Employment Policy (ODEP)",
+          "link": "https://www.dol.gov/agencies/odep",
+          "description": "Answers employment questions and funds the Job Accommodation Network (JAN), which provides advice on accommodating employees with disabilities.",
+          "linkPhrases": []
+        },
+        {
+          "title": "The Americans with Disabilities Act",
+          "link": "https://www.ada.gov/",
+          "description": "Access the complete content of the Americans with Disabilities Act at the U.S. Department of Justice website.",
+          "linkPhrases": []
+        }
+      ]
+    },
+    {
+      "pageTitle": "Compliance",
+      "pageIcon": "fa fa-certificate",
+      "pageLink": "https://dacnw.org/resources/compliance/",
+      "pageImage": "https://dacnw.org/wp-content/uploads/2014/05/goal_42_transitionnew_page-300x200.png",
+      "pageDescription": "write something here",
+      "bulletpoints": [
+        {
+          "title": "Department of Justice Access Board",
+          "link": "https://www.access-board.gov/",
+          "description": "Also known as the Architectural and Transportation Barriers Compliance Board, which offers technical assistance on the ADA Accessibility Guidelines (ADAG), as set forth by the U.S. Department of Justice.",
+          "linkPhrases": []
+        },
+        {
+          "title": "Federal Communications Commission",
+          "link": "https://www.fcc.gov/",
+          "description": "Offers technical assistance on ADA telephone relay service requirements.",
+          "linkPhrases": []
+        },
+        {
+          "title": "Office of Disability Employment Policy (ODEP)",
+          "link": "https://www.dol.gov/agencies/odep",
+          "description": "Answers employment questions and funds the Job Accommodation Network (JAN), which provides advice on accommodating employees with disabilities.",
+          "linkPhrases": []
+        },
+        {
+          "title": "The Americans with Disabilities Act",
+          "link": "https://www.ada.gov/",
+          "description": "Access the complete content of the Americans with Disabilities Act at the U.S. Department of Justice website.",
+          "linkPhrases": []
+        }
+      ]
+    },
+    {
+      "pageTitle": "Employment",
+      "pageIcon": "fa fa-briefcase",
+      "pageLink": "https://dacnw.org/resources/employment/",
+      "pageImage": "https://dacnw.org/wp-content/uploads/2014/05/goal_42_transitionnew_page-300x200.png",
+      "pageDescription": "Schedule a meeting with one of our Independent Living Specialists. They are trained to help you do what you need to get to work. Understand your rights for reasonable accommodation under the ADA. DAC also houses Vocational Rehabilitation of Idaho and Department of Labor in our Moscow office for one stop shopping. Guide to being Willing and Able to work from the Idaho Department of Labor",
+      "bulletpoints": [
+        {
+          "title": "U.S. Department of Education",
+          "link": "https://www2.ed.gov/offices/OSERS/index.html",
+          "description": "Office of Special Education and Rehabilitative Services (OSERS). Research and Training Center on Disabilities in Rural Communities Rural people with disabilities have a higher rate of unemployment than their urban counterparts, possibly due to the marginal nature of many rural economies. They can provide help on employment and vocational rehabilitation. Career Guide for People with Disabilities: As a person with a disability, you may hesitate to look for work. You can be unsure whether or not to make a disability known when applying for employment. In today’s job market, however, that shouldn’t be an issue. A disability doesn’t prevent you from having the job of your dreams. The job market accommodates people with a wide range of qualifications, passions, talents, and abilities. Opportunities can be found in all fields: nursing, business, media, technology, law, social sciences – you name it. There are people with disabilities working in almost all industries. Click here to find everything you need to know about navigating the pathway to employment as an individual with a disability.",
+          "linkPhrases": [
+            {
+              "link": "https://www.umt.edu/rural-disability-research/",
+              "phrase": "employment and vocational rehabilitation"
+            },
+            {
+              "link": "https://novoresume.com/career-blog/disability-career-guide",
+              "phrase": "Click here"
+            }
+          ]
+        },
+        {
+          "title": "Neurodiversity in the Modern Workplace",
+          "link": "https://helloezra.com/neurodiversity-modern-workplace",
+          "description": "a guide providing an overview of the benefits and challenges of hiking a neurodiverse workforce. Tips on developing job descriptions and more.",
+          "linkPhrases": []
+        },
+        {
+          "title": "Guide to Trade Schools for People with Disabilities:",
+          "link": "https://primeweld.com/blogs/news/disability-guide-to-trade-school",
+          "description": "Professionally successful people living with a disability sometimes credit their impairment for boosting their career prospects, because it taught them perseverance and commitment. Others believe that their physical or cognitive differences in certain areas have led them to develop stronger abilities in others. Choosing a trade school is an opportunity to assess one’s traits and capabilities, and find the right career for applying them.",
+          "linkPhrases": []
+        },
+        {
+          "title": "NonPariel Institute",
+          "link": "https://npusa.org/",
+          "description": "They provide technical training to adults on the autism spectrum, engage their strengths, and help them find work to achieve fulfilled lives.",
+          "linkPhrases": []
+        },
+        {
+          "title": "JOB-HUNT",
+          "link": "https://www.job-hunt.org/disabled-job-seeker/",
+          "description": "Are you a disabled job seeker considering employment with the US Federal Government? Individuals with mental or physical disabilities can be hired under “Schedule A” hiring authority. Job-Hunt  explains about special hiring programs with the Federal Government and may help you land your dream job! At Disability Job Exchange, they are committed to finding the perfect match between dedicated workers and employers looking to build a strong workforce. Their experienced team is also happy to provide resume and interview tips and career advice to guide workers through their search for the perfect job. They work with companies like FedEx, Toshiba and more! Diversity managers & recruiters rely on this high ranking, cost effective National Job Board to locate and hire job seekers with disabilities for all types of positions. What makes this job board unique is that it combines Sierra Group’s 25 year history in the disability employment industry with companies and job seekers alike to connect them with a great career. If you have a question about workplace accommodations and the Americans with Disabilities Act (ADA) and related legislation, Job Accommodation Network(JAN) can help! They are the leading source of information and confidential guidance, and work to get people with disabilities employed. Try their free, one-on-one consultations with employers and workers. It’s difficult for people with disabilities to find jobs. Keep a positive “can-do” attitude and follow these steps from Disability & Employment to succeed in your job search: Believe in yourself, network, get involved in local non-profits and make connections with people. Let them know what our skills are. Research possible tax advantages for companies who hire the disabled and show how they will benefit by giving you the chance. Researching and selecting a college that fits your needs can be daunting, but that challenge can be even greater when you’re a student with disabilities. However, that doesn’t mean your options are limited. As technology has advanced, so has accessibility for all students. This guide can help you find an accessible post secondary education. 74.6 million people in the U.S. have a disability that affects their physical capacity either temporarily or permanently. Having a physical disability can make finding a job difficult. From learning about laws that protect you, how to interview, to finding accommodating companies, here is a resource guide to make things a little easier. Zippia.com.",
+          "linkPhrases": [
+            {
+              "link": "https://jobs.localjobnetwork.com/disability",
+              "phrase": "Disability Job Exchange"
+            },
+            {
+              "link": "https://www.recruitdisability.org/",
+              "phrase": "National Job Board"
+            },
+            {
+              "link": "https://askjan.org/",
+              "phrase": "Job Accommodation Network(JAN)"
+            },
+            {
+              "link": " http://www.careersearch.com/careers-for-the-challenged/",
+              "phrase": "Disability & Employment"
+            },
+            {
+              "link": "https://online.maryville.edu/disabilities-guide/",
+              "phrase": "guide"
+            },
+            {
+              "link": "https://www.zippia.com/advice/disability-resource-guide/",
+              "phrase": "Zippia.com"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

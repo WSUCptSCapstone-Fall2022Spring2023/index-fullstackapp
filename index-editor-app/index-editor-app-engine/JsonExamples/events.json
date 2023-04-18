@@ -1,0 +1,22 @@
+﻿{
+  "Events": [
+    {
+      "title": "Stroke Support Group",
+      "description": "This support group is open to all. Topics rotate w/focus on life after stroke, education & prevention. Held every Thursday at 10:30 am.",
+      "link": "/event/stroke-support-group",
+      "start_date": "Thursday, December 1st",
+      "time_range": "1:00 pm - 2:20 pm",
+      "created_on": "10/30/2022",
+      "image": "https://dacnw.org/wp-content/uploads/2022/10/Screen-Shot-2022-10-28-at-9.57.41-AM-338x225.png"
+    },
+    {
+      "title": "Parkinson’s Support Group – CDA",
+      "description": "CdA Parkinson’s Support Group meets the first Thursday of every month.  Sessions are open to those with Parkinson’s, their spouses, family & caregivers. This is a group of people who get together to support each other in our quest to live life to the fullest, in spite of the fact that we have Parkinson’s.",
+      "link": "/event/parkinsons-support-group-cda",
+      "start_date": "Thursday, December 1st",
+      "time_range": "1:00 pm - 2:20 pm",
+      "created_on": "10/30/2022",
+      "image": "https://dacnw.org/wp-content/uploads/2022/10/Screen-Shot-2022-10-28-at-10.21.47-AM-318x225.png"
+    }
+  ]
+}

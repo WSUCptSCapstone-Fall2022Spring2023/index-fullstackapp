@@ -1,0 +1,54 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "Events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "link": {
+            "type": "string",
+            "minLength": 1
+          },
+          "start_date": {
+            "type": "string",
+            "minLength": 1
+          },
+          "time_range": {
+            "type": "string",
+            "minLength": 1
+          },
+          "created_on": {
+            "type": "string",
+            "minLength": 1
+          },
+          "image": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "title",
+          "description",
+          "link",
+          "start_date",
+          "time_range",
+          "created_on",
+          "image"
+        ]
+      }
+    }
+  },
+  "required": [
+    "Events"
+  ]
+}
