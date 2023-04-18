@@ -1,0 +1,7 @@
+﻿{
+  "events": [ "https://index-webapp.s3.amazonaws.com/img/eventimages/ParkinsonsSupportGroupCDA.png", "https://index-webapp.s3.amazonaws.com/img/eventimages/StrokeSupportGroupImage.png" ],
+  "members": [ "https://index-webapp.s3.amazonaws.com/img/memberimages/JoleneMemberImage.png", "https://index-webapp.s3.amazonaws.com/img/memberimages/ZilarMemberImage.jpg" ],
+  "news": [ "https://index-webapp.s3.amazonaws.com/img/newsimages/FromTheEditor.png", "https://index-webapp.s3.amazonaws.com/img/newsimages/InterstateConnections.png", "https://index-webapp.s3.amazonaws.com/img/newsimages/Screen-Shot-2022-10-25-at-1.54.09-PM-338x225.jpg", "https://index-webapp.s3.amazonaws.com/img/newsimages/Screen-Shot-2021-01-04-at-1.14.16-PM-338x225.png" ],
+  "specialties": [ "https://index-webapp.s3.amazonaws.com/img/specialtyimages/HousingAdvocacyAndAssistance.png", "https://index-webapp.s3.amazonaws.com/img/specialtyimages/IndependentLivingSkills.png", "https://index-webapp.s3.amazonaws.com/img/specialtyimages/InformationAndReferral.png" ],
+  "Resources": [ "https://dacnw.org/wp-content/uploads/2014/05/goal_42_transitionnew_page-300x200.png", "https://dacnw.org/wp-content/uploads/2014/05/goal_42_transitionnew_page-300x200.png", "https://dacnw.org/wp-content/uploads/2014/05/goal_42_transitionnew_page-300x200.png" ]
+}

@@ -116,23 +116,20 @@ namespace index_editor_app
 
         private void ValidateChangesButton_Click(object sender, EventArgs e)
         {
-            if (editingEventIndex == -1)
+            IList<string> errors = new List<string>();
+            bool isValid = eventsHandler.CheckSchema(out errors);
+
+            if (isValid)
             {
-                NoEventSelectedCheck();
-                return;
-            }
-            string status = EventsHandler.CheckEvent(titleTextBox.Text, descriptionBox1.Text, timeRangeTextBox.Text, dateTimePicker1.Value.ToString(), LinktextBox.Text, pictureBox1.ImageLocation);
-            if (status == string.Empty)
-            {
-                System.Windows.Forms.MessageBox.Show("No problems found");
+                String message = "There are NO propblems with the events!" + Environment.NewLine;
+                System.Windows.Forms.MessageBox.Show(message);
             }
             else
             {
-                String message = "There are propblems with the event!" + Environment.NewLine + status;
+                String message = "There are propblems with the events!" + Environment.NewLine + string.Join(Environment.NewLine, errors);
                 System.Windows.Forms.MessageBox.Show(message);
             }
-
-        }//Display event validation
+        }
 
         private void Update_Website_Button_Click(object sender, EventArgs e)//Push events to website
         {

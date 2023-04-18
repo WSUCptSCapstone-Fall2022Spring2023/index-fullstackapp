@@ -1,6 +1,8 @@
 ﻿using FontAwesome.Sharp;
 using index_editor_app_engine.JsonClasses;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Schema;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +11,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
-using System.Windows.Shapes;
+//using System.Windows.Shapes;
 
 namespace index_editor_app_engine
 {
@@ -120,6 +122,19 @@ namespace index_editor_app_engine
                 urls.Add(s.Image);
             }
             return urls;
+        }
+
+        public bool CheckSchema(out IList<string> errors)
+        {
+            // Get the Schema
+            string schemaFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JsonSchemas", "specialtiesSchema.json");
+            string schemaContent = File.ReadAllText(schemaFilePath);
+            JSchema schema = JSchema.Parse(schemaContent);
+
+            // get the current json
+            JObject json = JObject.Parse(GetJsonString());
+
+            return json.IsValid(schema, out errors);
         }
     }
 }

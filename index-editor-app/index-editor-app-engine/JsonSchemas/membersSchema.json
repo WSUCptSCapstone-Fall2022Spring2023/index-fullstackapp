@@ -1,0 +1,100 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "pageDescription": {
+      "type": "string",
+      "minLength": 1
+    },
+    "applicationLink": {
+      "type": "string",
+      "minLength": 1
+    },
+    "phraseLink": {
+      "type": "string",
+      "minLength": 1
+    },
+    "boardMembers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "position": {
+            "type": "string",
+            "minLength": 1
+          },
+          "image": {
+            "type": "string",
+            "minLength": 1
+          },
+          "bioLink": {
+            "type": "string",
+            "minLength": 1
+          },
+          "bioDescription": {
+            "type": "string",
+            "minLength": 1
+          },
+          "bioQuote": {
+            "type": "string",
+            "minLength": 1
+          },
+          "employeeSince": {
+            "type": "string",
+            "minLength": 1
+          },
+          "officeLocation": {
+            "type": "string"
+          },
+          "officeLink": {
+            "type": "string"
+          },
+          "specialties": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "link": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [ "name", "link" ]
+            }
+          },
+          "created_on": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "name",
+          "position",
+          "image",
+          "bioLink",
+          "bioDescription",
+          "bioQuote",
+          "employeeSince",
+          "officeLocation",
+          "officeLink",
+          "specialties",
+          "created_on"
+        ]
+      }
+    }
+  },
+  "required": [
+    "pageDescription",
+    "applicationLink",
+    "phraseLink",
+    "boardMembers"
+  ]
+}

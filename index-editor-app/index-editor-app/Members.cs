@@ -283,5 +283,23 @@ namespace index_editor_app
         {
             membersHandler.memberspage.PhraseLink = LinkPhraseTextbox.Text;
         }
+
+        private void ValdiateMembersButton_Click(object sender, EventArgs e)
+        {
+            IList<string> errors = new List<string>();
+            bool isValid = membersHandler.CheckSchema(out errors);
+
+            if (isValid)
+            {
+                String message = "There are NO propblems with the events!" + Environment.NewLine;
+                System.Windows.Forms.MessageBox.Show(message);
+            }
+            else
+            {
+                String message = "There are propblems with the events!" + Environment.NewLine + string.Join(Environment.NewLine, errors);
+                System.Windows.Forms.MessageBox.Show(message);
+            }
+        }
+
     }
 }

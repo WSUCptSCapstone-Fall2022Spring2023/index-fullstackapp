@@ -270,8 +270,6 @@ namespace index_editor_app
                 specialtiesHandler.AddImage(openFileDialog1.FileName, editingSpecialtyIndex);
             }
         }
-
-
         private void SpecialtyIconComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (NoSpecialtySelectedCheck() || SpecialtySystemEditing) { return; }
@@ -279,6 +277,23 @@ namespace index_editor_app
             IconChar selectedEnumValue = (IconChar)Enum.Parse(typeof(IconChar), iconName);
             SpecialtyIconPictureBox.Image = FormsIconHelper.ToBitmap(selectedEnumValue, Color.Black);
             specialtiesHandler.UpdateIcon(iconName, editingSpecialtyIndex);
+        }
+
+        private void ValdiateSpecialtiesButton_Click(object sender, EventArgs e)
+        {
+            IList<string> errors = new List<string>();
+            bool isValid = specialtiesHandler.CheckSchema(out errors);
+
+            if (isValid)
+            {
+                String message = "There are NO propblems with the events!" + Environment.NewLine;
+                System.Windows.Forms.MessageBox.Show(message);
+            }
+            else
+            {
+                String message = "There are propblems with the events!" + Environment.NewLine + string.Join(Environment.NewLine, errors);
+                System.Windows.Forms.MessageBox.Show(message);
+            }
         }
 
     }
