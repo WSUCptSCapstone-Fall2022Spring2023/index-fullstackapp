@@ -26,6 +26,20 @@ resource "aws_s3_bucket_object" "img_folder" {
   content = ""
 }
 
+# Add /img to root
+resource "aws_s3_bucket_object" "css_folder" {
+  bucket  = aws_s3_bucket.index_static_website.id
+  key     = "css/"
+  content = ""
+}
+
+# Add /img to root
+resource "aws_s3_bucket_object" "js_folder" {
+  bucket  = aws_s3_bucket.index_static_website.id
+  key     = "js/"
+  content = ""
+}
+
 # Add sub-folders to /img
 resource "aws_s3_bucket_object" "img_sub_folders" {
   for_each = toset(local.img_sub_folders)
@@ -34,6 +48,37 @@ resource "aws_s3_bucket_object" "img_sub_folders" {
   key     = "img/${each.value}/"
   content = ""
 }
+
+locals {
+  dist_directory = "front-end/index-vue/dist/"
+  files_to_upload = fileset("${local.dist_directory}/", "**/*")
+}
+
+resource "aws_s3_bucket_object" "uploaded_files" {
+  for_each = toset(local.files_to_upload)
+
+  bucket       = aws_s3_bucket.index_static_website.id
+  key          = each.value
+  source       = "${local.dist_directory}/${each.value}"
+  etag         = filemd5("${local.dist_directory}/${each.value}")
+  acl          = "public-read"
+  content_type = lookup(local.mime_types, regex("\\.(.+)$", each.value)[0], "binary/octet-stream")
+}
+
+locals {
+  mime_types = {
+    "html" = "text/html"
+    "css"  = "text/css"
+    "js"   = "application/javascript"
+    "json" = "application/json"
+    "png"  = "image/png"
+    "jpg"  = "image/jpeg"
+    "jpeg" = "image/jpeg"
+    "gif"  = "image/gif"
+    "svg"  = "image/svg+xml"
+  }
+}
+
 
 # Set the ACL of the s3 bucket "index_static_website" to public-read
 resource "aws_s3_bucket_acl" "index_static_website_acl" {
