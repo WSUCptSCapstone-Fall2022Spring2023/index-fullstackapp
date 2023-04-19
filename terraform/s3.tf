@@ -1,13 +1,3 @@
-# Create the S3 bucket
-resource "aws_s3_bucket" "index_static_website" {
-  bucket = "index-static-website"
-
-  tags = {
-    Name        = "index-static-website"
-    Environment = "Dev"
-  }
-}
-
 # s3 sub-folder names
 locals {
   img_sub_folders = [
@@ -19,14 +9,24 @@ locals {
   ]
 }
 
-# Add /img
+# Create the S3 bucket
+resource "aws_s3_bucket" "index_static_website" {
+  bucket = "index-static-website"
+
+  tags = {
+    Name        = "index-static-website"
+    Environment = "Dev"
+  }
+}
+
+# Add /img to root
 resource "aws_s3_bucket_object" "img_folder" {
   bucket  = aws_s3_bucket.index_static_website.id
   key     = "img/"
   content = ""
 }
 
-# Add folders to /img
+# Add sub-folders to /img
 resource "aws_s3_bucket_object" "img_sub_folders" {
   for_each = toset(local.img_sub_folders)
 
