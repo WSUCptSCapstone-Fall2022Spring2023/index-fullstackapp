@@ -1,0 +1,58 @@
+{
+    "location":[
+        {
+            "name":"Post Falls, ID",
+            "link":"/contact/post-falls-id/",
+            "mapid": "https://www.google.com/maps/embed/v1/place?q=place_id:ChIJL0-D37vDYVMR5xFZhpF4dGM&key=AIzaSyAkURIooZWoXnYIJAHRuha5ZgjIJnO2YLQ",
+            "imageLink":"https://dacnw.org/wp-content/uploads/2014/04/PF-Office-crop.jpg",
+            "phone":[
+                "208.457.3891",
+                "800.475.0070 Toll-Free"
+            ],
+            "fax": "208.457.3893",
+            "address":"3726 E Mullan Ave Post Falls ID, 83854",
+            "hours": [
+                "Mon thru Thurs: 8:30am - 4:30pm",
+                "Fri: 8:30am - 4:00pm"
+            ],
+            "content":[
+                {
+                    "title":"Striving to be our very best",
+                    "description":"We pride ourselves in having a well-trained and extremely diverse staff, and they are ready to assist you with your needs and concerns. Not sure who to contact? Call our main desk (208) 457-3891 and we will be happy to direct your call to the right person, 8:30am – 4:30pm, Monday through Thursday and until 4:00 pm on Friday. The people of Disability Action Center NW, Inc. work to promote the independence and equality of all individuals with disabilities in all aspects of society."
+                },
+                {
+                    "title":"The Post Falls & Coeur d’Alene Community",
+                    "description":"Post Falls and Coeur d’Alene is the perfect mash-up of small-town vibe and big-city atmosphere. Blessed with natural beauty that most people can only dream about, it has a true four-season climate. The stable economy, low crime rate, and the 6th lowest cost of living in the U.S. attract many looking for a new place to call home, or relocate their business to a location that offers them and their employees an amazing lifestyle in the heart of paradise. For more information, visit Post Falls Chamber of Commerce."
+                }
+            ]
+
+        },
+        {
+            "name":"Lewiston, ID",
+            "link":"/contact/lewiston-id/",
+            "mapid": "https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ50FmzLXKoVQRNQlNmQyesYw&key=AIzaSyAkURIooZWoXnYIJAHRuha5ZgjIJnO2YLQ",
+            "imageLink":"https://dacnw.org/wp-content/uploads/2014/04/Lewiston-office.jpg",
+            "phone":[
+                "208.746.9033",
+                "800.475.0070 Toll-Free"
+            ],
+            "fax": "208.746.1004",
+            "address":"330 5th Street Lewiston ID, 83501",
+            "hours": [
+                "Mon thru Fri: 8:30am - 4:30pm"
+            ],
+            "content":[
+                {
+                    "title":"Striving to be our very best",
+                    "description":"We pride ourselves in having a well-trained and extremely diverse staff, and they are ready to assist you with your needs and concerns. Not sure who to contact? Call our main desk (208) 746-9033 and we will be happy to direct your call to the right person, 8:30am – 4:30pm, Monday through Friday. The people of Disability Action Center NW, Inc. work to promote the independence and equality of all individuals with disabilities in all aspects of society."
+                },
+                {
+                    "title":"The Lewiston Community",
+                    "description":"Lewiston is located at the conjunction of two rivers and enjoys more warm and sunny days than almost any other place in the northwest. Recreational opportunities abound in the Lewis-Clark Valley. It offers premier water-skiing, jet boating, sailing, rafting, hunting & fishing, camping and more. Miles of accessible paved levee pathways follow the rivers for walking jogging and biking. A thriving port system, competitive business operation costs and highly acclaimed Lewis-Clark State College give Lewiston a great quality of life. For more information, visit Lewis Clark Valley Chamber of Commerce."
+                }
+            ]
+
+        }
+        
+    ]
+}
