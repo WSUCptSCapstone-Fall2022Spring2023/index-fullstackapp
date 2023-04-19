@@ -6,6 +6,7 @@ import NewsPage from '../components/NewsPage.vue'
 import Staff from '../components/Staff.vue'
 import Event from '../components/Event.vue'
 import News from '../components/News.vue'
+import Contacts from '../components/Contacts.vue'
 import Contact from '../components/Contact.vue'
 import Speciality from '../components/Specialty.vue'
 import Resources from '../components/Resources.vue'
@@ -44,6 +45,11 @@ const routes = [
     },
     {
         path: '/contact',
+        name: 'Contacts',
+        component: Contacts
+    },
+    {
+        path: '/contact/:id',
         name: 'Contact',
         component: Contact
     },
