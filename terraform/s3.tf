@@ -50,7 +50,7 @@ resource "aws_s3_bucket_object" "img_sub_folders" {
 }
 
 locals {
-  dist_directory = "front-end/index-vue/dist/"
+  dist_directory = "../front-end/index-vue/dist/"
   files_to_upload = fileset("${local.dist_directory}/", "**/*")
 }
 
