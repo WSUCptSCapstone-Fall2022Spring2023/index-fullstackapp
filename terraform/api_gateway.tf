@@ -31,8 +31,6 @@ resource "aws_api_gateway_rest_api" "index_rest" {
 }
 
 
-
-
 ################################### CREATE API RESOURCES ###################################################
 
 # Create the JSON resources
@@ -319,10 +317,10 @@ resource "aws_iam_role" "index_api_json_role" {
   })
 }
 
-# Policy to allow API to (GET,PUT,DEL) from s3
+# Policy to allow API to (GET,PUT) from s3
 resource "aws_iam_policy" "index_api_json_policy" {
   name        = "index-api-json-policy"
-  description = "Policy to allow GetObject and PutObject actions for the S3 bucket"
+  description = "Policy to allow index-rest API to GET and PUT objects from index-static-website"
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -344,41 +342,6 @@ resource "aws_iam_role_policy_attachment" "index_api_json_policy_attachment" {
   policy_arn = aws_iam_policy.index_api_json_policy.arn
   role       = aws_iam_role.index_api_json_role.name
 }
-
-
-
-###################################  IAM ROLES AND POLICY FOR API CLOUDWATCH ###################################################
-
-#Create the IAM role for API Gateway to create cloudwatch logs for testing and debugging:
-resource "aws_iam_role" "api_gateway_cloudwatch_logs_role" {
-  name = "ApiGatewayCloudWatchLogsRole"
-
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Action = "sts:AssumeRole"
-        Effect = "Allow"
-        Principal = {
-          Service = "apigateway.amazonaws.com"
-        }
-      }
-    ]
-  })
-}
-
-# Attach the "AmazonAPIGatewayPushToCloudWatchLogs" policy to the IAM role:
-resource "aws_iam_role_policy_attachment" "api_gateway_cloudwatch_logs_policy_attachment" {
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
-  role       = aws_iam_role.api_gateway_cloudwatch_logs_role.name
-}
-
-# Set the CloudWatch Logs role ARN in API Gateway account settings:
-resource "aws_api_gateway_account" "api_gateway_account_settings" {
-  provider = aws.apigateway_account
-  cloudwatch_role_arn = aws_iam_role.api_gateway_cloudwatch_logs_role.arn
-}
-
 
 
 ###################################  DEPLOY API WITH API KEY ###################################################

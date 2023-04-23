@@ -49,37 +49,6 @@ resource "aws_s3_bucket_object" "img_sub_folders" {
   content = ""
 }
 
-# locals {
-#   dist_directory = "../front-end/index-vue/dist/"
-#   files_to_upload = fileset("${local.dist_directory}/", "**/*")
-# }
-
-# resource "aws_s3_bucket_object" "uploaded_files" {
-#   for_each = toset(local.files_to_upload)
-
-#   bucket       = aws_s3_bucket.index_static_website.id
-#   key          = each.value
-#   source       = "${local.dist_directory}/${each.value}"
-#   etag         = filemd5("${local.dist_directory}/${each.value}")
-#   acl          = "public-read"
-#   content_type = lookup(local.mime_types, regex("\\.(.+)$", each.value)[0], "binary/octet-stream")
-# }
-
-# locals {
-#   mime_types = {
-#     "html" = "text/html"
-#     "css"  = "text/css"
-#     "js"   = "application/javascript"
-#     "json" = "application/json"
-#     "png"  = "image/png"
-#     "jpg"  = "image/jpeg"
-#     "jpeg" = "image/jpeg"
-#     "gif"  = "image/gif"
-#     "svg"  = "image/svg+xml"
-#   }
-# }
-
-
 # Set the ACL of the s3 bucket "index_static_website" to public-read
 resource "aws_s3_bucket_acl" "index_static_website_acl" {
   bucket = aws_s3_bucket.index_static_website.id
@@ -97,7 +66,7 @@ resource "aws_s3_bucket_website_configuration" "index_static_website" {
 
   # Custom error document that will be displayed when an error occurs
   error_document {
-    key = "error.html"
+    key = "index.html"
   }
 }
 
@@ -117,3 +86,4 @@ resource "aws_s3_bucket_policy" "index_static_website_policy" {
     ]
   })
 }
+
